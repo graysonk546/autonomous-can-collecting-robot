@@ -38,15 +38,14 @@ static command_line_t commandLine = {
 };
 
 // Might want to log command line entries
-// static char tempLine[COMMAND_BUFF_MAX_LEN];
 static char* args[COMMAND_ARGS_MAX_LEN];
 static char* tokCommand[(COMMAND_ARGS_MAX_LEN + 1)];
 
 /*******************************************************************************
-*                               Implementations
+*                               Functions
 *******************************************************************************/
 
-receptor_status_t command_init()
+robot_status_t command_init()
 {
     // Begin the serial connection
     Serial.begin(9600);
@@ -54,7 +53,7 @@ receptor_status_t command_init()
     {
         if (millis() > SERIAL_TIMEOUT_MS)
         {
-            return RECEPTOR_ERR;
+            return ROBOT_ERR;
         }
     }
     Serial.println(F("Initialized serial port!"));
@@ -81,9 +80,6 @@ bool command_readLine(char *byte)
 
 void command_parseCommand(char* line)
 {
-    // Copy the line over to static buffer, maintaining loggable reference
-    // snprintf(tempLine, COMMAND_BUFF_MAX_LEN, "%s", line);
-
     // Tokenize the line with spaces as the delimiter
     char* tok = (char*) strtok(line, " ");
     uint8_t i = 0;
@@ -145,7 +141,6 @@ void command_parseCommand(char* line)
             }
         }
     }
-    // memset(tempLine, '\0', COMMAND_BUFF_MAX_LEN);
     memset(tokCommand, '\0', (COMMAND_ARGS_MAX_LEN + 1));
     memset(args, '\0', COMMAND_ARGS_MAX_LEN);
 }

@@ -23,7 +23,7 @@
 *                               Constants
 *******************************************************************************/
 
-#define COMMAND_PROMPT       "receptor> "
+#define COMMAND_PROMPT       "robot> "
 #define CMD_EOL              '\n'
 #define CMD_EOL_STR          "\n"
 #define STRING_EOL           '\0'
@@ -45,10 +45,10 @@ typedef struct {
 *******************************************************************************/
 
 /*******************************************************************************
-*                               Function Declarations
+*                               Functions
 *******************************************************************************/
 
-receptor_status_t command_init();
+robot_status_t command_init();
 
 bool command_readLine(char *byte);
 

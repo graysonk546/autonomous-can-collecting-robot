@@ -36,7 +36,6 @@ static char _accelerometerTask(struct pt *thread);
 
 // Pointers for task threads
 static struct pt* pt_command;
-static struct pt* pt_networking;
 static struct pt* pt_accelerometer;
 
 // Flags (in place of semaphores for the time being)
@@ -67,7 +66,7 @@ void loop()
 }
 
 /*******************************************************************************
-*                               Implementations
+*                               Functions
 *******************************************************************************/
 
 static PT_THREAD(_commandTask(struct pt *thread))
