@@ -77,7 +77,8 @@ static PT_THREAD(_commandTask(struct pt *thread))
     {
         // Critical section
         PT_WAIT_UNTIL(thread, Serial.available() > 0);
-        if (command_readLine(Serial.read()))
+        char tmp = (char) Serial.read();
+        if (command_readLine(&tmp))
         {
             command_line_t *line = command_getLine();
             command_echoCommand(line->line);

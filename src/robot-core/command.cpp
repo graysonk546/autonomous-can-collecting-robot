@@ -34,7 +34,7 @@
 static struct pt commandThread;
 
 static command_line_t commandLine = {
-    commandLine.index = 0
+    .index = 0
 };
 
 // Might want to log command line entries
@@ -65,7 +65,7 @@ robot_status_t command_init()
 
 bool command_readLine(char *byte)
 {
-    if (byte == CMD_EOL)
+    if (*byte == CMD_EOL)
     {
         commandLine.line[commandLine.index] = STRING_EOL;
         commandLine.index = 0;
@@ -73,7 +73,7 @@ bool command_readLine(char *byte)
     }
     else
     {
-        commandLine.line[commandLine.index++] = byte;
+        commandLine.line[commandLine.index++] = *byte;
         return false;
     }
 }
@@ -141,8 +141,8 @@ void command_parseCommand(char* line)
             }
         }
     }
-    memset(tokCommand, '\0', (COMMAND_ARGS_MAX_LEN + 1));
-    memset(args, '\0', COMMAND_ARGS_MAX_LEN);
+    memset(tokCommand, '\0', sizeof(tokCommand));
+    memset(args, '\0', sizeof(args));
 }
 
 void command_echoCommand(char *line)

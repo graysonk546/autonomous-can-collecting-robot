@@ -34,7 +34,7 @@
 static const command_t commandArr[] = {
     COMMAND_COMMANDS
     ACCELEROMETER_COMMANDS
-    {NULL, "END_OF_LIST", NULL, NULL, NULL, NULL}
+    {NULL, "END_OF_LIST", NULL, NULL, 0, 0}
 };
 
 /*******************************************************************************

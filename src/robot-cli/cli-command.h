@@ -33,9 +33,9 @@ typedef cli_status_t (* cli_func_t)(uint8_t argNumber, char* args[]);
 
 typedef struct {
     cli_func_t function;
-    char *command;
-    char *parameters;
-    char *description;
+    const char *command;
+    const char *parameters;
+    const char *description;
     uint8_t minParam;
     uint8_t maxParam;
 } command_t;

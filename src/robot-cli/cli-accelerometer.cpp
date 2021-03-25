@@ -32,4 +32,6 @@
 cli_status_t cliAcc_init(uint8_t argNumber, char* args[])
 {
     Serial.println(F("{\"status\": \"success\"}"));
+
+    return COMMAND_OK;
 }
