@@ -4,7 +4,7 @@
 
 #include <pt.h>
 #include <Arduino.h>
-#include <HardwareSerial.h>
+// #include <HardwareSerial.h>
 
 /*******************************************************************************
 *                               Header Files
@@ -23,6 +23,14 @@
 
 #define SERIAL_TIMEOUT_MS 5000
 
+#ifdef UNO
+#define BAUD_RATE 9600
+#elif STM32
+#define BAUD_RATE 115200
+#else
+#define BAUD_RATE 115200
+#endif
+
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
@@ -33,9 +41,19 @@
 
 static struct pt commandThread;
 
+#ifdef STM32
 static command_line_t commandLine = {
     .index = 0
 };
+#elif UNO
+static command_line_t commandLine = {
+    commandLine.index = 0
+};
+#else
+static command_line_t commandLine = {
+    .index = 0
+};
+#endif
 
 // Might want to log command line entries
 static char* args[COMMAND_ARGS_MAX_LEN];
@@ -48,7 +66,7 @@ static char* tokCommand[(COMMAND_ARGS_MAX_LEN + 1)];
 robot_status_t command_init()
 {
     // Begin the serial connection
-    Serial.begin(9600);
+    Serial.begin(BAUD_RATE);
     while(!Serial)
     {
         if (millis() > SERIAL_TIMEOUT_MS)
@@ -61,6 +79,7 @@ robot_status_t command_init()
 
     // Initialize pt structure
     PT_INIT(&commandThread);
+    return ROBOT_OK;
 }
 
 bool command_readLine(char *byte)

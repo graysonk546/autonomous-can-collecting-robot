@@ -11,7 +11,7 @@
 *******************************************************************************/
 
 #include "cli-command.h"
-#include "cli-accelerometer.h"
+#include "cli-dc-motor.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -34,7 +34,7 @@
 static const command_t commandArr[] = {
     COMMAND_COMMANDS
     ACCELEROMETER_COMMANDS
-    {NULL, "END_OF_LIST", NULL, NULL, 0, 0}
+    {NULL, LIST_TERMINATOR, NULL, NULL, 0, 0}
 };
 
 /*******************************************************************************

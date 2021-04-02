@@ -1,13 +1,15 @@
 
 /*******************************************************************************
-*                               Standard Includes
+*                               Standard Libraries
 *******************************************************************************/
+
+#include <Arduino.h>
 
 /*******************************************************************************
-*                               Header File Includes
+*                               Header Files
 *******************************************************************************/
 
-#include "cli-accelerometer.h"
+#include "dc-motor.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -21,6 +23,8 @@
 *                               Structures
 *******************************************************************************/
 
+static struct pt accelerometerThread;
+
 /*******************************************************************************
 *                               Variables
 *******************************************************************************/
@@ -29,9 +33,13 @@
 *                               Functions
 *******************************************************************************/
 
-cli_status_t cliAcc_init(uint8_t argNumber, char* args[])
+robot_status_t accelerometer_init()
 {
-    Serial.println(F("{\"status\": \"success\"}"));
+    PT_INIT(&accelerometerThread);
+    return ROBOT_OK;
+}
 
-    return COMMAND_OK;
+struct pt* accelerometer_getThread()
+{
+    return &accelerometerThread;
 }

@@ -10,7 +10,7 @@
 *******************************************************************************/
 
 #include "robot-core/command.h"
-#include "robot-core/accelerometer.h"
+#include "robot-core/dc-motor.h"
 
 /*******************************************************************************
 *                               Static Functions
