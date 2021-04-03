@@ -30,7 +30,7 @@
 *                               Functions
 *******************************************************************************/
 
-cli_status_t cliAcc_init(uint8_t argNumber, char* args[])
+cli_status_t cliDcMotor_init(uint8_t argNumber, char* args[])
 {
     Serial.print(F(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR));
     return COMMAND_OK;

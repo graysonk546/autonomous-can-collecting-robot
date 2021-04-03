@@ -1,6 +1,6 @@
 
-#ifndef ACCELEROMETER
-#define ACCELEROMETER
+#ifndef DC_MOTOR
+#define DC_MOTOR
 
 /*******************************************************************************
 *                               Standard Libraries
@@ -34,8 +34,11 @@
 *                               Functions
 *******************************************************************************/
 
-robot_status_t accelerometer_init();
+/*******************************************************************************
+ * Requires: None
+ * Effects:  Returns robot_status_t indicating state of initialization
+ * Modifies: None
+ * ****************************************************************************/
+robot_status_t dcMotor_init();
 
-struct pt* accelerometer_getThread();
-
-#endif // ACCELEROMETER
+#endif // DC_MOTOR

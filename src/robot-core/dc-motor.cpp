@@ -23,8 +23,6 @@
 *                               Structures
 *******************************************************************************/
 
-static struct pt accelerometerThread;
-
 /*******************************************************************************
 *                               Variables
 *******************************************************************************/
@@ -33,13 +31,7 @@ static struct pt accelerometerThread;
 *                               Functions
 *******************************************************************************/
 
-robot_status_t accelerometer_init()
+robot_status_t dcMotor_init()
 {
-    PT_INIT(&accelerometerThread);
     return ROBOT_OK;
-}
-
-struct pt* accelerometer_getThread()
-{
-    return &accelerometerThread;
 }

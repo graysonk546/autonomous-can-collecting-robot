@@ -1,7 +1,6 @@
 
-#ifndef CLI_ACCELEROMETER
-#define CLI_ACCELEROMETER
-
+#ifndef CLI_DC_MOTOR
+#define CLI_DC_MOTOR
 /*******************************************************************************
 *                               Standard Includes
 *******************************************************************************/
@@ -32,9 +31,9 @@
 *                               Functions
 *******************************************************************************/
 
-cli_status_t cliAcc_init(uint8_t argNumber, char* args[]);
+cli_status_t cliDcMotor_init(uint8_t argNumber, char* args[]);
 
-#define ACCELEROMETER_COMMANDS                                                    \
-    {cliAcc_init, "acc-init", "<periph>", "init the accelerometer periph", 1, 1},
+#define DC_MOTOR_COMMANDS                                                      \
+    {cliDcMotor_init, "dc-init", "<periph>", "init the dc-motor periph", 1, 1},
 
-#endif // CLI_ACCELEROMETER
+#endif // CLI_DC_MOTOR

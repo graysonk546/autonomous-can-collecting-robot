@@ -5,6 +5,9 @@
 *                               Standard Includes
 *******************************************************************************/
 
+#include <pt.h>
+#include <pt-sem.h>
+
 /*******************************************************************************
 *                               Header File Includes
 *******************************************************************************/
@@ -25,6 +28,17 @@ typedef enum {
     ROBOT_OK,
     ROBOT_ERR
 } robot_status_t;
+
+typedef enum {
+    ROBOT_CLI,
+    ROBOT_DRIVING
+} robot_task_id_t;
+
+typedef struct{
+    struct pt_sem   taskMutex;
+    struct pt       taskThread;
+    robot_task_id_t taskId;
+} robot_task_t;
 
 /*******************************************************************************
 *                               Variables

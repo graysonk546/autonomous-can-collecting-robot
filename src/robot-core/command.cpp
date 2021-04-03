@@ -4,7 +4,6 @@
 
 #include <pt.h>
 #include <Arduino.h>
-// #include <HardwareSerial.h>
 
 /*******************************************************************************
 *                               Header Files
@@ -39,7 +38,7 @@
 *                               Variables
 *******************************************************************************/
 
-static struct pt commandThread;
+// static struct pt commandThread;
 
 #ifdef STM32
 static command_line_t commandLine = {
@@ -78,7 +77,7 @@ robot_status_t command_init()
     Serial.print(COMMAND_PROMPT);
 
     // Initialize pt structure
-    PT_INIT(&commandThread);
+    // PT_INIT(&commandThread);
     return ROBOT_OK;
 }
 
@@ -175,10 +174,10 @@ void command_echoCommand(char *line)
     Serial.print(CMD_EOL);
 }
 
-struct pt* command_getThread()
-{
-    return &commandThread;
-}
+// struct pt* command_getThread()
+// {
+//     return &commandThread;
+// }
 
 command_line_t* command_getLine()
 {

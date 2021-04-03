@@ -1,17 +1,19 @@
 
-#ifndef COMMAND_LISTING
-#define COMMAND_LISTING
-
 /*******************************************************************************
-*                               Standard Includes
+*                               Standard Libraries
 *******************************************************************************/
 
+#include <pt.h>
+#include <pt-sem.h>
+#include <Arduino.h>
+
 /*******************************************************************************
-*                               Header File Includes
+*                               Header Files
 *******************************************************************************/
 
-#include "cli-command.h"
-#include "cli-dc-motor.h"
+#include "task-driving.h"
+#include "robot-core/dc-motor.h"
+#include "utilities/util-vars.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -21,8 +23,6 @@
 *                               Constants
 *******************************************************************************/
 
-#define LIST_TERMINATOR "END_OF_LIST"
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
@@ -31,14 +31,43 @@
 *                               Variables
 *******************************************************************************/
 
-static const command_t commandArr[] = {
-    COMMAND_COMMANDS
-    DC_MOTOR_COMMANDS
-    {NULL, LIST_TERMINATOR, NULL, NULL, 0, 0}
+#ifdef UNO
+static robot_task_t taskDriving =
+{
+    taskDriving.taskMutex,
+    taskDriving.taskThread,
+    taskDriving.taskId = ROBOT_DRIVING
 };
+#elif STM32
+static robot_task_t taskDriving =
+{
+    .taskId = ROBOT_DRIVING
+};
+#else
+static robot_task_t taskDriving = 
+{
+    .taskId = ROBOT_DRIVING
+};
+#endif
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-#endif // COMMAND_LISTING
+robot_status_t taskDriving_init()
+{
+    if (dcMotor_init() != ROBOT_OK)
+    {
+        return ROBOT_ERR;
+    }
+    // Initialize the driving task pt thread
+    PT_INIT(&taskDriving.taskThread);
+    // Initialize the driving task pt sem
+    PT_SEM_INIT(&taskDriving.taskMutex, 0);
+    return ROBOT_OK;
+}
+
+robot_task_t* taskDriving_getTask()
+{
+    return &taskDriving;
+}

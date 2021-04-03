@@ -4,6 +4,8 @@
 *******************************************************************************/
 
 #include <Arduino.h>
+#include <pt.h>
+#include <pt-sem.h>
 
 /*******************************************************************************
 *                               Header Files
@@ -11,14 +13,16 @@
 
 #include "robot-core/command.h"
 #include "robot-core/dc-motor.h"
+#include "robot-tasks/task-driving.h"
+#include "robot-tasks/task-cli.h"
 
 /*******************************************************************************
 *                               Static Functions
 *******************************************************************************/
 
 // Task functions
-static char _commandTask(struct pt *thread);
-static char _accelerometerTask(struct pt *thread);
+static char _drivingTask(struct pt* thread);
+static char _cliTask(struct pt* thread);
 
 /*******************************************************************************
 *                               Constants
@@ -34,9 +38,9 @@ static char _accelerometerTask(struct pt *thread);
 *                               Variables
 *******************************************************************************/
 
-// Pointers for task threads
-static struct pt* pt_command;
-static struct pt* pt_accelerometer;
+// Pointers for robot tasks
+static robot_task_t* task_driving;
+static robot_task_t* task_cli;
 
 // Flags (in place of semaphores for the time being)
 static bool flag;
@@ -51,25 +55,33 @@ void setup()
     flag = true;
 
     // Initialize peripherals
-    command_init();
+    if (taskDriving_init() != ROBOT_OK)
+    {
+        // TODO: Figure out some sort of error handler
+        return;
+    } 
+    else if (taskCli_init() != ROBOT_OK)
+    {
+        return;
+    }
 
-    // Get thread references
-    pt_command = command_getThread();
-    pt_accelerometer = accelerometer_getThread();
+    // Get task references
+    task_driving = taskDriving_getTask();
+    task_cli = taskCli_getTask();
 }
 
 void loop()
 {
     // Looping achieves thread scheduling
-    _commandTask(pt_command);
-    _accelerometerTask(pt_accelerometer);
+    _drivingTask(&task_driving->taskThread);
+    _cliTask(&task_cli->taskThread);
 }
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-static PT_THREAD(_commandTask(struct pt *thread))
+static PT_THREAD(_cliTask(struct pt* thread))
 {
     // Static vars maintain value through context switches
     PT_BEGIN(thread);
@@ -89,7 +101,7 @@ static PT_THREAD(_commandTask(struct pt *thread))
     PT_END(thread);
 }
 
-static PT_THREAD(_accelerometerTask(struct pt* thread))
+static PT_THREAD(_drivingTask(struct pt* thread))
 {
     PT_BEGIN(thread);
     while(true)
