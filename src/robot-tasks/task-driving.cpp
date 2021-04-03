@@ -36,17 +36,20 @@ static robot_task_t taskDriving =
 {
     taskDriving.taskMutex,
     taskDriving.taskThread,
-    taskDriving.taskId = ROBOT_DRIVING
+    taskDriving.taskId =    ROBOT_DRIVING,
+    taskDriving.taskISR =   taskDriving_ISR
 };
 #elif STM32
 static robot_task_t taskDriving =
 {
-    .taskId = ROBOT_DRIVING
+    .taskId  = ROBOT_DRIVING,
+    .taskISR = taskDriving_ISR
 };
 #else
 static robot_task_t taskDriving = 
 {
-    .taskId = ROBOT_DRIVING
+    .taskId  = ROBOT_DRIVING,
+    .taskISR = taskDriving_ISR
 };
 #endif
 
@@ -65,6 +68,11 @@ robot_status_t taskDriving_init()
     // Initialize the driving task pt sem
     PT_SEM_INIT(&taskDriving.taskMutex, 0);
     return ROBOT_OK;
+}
+
+void taskDriving_ISR()
+{
+    return;
 }
 
 robot_task_t* taskDriving_getTask()

@@ -24,6 +24,8 @@
 *                               Structures
 *******************************************************************************/
 
+typedef void (*ISR_func_t)(void);
+
 typedef enum {
     ROBOT_OK,
     ROBOT_ERR
@@ -38,6 +40,7 @@ typedef struct{
     struct pt_sem   taskMutex;
     struct pt       taskThread;
     robot_task_id_t taskId;
+    ISR_func_t      taskISR;
 } robot_task_t;
 
 /*******************************************************************************

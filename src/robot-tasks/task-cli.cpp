@@ -31,12 +31,14 @@
 *                               Variables
 *******************************************************************************/
 
+// Default thread and not directly interrupt driven
 #ifdef UNO
 static robot_task_t taskCli =
 {
     taskCli.taskMutex,
     taskCli.taskThread,
-    taskCli.taskId = ROBOT_CLI
+    taskCli.taskId      = ROBOT_CLI,
+    taskCli.taskISR
 };
 #elif STM32
 static robot_task_t taskCli =

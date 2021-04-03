@@ -174,11 +174,6 @@ void command_echoCommand(char *line)
     Serial.print(CMD_EOL);
 }
 
-// struct pt* command_getThread()
-// {
-//     return &commandThread;
-// }
-
 command_line_t* command_getLine()
 {
     return &commandLine;

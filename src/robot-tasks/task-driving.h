@@ -43,6 +43,13 @@ robot_status_t taskDriving_init();
 
 /*******************************************************************************
  * Requires: None
+ * Effects:  None
+ * Modifies: Takes and releases pt_sem mutex in robot_task_t for driving
+ * ****************************************************************************/
+void taskDriving_ISR();
+
+/*******************************************************************************
+ * Requires: None
  * Effects:  Returns a robot_task_t pointer to the driving task
  * Modifies: None
  * ****************************************************************************/

@@ -29,7 +29,7 @@ typedef enum {
     COMMAND_ERROR
 } cli_status_t;
 
-typedef cli_status_t (* cli_func_t)(uint8_t argNumber, char* args[]);
+typedef cli_status_t (*cli_func_t)(uint8_t argNumber, char* args[]);
 
 typedef struct {
     cli_func_t function;
