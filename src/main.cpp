@@ -55,16 +55,15 @@ void setup()
     flag = true;
 
     // Initialize peripherals
+    if (taskCli_init() != ROBOT_OK)
+    {
+
+    }
     if (taskDriving_init() != ROBOT_OK)
     {
         // TODO: Figure out some sort of error handler
-        return;
-    } 
-    else if (taskCli_init() != ROBOT_OK)
-    {
-        return;
     }
-
+    
     // Get task references
     task_driving = taskDriving_getTask();
     task_cli = taskCli_getTask();

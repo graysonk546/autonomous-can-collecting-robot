@@ -22,9 +22,22 @@
 *                               Constants
 *******************************************************************************/
 
+#define MAX_SPEED    255
+#define STATIC_SPEED 0
+
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
+
+typedef enum {
+    CW_DIRECTION,
+    CC_DIRECTION
+} dc_motor_dir_t;
+
+typedef enum {
+    DC_MOTOR_1,
+    DC_MOTOR_2
+} dc_motor_t;
 
 /*******************************************************************************
 *                               Variables
@@ -39,6 +52,14 @@
  * Effects:  Returns robot_status_t indicating state of initialization
  * Modifies: None
  * ****************************************************************************/
-robot_status_t dcMotor_init();
+robot_status_t dcMotor_init(dc_motor_t motor);
+
+/*******************************************************************************
+ * Requires: Requires dc_motor_dir_t for direciton of spin and uint8_t for
+ *           desired speed (0-256)
+ * Effects:  Returns robot_status_t indicating state of initialization
+ * Modifies: None
+ * ****************************************************************************/
+robot_status_t dcMotor_run(dc_motor_t motor, uint8_t speed, dc_motor_dir_t dir);
 
 #endif // DC_MOTOR
