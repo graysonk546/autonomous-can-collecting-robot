@@ -33,7 +33,9 @@
 
 cli_status_t cliDcMotor_init(uint8_t argNumber, char* args[]);
 
-#define DC_MOTOR_COMMANDS                                                      \
-    {cliDcMotor_init, "dc-init", "<periph>", "init the dc-motor periph", 1, 1},
+cli_status_t cliDcMotor_run(uint8_t argNumber, char* args[]);
 
+#define DC_MOTOR_COMMANDS                                                                     \
+    {cliDcMotor_init, "dc-init", "<periph>",               "init the dc-motor periph", 1, 1}, \
+    {cliDcMotor_run,  "dc-run",  "<periph> <speed> <dir>", "run the dc motor",         3, 3},
 #endif // CLI_DC_MOTOR

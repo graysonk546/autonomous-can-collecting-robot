@@ -59,7 +59,11 @@ static robot_task_t taskDriving =
 
 robot_status_t taskDriving_init()
 {
-    if (dcMotor_init() != ROBOT_OK)
+    if (dcMotor_init(DC_MOTOR_1) != ROBOT_OK)
+    {
+        return ROBOT_ERR;
+    }
+    if(dcMotor_init(DC_MOTOR_2) != ROBOT_OK)
     {
         return ROBOT_ERR;
     }
