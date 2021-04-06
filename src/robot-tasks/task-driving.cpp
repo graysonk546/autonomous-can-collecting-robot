@@ -63,6 +63,10 @@ robot_status_t taskDriving_init()
     {
         return ROBOT_ERR;
     }
+    if(dcMotor_init(DC_MOTOR_2) != ROBOT_OK)
+    {
+        return ROBOT_ERR;
+    }
     // Initialize the driving task pt thread
     PT_INIT(&taskDriving.taskThread);
     // Initialize the driving task pt sem
