@@ -3,14 +3,17 @@
 *                               Standard Libraries
 *******************************************************************************/
 
+#include <pt.h>
+#include <pt-sem.h>
 #include <Arduino.h>
-#include <HardwareTimer.h>
 
 /*******************************************************************************
 *                               Header Files
 *******************************************************************************/
 
-#include "sonar.h"
+#include "task-claw.h"
+#include "robot-core/sonar.h"
+#include "utilities/util-vars.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -20,11 +23,8 @@
 *                               Constants
 *******************************************************************************/
 
-#define SONAR_PWM_TIMER     TIM3
-#define SONAR_TIMER_CHANNEL 4
-#define SONAR_PWM_FREQ      100  // 16Hz ~ 60ms PWM period (recomended)
-#define SONAR_PWM_DUTY      3    // 3% duty cycle ~ 2ms pulse
-#define SONAR_TRIG_PIN      PB1
+#define CLAW_INT_PIN PB11
+#define CLAW_TIMEOUT 500
 
 /*******************************************************************************
 *                               Structures
@@ -34,17 +34,62 @@
 *                               Variables
 *******************************************************************************/
 
-static HardwareTimer* pwmTimer;
+// Default thread and not directly interrupt driven
+#ifdef UNO
+static robot_task_t taskClaw =
+{
+    taskClaw.taskMutex,
+    taskClaw.taskThread,
+    taskClaw.taskId      = ROBOT_CLAW,
+    taskClaw.taskISR,
+    taskClaw.taskTime    = millis()
+};
+#elif STM32
+static robot_task_t taskClaw =
+{
+    .taskId   = ROBOT_CLAW,
+    .taskTime = millis()
+};
+#else
+static robot_task_t taskClaw = 
+{
+    .taskId   = ROBOT_CLAW,
+    .taskTime = millis()
+};
+#endif
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-robot_status_t sonar_init()
+robot_status_t taskClaw_init()
 {
-    // Initializing PWM (replaces analogWrite)
-    pwmTimer = new HardwareTimer(SONAR_PWM_TIMER);
-    pwmTimer->setPWM(SONAR_TIMER_CHANNEL, SONAR_TRIG_PIN, SONAR_PWM_FREQ, 
-                     SONAR_PWM_DUTY);
+    // Initialize the periphs used in this task
+    if (sonar_init() != ROBOT_OK)
+    {
+        return ROBOT_ERR;
+    }
+    // Initialize the interrupt pin
+    pinMode(CLAW_INT_PIN, INPUT);
+    attachInterrupt(digitalPinToInterrupt(CLAW_INT_PIN), 
+                    taskClaw_ISR, RISING);
+    // Initialize the claw task pt thread
+    PT_INIT(&taskClaw.taskThread);
+    // Initialize the claw task pt sem
+    PT_SEM_INIT(&taskClaw.taskMutex, 0);
     return ROBOT_OK;
+}
+
+robot_task_t* taskClaw_getTask()
+{
+    return &taskClaw;
+}
+
+void taskClaw_ISR()
+{
+    if ((millis() - taskClaw.taskTime) > CLAW_TIMEOUT)
+    {
+        PT_SEM_SIGNAL(&taskClaw.taskThread, &taskClaw.taskMutex);
+        taskClaw.taskTime = millis();
+    }
 }

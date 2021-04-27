@@ -70,13 +70,17 @@ robot_status_t dcMotor_init(dc_motor_t motor)
     if (motor == DC_MOTOR_1)
     {
         _initMotor(PIN_1_MOTOR_1, PIN_2_MOTOR_1, POWER_MOTOR_1);
+        return ROBOT_OK;
+    }
+    else if (motor == DC_MOTOR_2)
+    {
+        _initMotor(PIN_1_MOTOR_2, PIN_2_MOTOR_2, POWER_MOTOR_2);
+        return ROBOT_OK;
     }
     else
     {
-        _initMotor(PIN_1_MOTOR_2, PIN_2_MOTOR_2, POWER_MOTOR_2);
+        return ROBOT_ERR;
     }
-
-    return ROBOT_OK;
 }
 
 robot_status_t dcMotor_run(dc_motor_t motor, uint8_t speed, dc_motor_dir_t dir)

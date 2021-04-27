@@ -38,17 +38,18 @@ static robot_task_t taskCli =
     taskCli.taskMutex,
     taskCli.taskThread,
     taskCli.taskId      = ROBOT_CLI,
-    taskCli.taskISR
+    taskCli.taskISR,
+    taskCli.taskTime    = millis()
 };
 #elif STM32
 static robot_task_t taskCli =
 {
-    .taskId = ROBOT_CLI
+    .taskId   = ROBOT_CLI,
 };
 #else
 static robot_task_t taskCli = 
 {
-    .taskId = ROBOT_CLI
+    .taskId   = ROBOT_CLI,
 };
 #endif
 

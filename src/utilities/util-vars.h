@@ -33,7 +33,8 @@ typedef enum {
 
 typedef enum {
     ROBOT_CLI,
-    ROBOT_DRIVING
+    ROBOT_DRIVING,
+    ROBOT_CLAW
 } robot_task_id_t;
 
 typedef struct{
@@ -41,6 +42,7 @@ typedef struct{
     struct pt       taskThread;
     robot_task_id_t taskId;
     ISR_func_t      taskISR;
+    unsigned long   taskTime;
 } robot_task_t;
 
 /*******************************************************************************

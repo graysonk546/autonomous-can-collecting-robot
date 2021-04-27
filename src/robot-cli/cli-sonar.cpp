@@ -1,16 +1,16 @@
 
 /*******************************************************************************
-*                               Standard Libraries
+*                               Standard Includes
 *******************************************************************************/
-
-#include <Arduino.h>
-#include <HardwareTimer.h>
 
 /*******************************************************************************
-*                               Header Files
+*                               Header File Includes
 *******************************************************************************/
 
-#include "sonar.h"
+#include "cli-sonar.h"
+#include "utilities/util-vars.h"
+#include "robot-core/command.h"
+#include "robot-core/sonar.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -20,12 +20,6 @@
 *                               Constants
 *******************************************************************************/
 
-#define SONAR_PWM_TIMER     TIM3
-#define SONAR_TIMER_CHANNEL 4
-#define SONAR_PWM_FREQ      100  // 16Hz ~ 60ms PWM period (recomended)
-#define SONAR_PWM_DUTY      3    // 3% duty cycle ~ 2ms pulse
-#define SONAR_TRIG_PIN      PB1
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
@@ -34,17 +28,22 @@
 *                               Variables
 *******************************************************************************/
 
-static HardwareTimer* pwmTimer;
-
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-robot_status_t sonar_init()
+cli_status_t cliSonar_init(uint8_t argNumber, char* args[])
 {
-    // Initializing PWM (replaces analogWrite)
-    pwmTimer = new HardwareTimer(SONAR_PWM_TIMER);
-    pwmTimer->setPWM(SONAR_TIMER_CHANNEL, SONAR_TRIG_PIN, SONAR_PWM_FREQ, 
-                     SONAR_PWM_DUTY);
-    return ROBOT_OK;
+    if (sonar_init() != ROBOT_OK)
+    {
+        Serial.print(F(CMD_JSON "{\"status\": \"error\", \"data\": \"failed"
+                     " to init sonar\"}" CMD_EOL_STR));
+    }
+    Serial.print(F(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR));
+    return COMMAND_OK;
+}
+
+cli_status_t cliSonar_run(uint8_t argNumber, char* args[])
+{
+    return COMMAND_OK;
 }

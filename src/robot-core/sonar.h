@@ -40,11 +40,4 @@
  * ****************************************************************************/
 robot_status_t sonar_init();
 
-/*******************************************************************************
- * Requires: None
- * Effects:  Returns robot_status_t indicating state of initialization
- * Modifies: None
- * ****************************************************************************/
-robot_status_t sonar_run();
-
 #endif // SONAR

@@ -36,8 +36,9 @@ static robot_task_t taskDriving =
 {
     taskDriving.taskMutex,
     taskDriving.taskThread,
-    taskDriving.taskId =    ROBOT_DRIVING,
-    taskDriving.taskISR =   taskDriving_ISR
+    taskDriving.taskId      = ROBOT_DRIVING,
+    taskDriving.taskISR     = taskDriving_ISR,
+    taskDriving.taskTime
 };
 #elif STM32
 static robot_task_t taskDriving =
