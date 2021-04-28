@@ -1,16 +1,18 @@
-#ifndef UTIL_VARS_H
-#define UTIL_VARS_H
+#ifndef TASK_CLAW
+#define TASK_CLAW
 
 /*******************************************************************************
-*                               Standard Includes
+*                               Standard Libraries
 *******************************************************************************/
 
 #include <pt.h>
 #include <pt-sem.h>
 
 /*******************************************************************************
-*                               Header File Includes
+*                               Header Files
 *******************************************************************************/
+
+#include "utilities/util-vars.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -24,27 +26,6 @@
 *                               Structures
 *******************************************************************************/
 
-typedef void (*ISR_func_t)(void);
-
-typedef enum {
-    ROBOT_OK,
-    ROBOT_ERR
-} robot_status_t;
-
-typedef enum {
-    ROBOT_CLI,
-    ROBOT_DRIVING,
-    ROBOT_CLAW
-} robot_task_id_t;
-
-typedef struct{
-    struct pt_sem   taskMutex;
-    struct pt       taskThread;
-    robot_task_id_t taskId;
-    ISR_func_t      taskISR;
-    unsigned long   taskTime;
-} robot_task_t;
-
 /*******************************************************************************
 *                               Variables
 *******************************************************************************/
@@ -53,4 +34,25 @@ typedef struct{
 *                               Functions
 *******************************************************************************/
 
-#endif // UTIL_VARS_H
+/*******************************************************************************
+ * Requires: None
+ * Effects:  Returns robot_status_t indicating state of initialization
+ * Modifies: None
+ * ****************************************************************************/
+robot_status_t taskClaw_init();
+
+/*******************************************************************************
+ * Requires: None
+ * Effects:  Returns a robot_task_t pointer to the cli task
+ * Modifies: None
+ * ****************************************************************************/
+robot_task_t* taskClaw_getTask();
+
+/*******************************************************************************
+ * Requires: None
+ * Effects:  None
+ * Modifies: Takes task mutex, called when interrupt hits
+ * ****************************************************************************/
+void taskClaw_ISR();
+
+#endif // TASK_CLAW

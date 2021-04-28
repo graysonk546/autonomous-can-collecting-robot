@@ -36,20 +36,21 @@ static robot_task_t taskDriving =
 {
     taskDriving.taskMutex,
     taskDriving.taskThread,
-    taskDriving.taskId =    ROBOT_DRIVING,
-    taskDriving.taskISR =   taskDriving_ISR
+    taskDriving.taskId      = ROBOT_DRIVING,
+    taskDriving.taskISR,
+    taskDriving.taskTime    = millis()
 };
 #elif STM32
 static robot_task_t taskDriving =
 {
-    .taskId  = ROBOT_DRIVING,
-    .taskISR = taskDriving_ISR
+    .taskId   = ROBOT_DRIVING,
+    .taskTime = millis()
 };
 #else
 static robot_task_t taskDriving = 
 {
-    .taskId  = ROBOT_DRIVING,
-    .taskISR = taskDriving_ISR
+    .taskId   = ROBOT_DRIVING,
+    .taskTime = millis()
 };
 #endif
 
@@ -67,6 +68,8 @@ robot_status_t taskDriving_init()
     {
         return ROBOT_ERR;
     }
+    //Intialize the button interrupt pin
+
     // Initialize the driving task pt thread
     PT_INIT(&taskDriving.taskThread);
     // Initialize the driving task pt sem
@@ -76,7 +79,11 @@ robot_status_t taskDriving_init()
 
 void taskDriving_ISR()
 {
-    return;
+    if (millis() - taskDriving.taskTime)
+    {
+        PT_SEM_SIGNAL(&taskDriving.taskThread, &taskDriving.taskMutex);
+        taskDriving.taskTime = millis();
+    }
 }
 
 robot_task_t* taskDriving_getTask()

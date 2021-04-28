@@ -13,8 +13,11 @@
 
 #include "robot-core/command.h"
 #include "robot-core/dc-motor.h"
+#include "robot-core/sonar.h"
+
 #include "robot-tasks/task-driving.h"
 #include "robot-tasks/task-cli.h"
+#include "robot-tasks/task-claw.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -23,12 +26,11 @@
 // Task functions
 static char _drivingTask(struct pt* thread);
 static char _cliTask(struct pt* thread);
+static char _clawTask(struct pt* thread);
 
 /*******************************************************************************
 *                               Constants
 *******************************************************************************/
-
-#define TEN_SEC_MILLIS 1000
 
 /*******************************************************************************
 *                               Structures
@@ -41,6 +43,7 @@ static char _cliTask(struct pt* thread);
 // Pointers for robot tasks
 static robot_task_t* task_driving;
 static robot_task_t* task_cli;
+static robot_task_t* task_claw;
 
 // Flags (in place of semaphores for the time being)
 static bool flag;
@@ -61,12 +64,17 @@ void setup()
     }
     if (taskDriving_init() != ROBOT_OK)
     {
+
+    }
+    if (taskClaw_init() != ROBOT_OK)
+    {
         // TODO: Figure out some sort of error handler
     }
     
     // Get task references
     task_driving = taskDriving_getTask();
     task_cli = taskCli_getTask();
+    task_claw = taskClaw_getTask();
 }
 
 void loop()
@@ -74,6 +82,7 @@ void loop()
     // Looping achieves thread scheduling
     _drivingTask(&task_driving->taskThread);
     _cliTask(&task_cli->taskThread);
+    _clawTask(&task_claw->taskThread);
 }
 
 /*******************************************************************************
@@ -103,9 +112,21 @@ static PT_THREAD(_cliTask(struct pt* thread))
 static PT_THREAD(_drivingTask(struct pt* thread))
 {
     PT_BEGIN(thread);
-    while(true)
+    while (true)
     {
-        PT_WAIT_UNTIL(thread, flag == false);
+        PT_SEM_WAIT(thread, &task_driving->taskMutex);
     }
     PT_END(thread);
 }
+
+static PT_THREAD(_clawTask(struct pt* thread))
+{
+    PT_BEGIN(thread);
+    while (true)
+    {
+        PT_SEM_WAIT(thread, &task_claw->taskMutex);
+        Serial.println("Claw!");
+        // Critical section
+    }
+    PT_END(thread);
+} 

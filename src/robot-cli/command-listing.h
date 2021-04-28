@@ -10,9 +10,10 @@
 *                               Header File Includes
 *******************************************************************************/
 
-#include "cli-command.h"
 #include "robot-core/command.h"
+#include "cli-command.h"
 #include "cli-dc-motor.h"
+#include "cli-sonar.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -35,6 +36,7 @@
 static const command_t commandArr[] = {
     COMMAND_COMMANDS
     DC_MOTOR_COMMANDS
+    SONAR_COMMANDS
     {NULL, LIST_TERMINATOR, NULL, NULL, 0, 0}
 };
 

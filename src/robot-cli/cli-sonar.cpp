@@ -1,16 +1,16 @@
-#ifndef UTIL_VARS_H
-#define UTIL_VARS_H
 
 /*******************************************************************************
 *                               Standard Includes
 *******************************************************************************/
 
-#include <pt.h>
-#include <pt-sem.h>
-
 /*******************************************************************************
 *                               Header File Includes
 *******************************************************************************/
+
+#include "cli-sonar.h"
+#include "utilities/util-vars.h"
+#include "robot-core/command.h"
+#include "robot-core/sonar.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -24,27 +24,6 @@
 *                               Structures
 *******************************************************************************/
 
-typedef void (*ISR_func_t)(void);
-
-typedef enum {
-    ROBOT_OK,
-    ROBOT_ERR
-} robot_status_t;
-
-typedef enum {
-    ROBOT_CLI,
-    ROBOT_DRIVING,
-    ROBOT_CLAW
-} robot_task_id_t;
-
-typedef struct{
-    struct pt_sem   taskMutex;
-    struct pt       taskThread;
-    robot_task_id_t taskId;
-    ISR_func_t      taskISR;
-    unsigned long   taskTime;
-} robot_task_t;
-
 /*******************************************************************************
 *                               Variables
 *******************************************************************************/
@@ -53,4 +32,18 @@ typedef struct{
 *                               Functions
 *******************************************************************************/
 
-#endif // UTIL_VARS_H
+cli_status_t cliSonar_init(uint8_t argNumber, char* args[])
+{
+    if (sonar_init() != ROBOT_OK)
+    {
+        Serial.print(F(CMD_JSON "{\"status\": \"error\", \"data\": \"failed"
+                     " to init sonar\"}" CMD_EOL_STR));
+    }
+    Serial.print(F(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR));
+    return COMMAND_OK;
+}
+
+cli_status_t cliSonar_run(uint8_t argNumber, char* args[])
+{
+    return COMMAND_OK;
+}

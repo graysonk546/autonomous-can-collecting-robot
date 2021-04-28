@@ -1,16 +1,15 @@
-#ifndef UTIL_VARS_H
-#define UTIL_VARS_H
 
+#ifndef CLI_SONAR
+#define CLI_SONAR
 /*******************************************************************************
 *                               Standard Includes
 *******************************************************************************/
 
-#include <pt.h>
-#include <pt-sem.h>
-
 /*******************************************************************************
 *                               Header File Includes
 *******************************************************************************/
+
+#include "cli-command.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -24,27 +23,6 @@
 *                               Structures
 *******************************************************************************/
 
-typedef void (*ISR_func_t)(void);
-
-typedef enum {
-    ROBOT_OK,
-    ROBOT_ERR
-} robot_status_t;
-
-typedef enum {
-    ROBOT_CLI,
-    ROBOT_DRIVING,
-    ROBOT_CLAW
-} robot_task_id_t;
-
-typedef struct{
-    struct pt_sem   taskMutex;
-    struct pt       taskThread;
-    robot_task_id_t taskId;
-    ISR_func_t      taskISR;
-    unsigned long   taskTime;
-} robot_task_t;
-
 /*******************************************************************************
 *                               Variables
 *******************************************************************************/
@@ -53,4 +31,11 @@ typedef struct{
 *                               Functions
 *******************************************************************************/
 
-#endif // UTIL_VARS_H
+cli_status_t cliSonar_init(uint8_t argNumber, char* args[]);
+
+cli_status_t cliSonar_run(uint8_t argNumber, char* args[]);
+
+#define SONAR_COMMANDS                                             \
+    {cliSonar_init, "sonar-init", "", "init the sonar module", 0, 0}, \
+    {cliSonar_run,  "soanr-run",  "", "run the sonar module",  0, 0},
+#endif // CLI_SONAR
