@@ -48,3 +48,9 @@ robot_status_t sonar_init()
                      SONAR_PWM_DUTY);
     return ROBOT_OK;
 }
+
+robot_status_t sonar_deInit()
+{
+    digitalWrite(SONAR_TRIG_PIN, LOW);
+    return ROBOT_OK;
+}

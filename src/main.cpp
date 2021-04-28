@@ -112,9 +112,9 @@ static PT_THREAD(_cliTask(struct pt* thread))
 static PT_THREAD(_drivingTask(struct pt* thread))
 {
     PT_BEGIN(thread);
-    while(true)
+    while (true)
     {
-        PT_WAIT_UNTIL(thread, flag == false);
+        PT_SEM_WAIT(thread, &task_driving->taskMutex);
     }
     PT_END(thread);
 }
