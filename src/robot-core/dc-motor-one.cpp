@@ -1,20 +1,15 @@
 
-#ifndef COMMAND_LISTING
-#define COMMAND_LISTING
-
 /*******************************************************************************
-*                               Standard Includes
+*                               Standard Libraries
 *******************************************************************************/
 
+#include <Arduino.h>
+
 /*******************************************************************************
-*                               Header File Includes
+*                               Header Files
 *******************************************************************************/
 
-#include "robot-core/command.h"
-#include "cli-command.h"
-#include "cli-dc-motor.h"
-#include "cli-dc-motor-one.h"
-#include "cli-sonar.h"
+#include "dc-motor-one.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -24,26 +19,32 @@
 *                               Constants
 *******************************************************************************/
 
-#define LIST_TERMINATOR "END_OF_LIST"
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
 
 /*******************************************************************************
-*                               Variables 
+*                               Variables
 *******************************************************************************/
 
-static const command_t commandArr[] = {
-    COMMAND_COMMANDS
-    DC_MOTOR_COMMANDS
-    DC_MOTOR_ONE_COMMANDS
-    SONAR_COMMANDS
-    {NULL, LIST_TERMINATOR, NULL, NULL, 0, 0}
-};
+struct dc_motor_one_t roller_motor = {.pin = PA7, .speed = STATIC_SPEED, .id = MOTOR_3};
+
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-#endif // COMMAND_LISTING
+robot_status_t dcMotorOne_init(dc_motor_one_t* motor)
+{
+    pinMode(motor->pin, OUTPUT);
+    motor->speed = STATIC_SPEED;
+    analogWrite(motor->pin, motor->speed);
+    return ROBOT_OK;
+}
+
+robot_status_t dcMotorOne_run(dc_motor_one_t* motor, uint8_t speed)
+{
+    motor->speed = speed;
+    analogWrite(motor->pin, motor->speed);
+    return ROBOT_OK;
+}

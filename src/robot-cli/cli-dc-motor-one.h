@@ -1,7 +1,6 @@
 
-#ifndef COMMAND_LISTING
-#define COMMAND_LISTING
-
+#ifndef CLI_DC_MOTOR_ONE
+#define CLI_DC_MOTOR_ONE
 /*******************************************************************************
 *                               Standard Includes
 *******************************************************************************/
@@ -10,11 +9,7 @@
 *                               Header File Includes
 *******************************************************************************/
 
-#include "robot-core/command.h"
 #include "cli-command.h"
-#include "cli-dc-motor.h"
-#include "cli-dc-motor-one.h"
-#include "cli-sonar.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -24,26 +19,23 @@
 *                               Constants
 *******************************************************************************/
 
-#define LIST_TERMINATOR "END_OF_LIST"
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
 
 /*******************************************************************************
-*                               Variables 
+*                               Variables
 *******************************************************************************/
-
-static const command_t commandArr[] = {
-    COMMAND_COMMANDS
-    DC_MOTOR_COMMANDS
-    DC_MOTOR_ONE_COMMANDS
-    SONAR_COMMANDS
-    {NULL, LIST_TERMINATOR, NULL, NULL, 0, 0}
-};
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-#endif // COMMAND_LISTING
+cli_status_t cliDcMotorOne_init(uint8_t argNumber, char* args[]);
+
+cli_status_t cliDcMotorOne_run(uint8_t argNumber, char* args[]);
+
+#define DC_MOTOR_ONE_COMMANDS                                                                     \
+    {cliDcMotorOne_init, "dc-one-init", "<periph>",               "init the 1D dc-motor periph", 1, 1}, \
+    {cliDcMotorOne_run,  "dc-one-run",  "<periph> <speed> <dir>", "run the 1D dc motor",         3, 3},
+#endif // CLI_DC_MOTOR_ONE

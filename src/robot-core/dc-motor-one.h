@@ -1,16 +1,19 @@
-#ifndef UTIL_VARS_H
-#define UTIL_VARS_H
+
+#ifndef DC_MOTOR_ONE
+#define DC_MOTOR_ONE
 
 /*******************************************************************************
-*                               Standard Includes
+*                               Standard Libraries
 *******************************************************************************/
 
 #include <pt.h>
-#include <pt-sem.h>
+#include <stdint.h>
 
 /*******************************************************************************
-*                               Header File Includes
+*                               Header Files
 *******************************************************************************/
+
+#include "utilities/util-vars.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -20,37 +23,19 @@
 *                               Constants
 *******************************************************************************/
 
+#define MAX_SPEED    255
+#define STATIC_SPEED 0
+
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
 
-typedef void (*ISR_func_t)(void);
-
-typedef enum {
-    ROBOT_OK,
-    ROBOT_ERR
-} robot_status_t;
-
-typedef enum {
-    ROBOT_CLI,
-    ROBOT_DRIVING,
-    ROBOT_CLAW
-} robot_task_id_t;
-
-typedef enum
+struct dc_motor_one_t
 {
-    MOTOR_1,
-    MOTOR_2,
-    MOTOR_3
-} motor_id_t;
-
-typedef struct{
-    struct pt_sem   taskMutex;
-    struct pt       taskThread;
-    robot_task_id_t taskId;
-    ISR_func_t      taskISR;
-    unsigned long   taskTime;
-} robot_task_t;
+    uint8_t pin;
+    uint8_t speed;
+    motor_id_t id;
+};
 
 /*******************************************************************************
 *                               Variables
@@ -60,4 +45,27 @@ typedef struct{
 *                               Functions
 *******************************************************************************/
 
-#endif // UTIL_VARS_H
+/*******************************************************************************
+ * Requires: pin_number corresponding to the PWM output to the unidirectional DC
+ *           motor
+ * Effects:  Returns dc_motor_1d_t pointer
+ * Modifies: None
+ * ****************************************************************************/
+robot_status_t dcMotorOne_init(dc_motor_one_t* motor);
+
+/*******************************************************************************
+ * Requires: speed ranging from 0-255 that maps linearly to to the min and max
+ *           speeds of the unidirectional DC motor
+ * Effects:  Returns robot_status_t indicating state of motor after function
+ *           call
+ * Modifies: self
+ * ****************************************************************************/
+robot_status_t dcMotorOne_run(dc_motor_one_t* motor, uint8_t speed);
+
+#endif // DC_MOTOR_ONE
+
+
+// dc_motor_one_t ROLLER_MOTOR;
+// dcMotorOne_init(ROLLER_MOTOR, ROLLER_MOTOR_PIN)
+// ...
+// dcMotorOne_run(ROLLER_MOTOR, 238)
