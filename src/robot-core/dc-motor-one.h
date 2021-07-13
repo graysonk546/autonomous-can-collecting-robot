@@ -62,6 +62,8 @@ robot_status_t dcMotorOne_init(dc_motor_one_t* motor);
  * ****************************************************************************/
 robot_status_t dcMotorOne_run(dc_motor_one_t* motor, uint8_t speed);
 
+dc_motor_one_t* dcMotorOne_get(motor_id_t motorId);
+
 #endif // DC_MOTOR_ONE
 
 

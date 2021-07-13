@@ -27,7 +27,12 @@
 *                               Variables
 *******************************************************************************/
 
-struct dc_motor_one_t roller_motor = {.pin = PA7, .speed = STATIC_SPEED, .id = MOTOR_3};
+struct dc_motor_one_t roller_motor = 
+{
+    .pin = PA7, 
+    .speed = STATIC_SPEED, 
+    .id = MOTOR_3
+};
 
 
 /*******************************************************************************
@@ -47,4 +52,9 @@ robot_status_t dcMotorOne_run(dc_motor_one_t* motor, uint8_t speed)
     motor->speed = speed;
     analogWrite(motor->pin, motor->speed);
     return ROBOT_OK;
+}
+
+dc_motor_one_t* dcMotorOne_get(motor_id_t motorId) 
+{
+    return &roller_motor;
 }
