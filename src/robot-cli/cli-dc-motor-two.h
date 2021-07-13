@@ -1,15 +1,17 @@
 
+#ifndef CLI_DC_MOTOR_TWO
+#define CLI_DC_MOTOR_TWO
 /*******************************************************************************
-*                               Standard Libraries
+*                               Standard Includes
 *******************************************************************************/
 
-#include <Arduino.h>
-
 /*******************************************************************************
-*                               Header Files
+*                               Header File Includes
 *******************************************************************************/
 
-#include "dc-motor-one.h"
+#include "cli-command.h"
+#include "utilities/util-vars.h"
+#include "cli-dc-motor-two.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -27,45 +29,15 @@
 *                               Variables
 *******************************************************************************/
 
-static dc_motor_one_t dcMotorOneArr[] =
-{
-    [ROLLER_MOTOR] = 
-    {
-        .pin         = PA7,
-        .speed       = STATIC_SPEED,
-        .id          = ROLLER_MOTOR,
-        .initialized = false
-    }
-};
-
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-robot_status_t dcMotorOne_init(dc_motor_one_t* motor)
-{
-    pinMode(motor->pin, OUTPUT);
-    motor->speed = STATIC_SPEED;
-    analogWrite(motor->pin, motor->speed);
-    motor->initialized = true;
-    return ROBOT_OK;
-}
+cli_status_t cliDcMotorTwo_init(uint8_t argNumber, char* args[]);
 
-robot_status_t dcMotorOne_run(dc_motor_one_t* motor, uint8_t speed)
-{
-    if (motor->initialized)
-    {
-        motor->speed = speed;
-        analogWrite(motor->pin, motor->speed);
-        return ROBOT_OK;
-    }
-    else
-    {
-        return ROBOT_ERR;
-    }
-}
+cli_status_t cliDcMotorTwo_run(uint8_t argNumber, char* args[]);
 
-dc_motor_one_t* dcMotorOne_get(dc_motor_one_id_t id) 
-{
-    return &dcMotorOneArr[id];
-}
+#define DC_MOTOR_TWO_COMMANDS                                                                     \
+    {cliDcMotorTwo_init, "dc-two-init", "<periph>",         "init the 2D dc-motor periph", 1, 1}, \
+    {cliDcMotorTwo_run,  "dc-two-run",  "<periph> <speed> <dir>", "run the 2D dc motor", 3, 3},
+#endif // CLI_DC_MOTOR_TWO

@@ -37,13 +37,6 @@ typedef enum {
     ROBOT_CLAW
 } robot_task_id_t;
 
-typedef enum
-{
-    MOTOR_1,
-    MOTOR_2,
-    MOTOR_3
-} motor_id_t;
-
 typedef struct{
     struct pt_sem   taskMutex;
     struct pt       taskThread;

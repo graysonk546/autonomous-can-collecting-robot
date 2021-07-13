@@ -27,42 +27,69 @@
 *                               Variables
 *******************************************************************************/
 
+static dc_motor_two_t dcMotorTwoArr[] =
+{
+    [LEFT_DRIVING_MOTOR] =
+    {
+        .cw_pin      = PB6,
+        .ccw_pin     = PB7,
+        .direction   = CW_DIRECTION,
+        .speed       = STATIC_SPEED,
+        .id          = LEFT_DRIVING_MOTOR,
+        .initialized = false
+    },
+    [RIGHT_DRIVING_MOTOR] =
+    {
+        .cw_pin      = PB9,
+        .ccw_pin     = PB8,
+        .direction   = CW_DIRECTION,
+        .speed       = STATIC_SPEED,
+        .id          = RIGHT_DRIVING_MOTOR,
+        .initialized = false
+    }
+};
+
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-robot_status_t dcMotorTwo_init(dc_motor_two_t* motor, uint8_t cw_pin_number,
-                              uint8_t ccw_pin_number)
+robot_status_t dcMotorTwo_init(dc_motor_two_t* motor)
 {
-    motor->cw_pin = cw_pin_number;
-    motor->ccw_pin = ccw_pin_number;
-    motor->direction = CW_DIRECTION;
-    motor->speed = STATIC_SPEED;
-
     pinMode(motor->cw_pin, OUTPUT);
     pinMode(motor->ccw_pin, OUTPUT);
+    motor->speed = STATIC_SPEED;
     analogWrite(motor->cw_pin, motor->speed);
     analogWrite(motor->ccw_pin, motor->speed);
-
+    motor->initialized = true;
     return ROBOT_OK;
 }
 
 robot_status_t dcMotorTwo_run(dc_motor_two_t* motor, uint8_t speed,
-                             rotation_dir_t direction)
+                              rotation_dir_t direction)
 {
-    motor->speed = speed;
-    motor->direction = direction;
-
-    if (direction == CW_DIRECTION) 
+    if (motor->initialized)
     {
-        analogWrite(motor->cw_pin, motor->speed);
-        analogWrite(motor->ccw_pin, STATIC_SPEED);
+        motor->speed = speed;
+        motor->direction = direction;
+        if (direction == CW_DIRECTION) 
+        {
+            analogWrite(motor->cw_pin, motor->speed);
+            analogWrite(motor->ccw_pin, STATIC_SPEED);
+        }
+        else
+        {
+            analogWrite(motor->cw_pin, STATIC_SPEED);
+            analogWrite(motor->ccw_pin, motor->speed);
+        }
+        return ROBOT_OK;
     }
     else
     {
-        analogWrite(motor->cw_pin, STATIC_SPEED);
-        analogWrite(motor->ccw_pin, motor->speed);
+        return ROBOT_ERR;
     }
+}
 
-    return ROBOT_OK;
+dc_motor_two_t* dcMotorTwo_get(dc_motor_two_id_t id)
+{
+    return &dcMotorTwoArr[id];
 }

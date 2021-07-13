@@ -30,17 +30,26 @@
 *                               Structures
 *******************************************************************************/
 
-typedef enum {
+typedef enum
+{
     CW_DIRECTION,
     CCW_DIRECTION
 } rotation_dir_t;
 
+typedef enum
+{
+    LEFT_DRIVING_MOTOR,
+    RIGHT_DRIVING_MOTOR
+} dc_motor_two_id_t;
+
 struct dc_motor_two_t
 {
-    uint8_t cw_pin;
-    uint8_t ccw_pin;
+    const uint8_t cw_pin;
+    const uint8_t ccw_pin;
     rotation_dir_t direction;
     uint8_t speed;
+    const dc_motor_two_id_t id;
+    bool initialized;
 };
 
 /*******************************************************************************
@@ -52,22 +61,32 @@ struct dc_motor_two_t
 *******************************************************************************/
 
 /*******************************************************************************
- * Requires: pin_number corresponding to the PWM output to the unidirectional DC
- *           motor
- * Effects:  Returns dc_motor_1d_t pointer
- * Modifies: None
+ * Requires: ptr to dc_motor_two_t motor that has been initialized with a
+ *           cw_pin, ccw_pin, direction, speed and id
+ * Effects:  returns ROBOT_OK if motor has been initialized without error, and
+ *           ROBOT_ERR otherwise
+ * Modifies: motor
  * ****************************************************************************/
-robot_status_t dcMotorTwo_init(dc_motor_two_t* motor, uint8_t cw_pin_number,
-                              uint8_t ccw_pin_number);
+robot_status_t dcMotorTwo_init(dc_motor_two_t* motor);
 
 /*******************************************************************************
- * Requires: speed ranging from 0-255 that maps linearly to to the min and max
- *           speeds of the unidirectional DC motor
- * Effects:  Returns robot_status_t indicating state of motor after function
- *           call
- * Modifies: self
+ * Requires: ptr to dc_motor_two_t motor that has been initialized using
+ *           dcMotorTwo_init; speed ranges from 0-255 that maps linearly to to
+ *           the min and max speeds of the biidirectional DC motor; direction
+ *           is either CW_DIRECTION or CCW_DIRECTION
+ * Effects:  returns ROBOT_ERR if motor was not initialized using
+ *           dcMotorTwo_init, and returns ROBOT_OK otherwise
+ * Modifies: motor
  * ****************************************************************************/
 robot_status_t dcMotorTwo_run(dc_motor_two_t* motor, uint8_t speed,
                              rotation_dir_t direction);
+
+/*******************************************************************************
+ * Requires: dc_motor_two_id_t id that corresponds to a given dc_motor_two_t
+ *           motor
+ * Effects:  returns a ptr to the corresponding dc_motor_two_t motor
+ * Modifies: None
+ * ****************************************************************************/
+dc_motor_two_t* dcMotorTwo_get(dc_motor_two_id_t id);
 
 #endif // DC_MOTOR_TWO
