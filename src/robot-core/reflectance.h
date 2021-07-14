@@ -49,7 +49,7 @@ typedef struct {
  * Effects:  Returns robot_status_t indicating state of initialization
  * Modifies: None
  * ****************************************************************************/
-robot_status_t reflectance_init();
+robot_status_t reflectance_init(reflectance_t* sensor);
 
 /*******************************************************************************
  * Requires: Pointer to an intialized reflectance_t

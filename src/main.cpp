@@ -62,10 +62,10 @@ void setup()
     {
 
     }
-    if (taskDriving_init() != ROBOT_OK)
-    {
+    // if (taskDriving_init() != ROBOT_OK)
+    // {
 
-    }
+    // }
     if (taskClaw_init() != ROBOT_OK)
     {
         // TODO: Figure out some sort of error handler
@@ -80,7 +80,7 @@ void setup()
 void loop()
 {
     // Looping achieves thread scheduling
-    _drivingTask(&task_driving->taskThread);
+    // _drivingTask(&task_driving->taskThread);
     _cliTask(&task_cli->taskThread);
     _clawTask(&task_claw->taskThread);
 }
