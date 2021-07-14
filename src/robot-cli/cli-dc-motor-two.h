@@ -1,7 +1,6 @@
 
-#ifndef COMMAND_LISTING
-#define COMMAND_LISTING
-
+#ifndef CLI_DC_MOTOR_TWO
+#define CLI_DC_MOTOR_TWO
 /*******************************************************************************
 *                               Standard Includes
 *******************************************************************************/
@@ -10,13 +9,9 @@
 *                               Header File Includes
 *******************************************************************************/
 
-#include "robot-core/command.h"
 #include "cli-command.h"
-#include "cli-dc-motor.h"
-#include "cli-dc-motor-one.h"
+#include "utilities/util-vars.h"
 #include "cli-dc-motor-two.h"
-#include "cli-reflectance.h"
-#include "cli-sonar.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -26,31 +21,23 @@
 *                               Constants
 *******************************************************************************/
 
-#define LIST_TERMINATOR "END_OF_LIST"
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
 
 /*******************************************************************************
-*                               Variables 
+*                               Variables
 *******************************************************************************/
-
-static const command_t commandArr[] = {
-    COMMAND_COMMANDS
-    DC_MOTOR_COMMANDS
-<<<<<<< HEAD
-    REFLECTANCE_COMMANDS
-=======
-    DC_MOTOR_ONE_COMMANDS
-    DC_MOTOR_TWO_COMMANDS
->>>>>>> master
-    SONAR_COMMANDS
-    {NULL, LIST_TERMINATOR, NULL, NULL, 0, 0}
-};
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-#endif // COMMAND_LISTING
+cli_status_t cliDcMotorTwo_init(uint8_t argNumber, char* args[]);
+
+cli_status_t cliDcMotorTwo_run(uint8_t argNumber, char* args[]);
+
+#define DC_MOTOR_TWO_COMMANDS                                                                     \
+    {cliDcMotorTwo_init, "dc-two-init", "<periph>",         "init the 2D dc-motor periph", 1, 1}, \
+    {cliDcMotorTwo_run,  "dc-two-run",  "<periph> <speed> <dir>", "run the 2D dc motor", 3, 3},
+#endif // CLI_DC_MOTOR_TWO
