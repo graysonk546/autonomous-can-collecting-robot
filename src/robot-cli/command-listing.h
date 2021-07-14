@@ -39,12 +39,9 @@
 static const command_t commandArr[] = {
     COMMAND_COMMANDS
     DC_MOTOR_COMMANDS
-<<<<<<< HEAD
-    REFLECTANCE_COMMANDS
-=======
     DC_MOTOR_ONE_COMMANDS
     DC_MOTOR_TWO_COMMANDS
->>>>>>> master
+    REFLECTANCE_COMMANDS
     SONAR_COMMANDS
     {NULL, LIST_TERMINATOR, NULL, NULL, 0, 0}
 };
