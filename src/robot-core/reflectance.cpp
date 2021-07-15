@@ -1,22 +1,14 @@
-
-#ifndef COMMAND_LISTING
-#define COMMAND_LISTING
-
 /*******************************************************************************
-*                               Standard Includes
+*                               Standard Libraries
 *******************************************************************************/
 
+#include <Arduino.h>
+
 /*******************************************************************************
-*                               Header File Includes
+*                               Header Files
 *******************************************************************************/
 
-#include "robot-core/command.h"
-#include "cli-command.h"
-#include "cli-dc-motor.h"
-#include "cli-dc-motor-one.h"
-#include "cli-dc-motor-two.h"
-#include "cli-reflectance.h"
-#include "cli-sonar.h"
+#include "reflectance.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -26,28 +18,47 @@
 *                               Constants
 *******************************************************************************/
 
-#define LIST_TERMINATOR "END_OF_LIST"
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
 
 /*******************************************************************************
-*                               Variables 
+*                               Variables
 *******************************************************************************/
-
-static const command_t commandArr[] = {
-    COMMAND_COMMANDS
-    DC_MOTOR_COMMANDS
-    DC_MOTOR_ONE_COMMANDS
-    DC_MOTOR_TWO_COMMANDS
-    REFLECTANCE_COMMANDS
-    SONAR_COMMANDS
-    {NULL, LIST_TERMINATOR, NULL, NULL, 0, 0}
+static reflectance_t reflectanceArr[] =
+{
+    [RIGHT_REFLECTANCE] = 
+    {
+        .pin         = PA4,
+        .id          = RIGHT_REFLECTANCE,
+        .initialized = false
+    },
+    [LEFT_REFLECTANCE] = 
+    {
+        .pin         = PA5,
+        .id          = LEFT_REFLECTANCE,
+        .initialized = false
+    }
 };
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-#endif // COMMAND_LISTING
+robot_status_t reflectance_init(reflectance_t* sensor)
+{
+    pinMode(sensor->pin, INPUT);
+    sensor->initialized = true;
+    return ROBOT_OK;
+}
+
+robot_status_t reflectance_read(reflectance_t* sensor)
+{
+    sensor->value = (uint16_t) analogRead(sensor->pin);
+    return ROBOT_OK;
+}
+
+reflectance_t* reflectance_get(reflectance_id_t id)
+{
+    return &reflectanceArr[id];
+}

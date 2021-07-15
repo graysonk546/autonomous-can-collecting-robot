@@ -1,7 +1,5 @@
-
-#ifndef COMMAND_LISTING
-#define COMMAND_LISTING
-
+#ifndef CLI_REFLECTANCE
+#define CLI_REFLECTANCE
 /*******************************************************************************
 *                               Standard Includes
 *******************************************************************************/
@@ -10,13 +8,7 @@
 *                               Header File Includes
 *******************************************************************************/
 
-#include "robot-core/command.h"
 #include "cli-command.h"
-#include "cli-dc-motor.h"
-#include "cli-dc-motor-one.h"
-#include "cli-dc-motor-two.h"
-#include "cli-reflectance.h"
-#include "cli-sonar.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -26,28 +18,23 @@
 *                               Constants
 *******************************************************************************/
 
-#define LIST_TERMINATOR "END_OF_LIST"
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
 
 /*******************************************************************************
-*                               Variables 
+*                               Variables
 *******************************************************************************/
-
-static const command_t commandArr[] = {
-    COMMAND_COMMANDS
-    DC_MOTOR_COMMANDS
-    DC_MOTOR_ONE_COMMANDS
-    DC_MOTOR_TWO_COMMANDS
-    REFLECTANCE_COMMANDS
-    SONAR_COMMANDS
-    {NULL, LIST_TERMINATOR, NULL, NULL, 0, 0}
-};
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-#endif // COMMAND_LISTING
+cli_status_t cliReflectance_init(uint8_t argNumber, char* args[]);
+
+cli_status_t cliReflectance_read(uint8_t argNumber, char* args[]);
+
+#define REFLECTANCE_COMMANDS                                                               \
+    {cliReflectance_init, "ref-init", "<periph>", "init the reflectance periph", 1, 1},    \
+    {cliReflectance_read, "ref-read", "<periph>", "read a reflectance sensor value", 1, 1},
+#endif // CLI_REFLECTANCE
