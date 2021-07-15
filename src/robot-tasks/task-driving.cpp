@@ -54,21 +54,30 @@ static robot_task_t taskDriving =
 };
 #endif
 
+HardwareTimer* timer;
+
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
 robot_status_t taskDriving_init()
 {
-    if (dcMotor_init(DC_MOTOR_1) != ROBOT_OK)
-    {
-        return ROBOT_ERR;
-    }
-    if(dcMotor_init(DC_MOTOR_2) != ROBOT_OK)
-    {
-        return ROBOT_ERR;
-    }
-    //Intialize the button interrupt pin
+    // if (dcMotor_init(DC_MOTOR_1) != ROBOT_OK)
+    // {
+    //     return ROBOT_ERR;
+    // }
+    // if(dcMotor_init(DC_MOTOR_2) != ROBOT_OK)
+    // {
+    //     return ROBOT_ERR;
+    // }
+
+    //Intialize the timer for sampling the line follower signal
+    timer = new HardwareTimer(TIM2);
+    timer->setOverflow(1, HERTZ_FORMAT);
+    timer->refresh();
+
+    timer->attachInterrupt(taskDriving_ISR);
+    timer->resume();
 
     // Initialize the driving task pt thread
     PT_INIT(&taskDriving.taskThread);
@@ -79,11 +88,13 @@ robot_status_t taskDriving_init()
 
 void taskDriving_ISR()
 {
-    if (millis() - taskDriving.taskTime)
-    {
-        PT_SEM_SIGNAL(&taskDriving.taskThread, &taskDriving.taskMutex);
-        taskDriving.taskTime = millis();
-    }
+    // if (millis() - taskDriving.taskTime)
+    // {
+    //     PT_SEM_SIGNAL(&taskDriving.taskThread, &taskDriving.taskMutex);
+    //     taskDriving.taskTime = millis();
+    // }
+
+    Serial.println("Interrupt");
 }
 
 robot_task_t* taskDriving_getTask()
