@@ -1,21 +1,15 @@
-#ifndef LINE_FOLLOWING_CONTROLLER
-#define LINE_FOLLOWING_CONTROLLER
 
 /*******************************************************************************
-*                               Standard Libraries
+*                               Standard Includes
 *******************************************************************************/
-
-#include <stdint.h>
 
 /*******************************************************************************
-*                               Header Files
+*                               Header File Includes
 *******************************************************************************/
 
-#include "line-follower.h"
-#include "robot-core/reflectance.h"
-#include "robot-core/dc-motor-two.h"
-#include "line-follower.h"
-#include "util-vars.h"
+#include "cli-command.h"
+#include "utilities/util-vars.h"
+#include "cli-line-following-controller.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -29,21 +23,6 @@
 *                               Structures
 *******************************************************************************/
 
-typedef enum {
-    FAR_LEFT = -5, 
-    SLIGHT_LEFT = -1,
-    NO_ERROR = 0,
-    SLIGHT_RIGHT = 1, 
-    FAR_RIGHT = 5
-} line_following_error_t;
-
-typedef struct {
-    int gain;
-    int kp;
-    int ki;
-    int kd;
-} pid_constant_t;
-
 /*******************************************************************************
 *                               Variables
 *******************************************************************************/
@@ -52,11 +31,45 @@ typedef struct {
 *                               Functions
 *******************************************************************************/
 
-robot_status_t lineFollowingController_init(reflectance_t* sensor1,
-                                            reflectance_t* sensor2,
-                                            dc_motor_two_t* motor1,
-                                            dc_motor_two_t* motor2);
+cli_status_t cliLineFollowingController_getKp(uint8_t argNumber, char* args[])
+{
+    pid_constant_t* lineFollowingController_getPidConstants();
+    return COMMAND_OK;
+}
 
-robot_status_t lineFollowingController_spinOnce();
+cli_status_t cliLineFollowingController_setKp(uint8_t argNumber, char* args[])
+{
+    return COMMAND_OK;
+}
 
-#endif // LINE_FOLLOWING_CONTROLLER
+cli_status_t cliLineFollowingController_getKd(uint8_t argNumber, char* args[])
+{
+    return COMMAND_OK;
+}
+
+cli_status_t cliLineFollowingController_setKd(uint8_t argNumber, char* args[])
+{
+    return COMMAND_OK;
+}
+
+cli_status_t cliLineFollowingController_getKi(uint8_t argNumber, char* args[])
+{
+    return COMMAND_OK;
+}
+
+cli_status_t cliLineFollowingController_setKi(uint8_t argNumber, char* args[])
+{
+    return COMMAND_OK;
+}
+
+cli_status_t cliLineFollowingController_getGain(uint8_t argNumber, 
+                                                char* args[])
+{
+    return COMMAND_OK;                          
+}
+
+cli_status_t cliLineFollowingController_setGain(uint8_t argNumber, 
+                                                char* args[])
+{
+    return COMMAND_OK;
+}

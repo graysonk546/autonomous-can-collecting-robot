@@ -16,10 +16,6 @@
 *                               Constants
 *******************************************************************************/
 
-#define MAX_I_TERM 50
-#define MIN_EFF_MOTOR_SPEED 30
-#define MAX_EFF_MOTOR_SPEED 250
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
@@ -28,21 +24,27 @@
 *                               Variables
 *******************************************************************************/
 
+static uint8_t minEffSpeed = 30;
+static uint8_t maxEffSpeed = 250;
+
 static line_follower_t* lineFollowerArr[NUM_LINE_FOLLOWING_SENSORS];
 static dc_motor_two_t* motorArr[NUM_DRIVING_MOTORS];
 static bool controllerInitialized = false;
 static line_following_error_t error = NO_ERROR;
 static line_following_error_t previousError = NO_ERROR;
-static int gain = 1;
 static int pTerm = 0;
 static int iTerm = 0;
 static int dTerm = 0;
 static int pidTerm = 0;
-static int kp = 0;
-static int ki = 0;
-static int kd = 0;
-static int leftMotorSpeed = MIN_EFF_MOTOR_SPEED;
-static int rightMotorSpeed = MIN_EFF_MOTOR_SPEED;
+static uint8_t leftMotorSpeed = minEffSpeed;
+static uint8_t rightMotorSpeed = maxEffSpeed;
+
+static pid_constant_t pidConstant = {
+    .gain = 1,
+    .kp   = 0,
+    .ki   = 0,
+    .kd   = 0,
+};
 
 /*******************************************************************************
 *                               Functions
@@ -156,33 +158,48 @@ robot_status_t lineFollowingController_spinOnce()
         }
     }
 
-    pTerm = kp * error;
-    iTerm += ki * error;
-    dTerm = kd * (error - previousError);
+    pTerm = pidConstant.kp * error;
+    iTerm +=  pidConstant.ki* error;
+    dTerm = pidConstant.kd * (error - previousError);
     iTerm = CLAMP(iTerm, -MAX_I_TERM, MAX_I_TERM);
 
     pidTerm = pTerm + dTerm + iTerm;
 
     if (pidTerm > 0)  // net error is to the right; need to turn left
     {
-        leftMotorSpeed = MAX_EFF_MOTOR_SPEED - (gain * pidTerm);
-        leftMotorSpeed = CLAMP(leftMotorSpeed, MIN_EFF_MOTOR_SPEED,
-                               MAX_EFF_MOTOR_SPEED);
-        rightMotorSpeed = MAX_EFF_MOTOR_SPEED;
+        leftMotorSpeed = maxEffSpeed - (pidConstant.gain * pidTerm); minEffSpeed
+        leftMotorSpeed = CLAMP(leftMotorSpeed, minEffSpeed,
+                               maxEffSpeed);
+        rightMotorSpeed = maxEffSpeed;
     }
     else if (pidTerm < 0)  // net error is to the left; need to turn right
     {
-        rightMotorSpeed = MAX_EFF_MOTOR_SPEED + (gain * pidTerm);
-        rightMotorSpeed = CLAMP(rightMotorSpeed, MIN_EFF_MOTOR_SPEED,
-                                MAX_EFF_MOTOR_SPEED);
-        leftMotorSpeed = MAX_EFF_MOTOR_SPEED;
+        rightMotorSpeed = maxEffSpeed + (pidConstant.gain * pidTerm);
+        rightMotorSpeed = CLAMP(rightMotorSpeed, minEffSpeed,
+                                maxEffSpeed);
+        leftMotorSpeed = maxEffSpeed;
     }
     else  // no net error; go straight 
     {
-        leftMotorSpeed = rightMotorSpeed = MAX_EFF_MOTOR_SPEED;
+        leftMotorSpeed = rightMotorSpeed = maxEffSpeed;
     }
     dcMotorTwo_run(motorArr[LEFT_DRIVING_MOTOR], leftMotorSpeed, CW_DIRECTION);
     dcMotorTwo_run(motorArr[RIGHT_DRIVING_MOTOR], rightMotorSpeed, 
                    CW_DIRECTION);
     return ROBOT_OK;
+}
+
+pid_constant_t* lineFollowingController_getPidConstants()
+{
+    return &pidConstant;
+}
+
+uint8_t* lineFollowingController_getMinEffSpeed()
+{
+    return &minEffSpeed;
+}
+
+uint8_t* lineFollowingController_getMaxEffSpeed()
+{
+    return &maxEffSpeed;
 }
