@@ -115,6 +115,7 @@ static PT_THREAD(_drivingTask(struct pt* thread))
     while (true)
     {
         PT_SEM_WAIT(thread, &task_driving->taskMutex);
+        Serial.println("Interrupt");
     }
     PT_END(thread);
 }

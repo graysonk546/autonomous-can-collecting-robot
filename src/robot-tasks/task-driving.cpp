@@ -94,7 +94,7 @@ void taskDriving_ISR()
     //     taskDriving.taskTime = millis();
     // }
 
-    Serial.println("Interrupt");
+    PT_SEM_SIGNAL(&taskDriving.taskThread, &taskDriving.taskMutex);
 }
 
 robot_task_t* taskDriving_getTask()
