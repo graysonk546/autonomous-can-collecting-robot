@@ -1,7 +1,5 @@
-
-#ifndef COMMAND_LISTING
-#define COMMAND_LISTING
-
+#ifndef CLI_LINE_FOLLOWER
+#define CLI_LINE_FOLLOWER
 /*******************************************************************************
 *                               Standard Includes
 *******************************************************************************/
@@ -10,14 +8,9 @@
 *                               Header File Includes
 *******************************************************************************/
 
-#include "robot-core/command.h"
 #include "cli-command.h"
-#include "cli-dc-motor.h"
-#include "cli-dc-motor-one.h"
-#include "cli-dc-motor-two.h"
-#include "cli-line-follower.h"
-#include "cli-reflectance.h"
-#include "cli-sonar.h"
+#include "utilities/util-vars.h"
+#include "utilities/line-follower.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -27,29 +20,25 @@
 *                               Constants
 *******************************************************************************/
 
-#define LIST_TERMINATOR "END_OF_LIST"
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
 
 /*******************************************************************************
-*                               Variables 
+*                               Variables
 *******************************************************************************/
-
-static const command_t commandArr[] = {
-    COMMAND_COMMANDS
-    DC_MOTOR_COMMANDS
-    DC_MOTOR_ONE_COMMANDS
-    DC_MOTOR_TWO_COMMANDS
-    LINE_FOLLOWER_COMMANDS
-    REFLECTANCE_COMMANDS
-    SONAR_COMMANDS
-    {NULL, LIST_TERMINATOR, NULL, NULL, 0, 0}
-};
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-#endif // COMMAND_LISTING
+cli_status_t cliLineFollower_init(uint8_t argNumber, char* args[]);
+
+cli_status_t cliLineFollower_setThreshold(uint8_t argNumber, char* args[]);
+
+cli_status_t cliLineFollower_getThreshold(uint8_t argNumber, char* args[]);
+
+#define LINE_FOLLOWER_COMMANDS                                                                                             \
+    {cliLineFollower_init,          "line-follow-init",       "<periph>",          "init the line follower periph", 1, 1}, \
+    {cliLineFollower_setThreshold,  "line-follow-set-thresh", "<periph> <thresh>", "run the 2D dc motor",           2, 2},
+#endif // CLI_

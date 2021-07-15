@@ -34,7 +34,8 @@ static line_follower_t lineFollowerArr[] =
         .status = ON_TAPE,
         .previousStatus = ON_TAPE,
         .id = RIGHT_LINE_FOLLOWER,
-        .initialized = false
+        .initialized = false,
+        .threshold = 512
 
     },
     [LEFT_LINE_FOLLOWER] =
@@ -43,7 +44,8 @@ static line_follower_t lineFollowerArr[] =
         .status = ON_TAPE,
         .previousStatus = ON_TAPE,
         .id = LEFT_LINE_FOLLOWER,
-        .initialized = false
+        .initialized = false,
+        .threshold = 512
     }
 };
 
@@ -75,7 +77,7 @@ line_follower_t* lineFollower_get(line_follower_id_t id)
 inline static void _updateStatus(line_follower_t* lineFollower)
 {
     lineFollower->previousStatus = lineFollower->status;
-    if (lineFollower->sensor->value >= 512)
+    if (lineFollower->sensor->value >= lineFollower->threshold)
     {
         lineFollower->status = ON_TAPE;
     }

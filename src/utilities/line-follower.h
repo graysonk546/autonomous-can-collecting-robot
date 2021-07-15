@@ -42,6 +42,7 @@ typedef struct
     line_follower_status_t   previousStatus;
     const line_follower_id_t id;
     bool                     initialized;
+    uint16_t                 threshold;
 } line_follower_t;
 
 /*******************************************************************************
