@@ -10,7 +10,7 @@
 
 #include "cli-command.h"
 #include "utilities/util-vars.h"
-#include "utilities/line-following-controller.h"
+#include "robot-control/line-following-controller.h"
 
 /*******************************************************************************
 *                               Static Functions
