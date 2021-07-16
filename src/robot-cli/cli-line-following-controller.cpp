@@ -137,6 +137,30 @@ cli_status_t cliLineFollowingController_getTarg(uint8_t argNumber, char* args[])
     return COMMAND_OK;
 }
 
+cli_status_t cliLineFollowingController_getErrorDeadbandHalfWidth(uint8_t
+                                                                  argNumber,
+                                                                  char* args[])
+{
+    uint8_t deadband = *lineFollowingController_getErrorDeadbandHalfWidth();
+    char str[100]; 
+    sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %i}" CMD_EOL_STR, 
+            deadband);
+    Serial.print(str);
+    return COMMAND_OK;
+}
+
+cli_status_t cliLineFollowingController_setErrorDeadbandHalfWidth(uint8_t
+                                                                  argNumber,
+                                                                  char* args[])
+{
+    uint8_t* deadbandPtr = lineFollowingController_getErrorDeadbandHalfWidth();
+
+    *deadbandPtr = (uint8_t) strtol((const char*) args[0], NULL, 0);
+
+    Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
+    return COMMAND_OK;
+}
+
 cli_status_t cliLineFollowingController_setMax(uint8_t argNumber, char* args[])
 {
     uint8_t* max = lineFollowingController_getMaxEffSpeed();

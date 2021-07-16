@@ -21,6 +21,7 @@ static uint8_t MIN_EFF_SPEED = 30;
 static uint8_t MAX_EFF_SPEED = 255;
 static uint8_t TARGET_VELOCITY = 150;
 static uint8_t MAX_I_TERM_MAGNITUDE = 75;
+static uint8_t ERROR_DEADBAND_HALFWIDTH = 2;
 
 /*******************************************************************************
 *                               Structures
@@ -126,8 +127,14 @@ robot_status_t lineFollowingController_spinOnce()
     reflectance_read(reflectanceArr[1]);
 
     previousError = error;
+
     error = reflectanceArr[LEFT_REFLECTANCE]->value -
             reflectanceArr[RIGHT_REFLECTANCE]->value;
+    
+    if (error < ERROR_DEADBAND_HALFWIDTH && error > -ERROR_DEADBAND_HALFWIDTH)
+    {
+        error = 0;
+    }
 
     pTerm = pidParameters.kp * error;
     iTerm += pidParameters.ki * error;
@@ -201,4 +208,9 @@ uint8_t* lineFollowingController_getTargSpeed()
 int16_t* lineFollowingController_getError()
 {
     return &error;
+}
+
+uint8_t* lineFollowingController_getErrorDeadbandHalfWidth()
+{
+    return &ERROR_DEADBAND_HALFWIDTH;
 }

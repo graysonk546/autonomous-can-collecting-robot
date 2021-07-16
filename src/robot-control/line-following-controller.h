@@ -58,4 +58,6 @@ uint8_t* lineFollowingController_getTargSpeed();
 
 int16_t* lineFollowingController_getError();
 
+uint8_t* lineFollowingController_getErrorDeadbandHalfWidth();
+
 #endif // LINE_FOLLOWING_CONTROLLER
