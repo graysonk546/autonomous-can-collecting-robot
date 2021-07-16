@@ -71,7 +71,7 @@ cli_status_t cliLineFollowingController_getMin(uint8_t argNumber, char* args[]);
     {cliLineFollowingController_setTarg, "set-targ-speed", "<speed>", "set target", 1, 1}, \
     {cliLineFollowingController_getMax,  "get-max-speed",  "",        "get max",    0, 0}, \
     {cliLineFollowingController_setMax,  "set-max-speed",  "<speed>", "set max",    1, 1}, \
-    {cliLineFollowingController_setMin,  "get-min-speed",  "",        "set min",    1, 1}, \
+    {cliLineFollowingController_getMin,  "get-min-speed",  "",        "set min",    0, 0}, \
     {cliLineFollowingController_setMin,  "set-min-speed",  "<speed>", "set min",    1, 1},   
 
 #endif // CLI_LINE_FOLLOWING_CONTROLLER
