@@ -7,6 +7,7 @@
 *******************************************************************************/
 
 #include "line-following-controller.h"
+#include "Arduino.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -121,6 +122,9 @@ robot_status_t lineFollowingController_spinOnce()
         return ROBOT_ERR;
     }
 
+    reflectance_read(reflectanceArr[0]);
+    reflectance_read(reflectanceArr[1]);
+
     previousError = error;
     error = reflectanceArr[LEFT_REFLECTANCE]->value -
             reflectanceArr[RIGHT_REFLECTANCE]->value;
@@ -134,8 +138,8 @@ robot_status_t lineFollowingController_spinOnce()
 
     if (controlOutput < 0)
     {
-        leftMotorVelocity = TARGET_VELOCITY + controlOutput;
-        rightMotorVelocity = TARGET_VELOCITY - controlOutput;
+        leftMotorVelocity = TARGET_VELOCITY - controlOutput;
+        rightMotorVelocity = TARGET_VELOCITY + controlOutput;
     }
     else if (controlOutput > 0)
     {
@@ -187,4 +191,14 @@ uint8_t* lineFollowingController_getMinEffSpeed()
 uint8_t* lineFollowingController_getMaxEffSpeed()
 {
     return &MAX_EFF_SPEED;
+}
+
+uint8_t* lineFollowingController_getTargSpeed()
+{
+    return &TARGET_VELOCITY;
+} 
+
+int16_t* lineFollowingController_getError()
+{
+    return &error;
 }

@@ -12,9 +12,8 @@
 *******************************************************************************/
 
 #include "robot-core/command.h"
-#include "robot-core/dc-motor.h"
 #include "robot-core/sonar.h"
-
+#include "robot-control/line-following-controller.h"
 #include "robot-tasks/task-driving.h"
 #include "robot-tasks/task-cli.h"
 #include "robot-tasks/task-claw.h"
@@ -115,6 +114,7 @@ static PT_THREAD(_drivingTask(struct pt* thread))
     while (true)
     {
         PT_SEM_WAIT(thread, &task_driving->taskMutex);
+        lineFollowingController_spinOnce();
     }
     PT_END(thread);
 }

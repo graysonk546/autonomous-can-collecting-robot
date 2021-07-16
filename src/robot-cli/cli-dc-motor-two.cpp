@@ -119,3 +119,31 @@ cli_status_t cliDcMotorTwo_run(uint8_t argNumber, char* args[])
 
     return COMMAND_OK;
 }
+
+cli_status_t cliDcMotorTwo_getSpeed(uint8_t argNumber, char* args[])
+{
+    dc_motor_two_id_t motor_id = (dc_motor_two_id_t) strtol((const char*)
+                                                            args[0], NULL, 0);
+
+    dc_motor_two_t* motor;
+    if (motor_id == LEFT_DRIVING_MOTOR)
+    {
+        motor = dcMotorTwo_get(LEFT_DRIVING_MOTOR);
+    }
+    else if (motor_id == RIGHT_DRIVING_MOTOR)
+    {
+        motor = dcMotorTwo_get(RIGHT_DRIVING_MOTOR);
+    }
+    else
+    {
+        Serial.print(F(CMD_JSON "{\"status\": \"error\", \"data\": \"invalid"
+                     " motor\"}" CMD_EOL_STR));
+        return COMMAND_OK;
+    }
+
+    char str[100]; 
+    sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %i}" CMD_EOL_STR, 
+            (int) motor->speed);
+    Serial.print(str);
+    return COMMAND_OK;
+}

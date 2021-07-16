@@ -9,6 +9,7 @@
 *******************************************************************************/
 
 #include "cli-command.h"
+#include "robot-core/command.h"
 #include "utilities/util-vars.h"
 #include "robot-control/line-following-controller.h"
 
@@ -44,19 +45,33 @@ cli_status_t cliLineFollowingController_getKi(uint8_t argNumber, char* args[]);
 
 cli_status_t cliLineFollowingController_setKi(uint8_t argNumber, char* args[]);
 
-cli_status_t cliLineFollowingController_getGain(uint8_t argNumber, 
-                                                char* args[]);
+cli_status_t cliLineFollowingController_getErr(uint8_t argNumber, char* args[]);
 
-cli_status_t cliLineFollowingController_setGain(uint8_t argNumber, 
-                                                char* args[]);
+cli_status_t cliLineFollowingController_setTarg(uint8_t argNumber, char* args[]);
+
+cli_status_t cliLineFollowingController_getTarg(uint8_t argNumber, char* args[]);
+
+cli_status_t cliLineFollowingController_setMax(uint8_t argNumber, char* args[]);
+
+cli_status_t cliLineFollowingController_getMax(uint8_t argNumber, char* args[]);
+
+cli_status_t cliLineFollowingController_setMin(uint8_t argNumber, char* args[]);
+
+cli_status_t cliLineFollowingController_getMin(uint8_t argNumber, char* args[]);
 
 #define LINE_FOLLOWING_CONTROLLER_COMMANDS                                                                                                    \
-    {cliLineFollowingController_getKp,    "line-follow-get-thresh",  "<periph>",          "get line follower threshold",   0, 0}, \
-    {cliLineFollowingController_setKp,    "line-follow-set-thresh",  "<periph> <thresh>", "set line follower threshold",   1, 1}, \
-    {cliLineFollowingController_getKd,    "line-follow-set-thresh",  "<periph> <thresh>", "set line follower threshold",   0, 0}, \
-    {cliLineFollowingController_setKd,    "line-follow-set-thresh",  "<periph> <thresh>", "set line follower threshold",   1, 1}, \
-    {cliLineFollowingController_getKi,    "line-follow-set-thresh",  "<periph> <thresh>", "set line follower threshold",   0, 0}, \
-    {cliLineFollowingController_setKi,    "line-follow-set-thresh",  "<periph> <thresh>", "set line follower threshold",   1, 1}, \
-    {cliLineFollowingController_setGain,  "line-follow-set-thresh",  "<periph> <thresh>", "set line follower threshold",   0, 0}, \
-    {cliLineFollowingController_setGain,  "line-follow-set-thresh",  "<periph> <thresh>", "set line follower threshold",   1, 1},
+    {cliLineFollowingController_getKp,   "get-kp",         "",        "get kp",     0, 0}, \
+    {cliLineFollowingController_setKp,   "set-kp",         "<kp>",    "set kp",     1, 1}, \
+    {cliLineFollowingController_getKd,   "get-kd",         "",        "get kd",     0, 0}, \
+    {cliLineFollowingController_setKd,   "set-kd",         "<kd>",    "set kd",     1, 1}, \
+    {cliLineFollowingController_getKi,   "get-ki",         "",        "get ki",     0, 0}, \
+    {cliLineFollowingController_setKi,   "set-ki",         "<ki>",    "set ki",     1, 1}, \
+    {cliLineFollowingController_getErr,  "get-error",      "",        "get error",  1, 1}, \
+    {cliLineFollowingController_getTarg, "get-targ-speed", "",        "get target", 0, 0}, \
+    {cliLineFollowingController_setTarg, "set-targ-speed", "<speed>", "set target", 1, 1}, \
+    {cliLineFollowingController_getMax,  "get-max-speed",  "",        "get max",    0, 0}, \
+    {cliLineFollowingController_setMax,  "set-max-speed",  "<speed>", "set max",    1, 1}, \
+    {cliLineFollowingController_setMin,  "get-min-speed",  "",        "set min",    1, 1}, \
+    {cliLineFollowingController_setMin,  "set-min-speed",  "<speed>", "set min",    1, 1},   
+
 #endif // CLI_LINE_FOLLOWING_CONTROLLER

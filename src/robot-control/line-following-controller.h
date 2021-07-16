@@ -48,4 +48,14 @@ robot_status_t lineFollowingController_init(reflectance_t* sensor1,
 
 robot_status_t lineFollowingController_spinOnce();
 
+pid_constant_t* lineFollowingController_getPidConstants();
+
+uint8_t* lineFollowingController_getMinEffSpeed();
+
+uint8_t* lineFollowingController_getMaxEffSpeed();
+
+uint8_t* lineFollowingController_getTargSpeed();
+
+int16_t* lineFollowingController_getError();
+
 #endif // LINE_FOLLOWING_CONTROLLER
