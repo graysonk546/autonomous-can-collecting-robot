@@ -119,9 +119,9 @@ cli_status_t cliLineFollowingController_getErr(uint8_t argNumber, char* args[])
 
 cli_status_t cliLineFollowingController_setTarg(uint8_t argNumber, char* args[])
 {
-    uint8_t targ = lineFollowingController_getTargSpeed();
+    uint8_t* targ = lineFollowingController_getTargSpeed();
     
-    targ = (uint8_t) strtol((const char*) args[0], NULL, 0);
+    *targ = (uint8_t) strtol((const char*) args[0], NULL, 0);
 
     Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
     return COMMAND_OK;
@@ -139,9 +139,9 @@ cli_status_t cliLineFollowingController_getTarg(uint8_t argNumber, char* args[])
 
 cli_status_t cliLineFollowingController_setMax(uint8_t argNumber, char* args[])
 {
-    uint8_t max = lineFollowingController_getMaxEffSpeed();
+    uint8_t* max = lineFollowingController_getMaxEffSpeed();
     
-    max = (uint8_t) strtol((const char*) args[0], NULL, 0);
+    *max = (uint8_t) strtol((const char*) args[0], NULL, 0);
 
     Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
     return COMMAND_OK;
@@ -159,9 +159,9 @@ cli_status_t cliLineFollowingController_getMax(uint8_t argNumber, char* args[])
 
 cli_status_t cliLineFollowingController_setMin(uint8_t argNumber, char* args[])
 {
-    uint8_t min = lineFollowingController_getMinEffSpeed();
+    uint8_t* min = lineFollowingController_getMinEffSpeed();
     
-    min = (uint8_t) strtol((const char*) args[0], NULL, 0);
+    *min = (uint8_t) strtol((const char*) args[0], NULL, 0);
 
     Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
     return COMMAND_OK;
