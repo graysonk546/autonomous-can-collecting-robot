@@ -12,7 +12,8 @@
 *******************************************************************************/
 
 #include "task-driving.h"
-#include "robot-core/dc-motor.h"
+#include "robot-core/reflectance.h"
+#include "robot-control/line-following-controller.h"
 #include "utilities/util-vars.h"
 
 /*******************************************************************************
@@ -62,20 +63,35 @@ HardwareTimer* timer;
 
 robot_status_t taskDriving_init()
 {
-    // if (dcMotor_init(DC_MOTOR_1) != ROBOT_OK)
-    // {
-    //     return ROBOT_ERR;
-    // }
-    // if(dcMotor_init(DC_MOTOR_2) != ROBOT_OK)
-    // {
-    //     return ROBOT_ERR;
-    // }
+    if (reflectance_init(reflectance_get(RIGHT_REFLECTANCE)) != ROBOT_OK)
+    {
+        return ROBOT_ERR;
+    }
+    else if (reflectance_init(reflectance_get(LEFT_REFLECTANCE)) != ROBOT_OK)
+    {
+        return ROBOT_ERR;
+    }
+    else if (dcMotorTwo_init(dcMotorTwo_get(RIGHT_DRIVING_MOTOR)) != ROBOT_OK)
+    {
+        return ROBOT_ERR;
+    }
+    else if (dcMotorTwo_init(dcMotorTwo_get(LEFT_DRIVING_MOTOR)) != ROBOT_OK)
+    {
+        return ROBOT_ERR;
+    } 
+    else if (lineFollowingController_init(reflectance_get(RIGHT_REFLECTANCE), 
+                                          reflectance_get(LEFT_REFLECTANCE), 
+                                          dcMotorTwo_get(RIGHT_DRIVING_MOTOR), 
+                                          dcMotorTwo_get(LEFT_DRIVING_MOTOR)) != 
+                                          ROBOT_OK)
+    {
+        return ROBOT_ERR;
+    }
 
     //Intialize the timer for sampling the line follower signal
     timer = new HardwareTimer(TIM2);
-    timer->setOverflow(1, HERTZ_FORMAT);
+    timer->setOverflow(2000, HERTZ_FORMAT);
     timer->refresh();
-
     timer->attachInterrupt(taskDriving_ISR);
     timer->resume();
 
@@ -88,12 +104,6 @@ robot_status_t taskDriving_init()
 
 void taskDriving_ISR()
 {
-    // if (millis() - taskDriving.taskTime)
-    // {
-    //     PT_SEM_SIGNAL(&taskDriving.taskThread, &taskDriving.taskMutex);
-    //     taskDriving.taskTime = millis();
-    // }
-
     PT_SEM_SIGNAL(&taskDriving.taskThread, &taskDriving.taskMutex);
 }
 

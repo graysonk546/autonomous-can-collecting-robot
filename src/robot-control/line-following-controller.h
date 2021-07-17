@@ -1,15 +1,19 @@
-
-#ifndef CLI_DC_MOTOR
-#define CLI_DC_MOTOR
-/*******************************************************************************
-*                               Standard Includes
-*******************************************************************************/
+#ifndef LINE_FOLLOWING_CONTROLLER
+#define LINE_FOLLOWING_CONTROLLER
 
 /*******************************************************************************
-*                               Header File Includes
+*                               Standard Libraries
 *******************************************************************************/
 
-#include "cli-command.h"
+#include <stdint.h>
+
+/*******************************************************************************
+*                               Header Files
+*******************************************************************************/
+
+#include "robot-core/reflectance.h"
+#include "robot-core/dc-motor-two.h"
+#include "utilities/util-vars.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -23,6 +27,12 @@
 *                               Structures
 *******************************************************************************/
 
+typedef struct {
+    float kp;
+    float ki;
+    float kd;
+} pid_constant_t;
+
 /*******************************************************************************
 *                               Variables
 *******************************************************************************/
@@ -31,11 +41,23 @@
 *                               Functions
 *******************************************************************************/
 
-cli_status_t cliDcMotor_init(uint8_t argNumber, char* args[]);
+robot_status_t lineFollowingController_init(reflectance_t* sensor1,
+                                            reflectance_t* sensor2,
+                                            dc_motor_two_t* motor1,
+                                            dc_motor_two_t* motor2);
 
-cli_status_t cliDcMotor_run(uint8_t argNumber, char* args[]);
+robot_status_t lineFollowingController_spinOnce();
 
-#define DC_MOTOR_COMMANDS                                                                     \
-    {cliDcMotor_init, "dc-init", "<periph>",               "init the dc-motor periph", 1, 1}, \
-    {cliDcMotor_run,  "dc-run",  "<periph> <speed> <dir>", "run the dc motor",         3, 3},
-#endif // CLI_DC_MOTOR
+pid_constant_t* lineFollowingController_getPidConstants();
+
+uint8_t* lineFollowingController_getMinEffSpeed();
+
+uint8_t* lineFollowingController_getMaxEffSpeed();
+
+uint8_t* lineFollowingController_getTargSpeed();
+
+int16_t* lineFollowingController_getError();
+
+uint8_t* lineFollowingController_getErrorDeadbandHalfWidth();
+
+#endif // LINE_FOLLOWING_CONTROLLER
