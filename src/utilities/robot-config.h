@@ -5,6 +5,8 @@
 *                               Standard Includes
 *******************************************************************************/
 
+#include <Arduino.h>
+
 /*******************************************************************************
 *                               Header File Includes
 *******************************************************************************/
@@ -27,6 +29,7 @@ typedef enum {
     PIN_RIGHT_DRIVING_MOTOR_CW         = PB9,
     PIN_RIGHT_DRIVING_MOTOR_CCW        = PB8,
     PIR_ROLLER_MOTOR                   = PA7,
+    PIN_ROLLER_MOTOR_ENCODER           = PA10,
     PIN_RIGHT_LINE_FOLLOWING_IR_SENSOR = PA4,
     PIN_LEFT_LINE_FOLLOWING_IR_SENSOR  = PA5
 } robot_pin_t;
