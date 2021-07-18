@@ -34,7 +34,6 @@ def collect_data():
         
         print(output_data)
         outputFile.write(json.dumps(output_data, indent=4))
-        # outputFile.write(json_output + '\n')
     
     print('Data successfully saved to \"' + file_path + '\"')
 
