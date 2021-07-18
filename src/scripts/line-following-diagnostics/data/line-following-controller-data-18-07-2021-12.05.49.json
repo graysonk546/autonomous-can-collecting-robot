@@ -1,0 +1,4277 @@
+[
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": 16.25,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": 40.25,
+                    "error": 13,
+                    "previousError": 12,
+                    "leftMotorVelocity": 64,
+                    "rightMotorVelocity": 145,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 72
+                },
+                "right": {
+                    "value": 59
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 64,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 145,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": 21.25,
+                    "iTerm": 0.0,
+                    "dTerm": -288.0,
+                    "controlOutput": -266.75,
+                    "error": 17,
+                    "previousError": 29,
+                    "leftMotorVelocity": 371,
+                    "rightMotorVelocity": -161,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 74
+                },
+                "right": {
+                    "value": 57
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -32.5,
+                    "iTerm": 0.0,
+                    "dTerm": -288.0,
+                    "controlOutput": -320.5,
+                    "error": -26,
+                    "previousError": -14,
+                    "leftMotorVelocity": 425,
+                    "rightMotorVelocity": -215,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 100
+                },
+                "right": {
+                    "value": 126
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": 18.75,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": 18.75,
+                    "error": 15,
+                    "previousError": 15,
+                    "leftMotorVelocity": 86,
+                    "rightMotorVelocity": 123,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 73
+                },
+                "right": {
+                    "value": 58
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 86,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 123,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -66.25,
+                    "iTerm": 0.0,
+                    "dTerm": -720.0,
+                    "controlOutput": -786.25,
+                    "error": -53,
+                    "previousError": -23,
+                    "leftMotorVelocity": 891,
+                    "rightMotorVelocity": -681,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 71
+                },
+                "right": {
+                    "value": 124
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": 96.25,
+                    "iTerm": 0.0,
+                    "dTerm": 1872.0,
+                    "controlOutput": 1968.25,
+                    "error": 77,
+                    "previousError": -1,
+                    "leftMotorVelocity": -1863,
+                    "rightMotorVelocity": 2073,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 143
+                },
+                "right": {
+                    "value": 66
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 1
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -41.25,
+                    "iTerm": 0.0,
+                    "dTerm": 96.0,
+                    "controlOutput": 54.75,
+                    "error": -33,
+                    "previousError": -37,
+                    "leftMotorVelocity": 50,
+                    "rightMotorVelocity": 159,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 56
+                },
+                "right": {
+                    "value": 89
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 50,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -101.25,
+                    "iTerm": 0.0,
+                    "dTerm": -1008.0,
+                    "controlOutput": -1109.25,
+                    "error": -81,
+                    "previousError": -39,
+                    "leftMotorVelocity": 1214,
+                    "rightMotorVelocity": -1004,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 60
+                },
+                "right": {
+                    "value": 141
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -18.75,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -18.75,
+                    "error": -15,
+                    "previousError": -15,
+                    "leftMotorVelocity": 123,
+                    "rightMotorVelocity": 86,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 60
+                },
+                "right": {
+                    "value": 75
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 123,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 86,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -22.5,
+                    "iTerm": 0.0,
+                    "dTerm": -984.0,
+                    "controlOutput": -1006.5,
+                    "error": -18,
+                    "previousError": 23,
+                    "leftMotorVelocity": 1111,
+                    "rightMotorVelocity": -901,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 61
+                },
+                "right": {
+                    "value": 79
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": 28.75,
+                    "iTerm": 0.0,
+                    "dTerm": -144.0,
+                    "controlOutput": -115.25,
+                    "error": 23,
+                    "previousError": 29,
+                    "leftMotorVelocity": 220,
+                    "rightMotorVelocity": -10,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 82
+                },
+                "right": {
+                    "value": 59
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 50,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -52.5,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": -28.5,
+                    "error": -42,
+                    "previousError": -43,
+                    "leftMotorVelocity": 133,
+                    "rightMotorVelocity": 76,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 57
+                },
+                "right": {
+                    "value": 99
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 133,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 76,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -28.75,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -28.75,
+                    "error": -23,
+                    "previousError": -23,
+                    "leftMotorVelocity": 133,
+                    "rightMotorVelocity": 76,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 63
+                },
+                "right": {
+                    "value": 86
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 133,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 76,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -51.25,
+                    "iTerm": 0.0,
+                    "dTerm": -240.0,
+                    "controlOutput": -291.25,
+                    "error": -41,
+                    "previousError": -31,
+                    "leftMotorVelocity": 396,
+                    "rightMotorVelocity": -186,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 75
+                },
+                "right": {
+                    "value": 116
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -18.75,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": 5.25,
+                    "error": -15,
+                    "previousError": -16,
+                    "leftMotorVelocity": 99,
+                    "rightMotorVelocity": 110,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 64
+                },
+                "right": {
+                    "value": 79
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 99,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 110,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -27.5,
+                    "iTerm": 0.0,
+                    "dTerm": -24.0,
+                    "controlOutput": -51.5,
+                    "error": -22,
+                    "previousError": -21,
+                    "leftMotorVelocity": 156,
+                    "rightMotorVelocity": 53,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 104
+                },
+                "right": {
+                    "value": 126
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 53,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -18.75,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": 5.25,
+                    "error": -15,
+                    "previousError": -16,
+                    "leftMotorVelocity": 99,
+                    "rightMotorVelocity": 110,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 63
+                },
+                "right": {
+                    "value": 78
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 99,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 110,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -26.25,
+                    "iTerm": 0.0,
+                    "dTerm": 48.0,
+                    "controlOutput": 21.75,
+                    "error": -21,
+                    "previousError": -23,
+                    "leftMotorVelocity": 83,
+                    "rightMotorVelocity": 126,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 63
+                },
+                "right": {
+                    "value": 84
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 83,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 126,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -48.75,
+                    "iTerm": 0.0,
+                    "dTerm": 72.0,
+                    "controlOutput": 23.25,
+                    "error": -39,
+                    "previousError": -42,
+                    "leftMotorVelocity": 81,
+                    "rightMotorVelocity": 128,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 103
+                },
+                "right": {
+                    "value": 142
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 81,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 128,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -40.0,
+                    "iTerm": 0.0,
+                    "dTerm": 888.0,
+                    "controlOutput": 848.0,
+                    "error": -32,
+                    "previousError": -69,
+                    "leftMotorVelocity": -743,
+                    "rightMotorVelocity": 953,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 145
+                },
+                "right": {
+                    "value": 177
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 1
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": 21.25,
+                    "iTerm": 0.0,
+                    "dTerm": 264.0,
+                    "controlOutput": 285.25,
+                    "error": 17,
+                    "previousError": 6,
+                    "leftMotorVelocity": -180,
+                    "rightMotorVelocity": 390,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 283
+                },
+                "right": {
+                    "value": 266
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 1
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -8.75,
+                    "iTerm": 0.0,
+                    "dTerm": 336.0,
+                    "controlOutput": 327.25,
+                    "error": -7,
+                    "previousError": -21,
+                    "leftMotorVelocity": -222,
+                    "rightMotorVelocity": 432,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 144
+                },
+                "right": {
+                    "value": 151
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 1
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -103.75,
+                    "iTerm": 0.0,
+                    "dTerm": -24.0,
+                    "controlOutput": -127.75,
+                    "error": -83,
+                    "previousError": -82,
+                    "leftMotorVelocity": 232,
+                    "rightMotorVelocity": -22,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 77
+                },
+                "right": {
+                    "value": 160
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 50,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -57.5,
+                    "iTerm": 0.0,
+                    "dTerm": -192.0,
+                    "controlOutput": -249.5,
+                    "error": -46,
+                    "previousError": -38,
+                    "leftMotorVelocity": 354,
+                    "rightMotorVelocity": -144,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 91
+                },
+                "right": {
+                    "value": 137
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 144,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -80.0,
+                    "iTerm": 0.0,
+                    "dTerm": -528.0,
+                    "controlOutput": -608.0,
+                    "error": -64,
+                    "previousError": -42,
+                    "leftMotorVelocity": 713,
+                    "rightMotorVelocity": -503,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 72
+                },
+                "right": {
+                    "value": 136
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -116.25,
+                    "iTerm": 0.0,
+                    "dTerm": -1224.0,
+                    "controlOutput": -1340.25,
+                    "error": -93,
+                    "previousError": -42,
+                    "leftMotorVelocity": 1445,
+                    "rightMotorVelocity": -1235,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 70
+                },
+                "right": {
+                    "value": 163
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -110.0,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -110.0,
+                    "error": -88,
+                    "previousError": -88,
+                    "leftMotorVelocity": 215,
+                    "rightMotorVelocity": -5,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 69
+                },
+                "right": {
+                    "value": 157
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 50,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -102.5,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": -78.5,
+                    "error": -82,
+                    "previousError": -83,
+                    "leftMotorVelocity": 183,
+                    "rightMotorVelocity": 26,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 68
+                },
+                "right": {
+                    "value": 150
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 50,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -92.5,
+                    "iTerm": 0.0,
+                    "dTerm": -120.0,
+                    "controlOutput": -212.5,
+                    "error": -74,
+                    "previousError": -69,
+                    "leftMotorVelocity": 317,
+                    "rightMotorVelocity": -107,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 66
+                },
+                "right": {
+                    "value": 140
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 107,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -81.25,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": -57.25,
+                    "error": -65,
+                    "previousError": -66,
+                    "leftMotorVelocity": 162,
+                    "rightMotorVelocity": 47,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 66
+                },
+                "right": {
+                    "value": 131
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 50,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -71.25,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": -47.25,
+                    "error": -57,
+                    "previousError": -58,
+                    "leftMotorVelocity": 152,
+                    "rightMotorVelocity": 57,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 65
+                },
+                "right": {
+                    "value": 122
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 57,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -62.5,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": -38.5,
+                    "error": -50,
+                    "previousError": -51,
+                    "leftMotorVelocity": 143,
+                    "rightMotorVelocity": 66,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 65
+                },
+                "right": {
+                    "value": 115
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 143,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 66,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -65.0,
+                    "iTerm": 0.0,
+                    "dTerm": -168.0,
+                    "controlOutput": -233.0,
+                    "error": -52,
+                    "previousError": -45,
+                    "leftMotorVelocity": 338,
+                    "rightMotorVelocity": -128,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 64
+                },
+                "right": {
+                    "value": 116
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 128,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -63.75,
+                    "iTerm": 0.0,
+                    "dTerm": 912.0,
+                    "controlOutput": 848.25,
+                    "error": -51,
+                    "previousError": -89,
+                    "leftMotorVelocity": -743,
+                    "rightMotorVelocity": 953,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 64
+                },
+                "right": {
+                    "value": 115
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 1
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -48.75,
+                    "iTerm": 0.0,
+                    "dTerm": -192.0,
+                    "controlOutput": -240.75,
+                    "error": -39,
+                    "previousError": -31,
+                    "leftMotorVelocity": 345,
+                    "rightMotorVelocity": -135,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 63
+                },
+                "right": {
+                    "value": 102
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 135,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -37.5,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": -13.5,
+                    "error": -30,
+                    "previousError": -31,
+                    "leftMotorVelocity": 118,
+                    "rightMotorVelocity": 91,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 62
+                },
+                "right": {
+                    "value": 92
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 118,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 91,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -35.0,
+                    "iTerm": 0.0,
+                    "dTerm": 192.0,
+                    "controlOutput": 157.0,
+                    "error": -28,
+                    "previousError": -36,
+                    "leftMotorVelocity": -52,
+                    "rightMotorVelocity": 262,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 61
+                },
+                "right": {
+                    "value": 89
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 52,
+                    "direction": 1
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -22.5,
+                    "iTerm": 0.0,
+                    "dTerm": 96.0,
+                    "controlOutput": 73.5,
+                    "error": -18,
+                    "previousError": -22,
+                    "leftMotorVelocity": 31,
+                    "rightMotorVelocity": 178,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 59
+                },
+                "right": {
+                    "value": 77
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 50,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -56.25,
+                    "iTerm": 0.0,
+                    "dTerm": -552.0,
+                    "controlOutput": -608.25,
+                    "error": -45,
+                    "previousError": -22,
+                    "leftMotorVelocity": 713,
+                    "rightMotorVelocity": -503,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 66
+                },
+                "right": {
+                    "value": 111
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": 2.5,
+                    "iTerm": 0.0,
+                    "dTerm": 288.0,
+                    "controlOutput": 290.5,
+                    "error": 2,
+                    "previousError": -10,
+                    "leftMotorVelocity": -185,
+                    "rightMotorVelocity": 395,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 125
+                },
+                "right": {
+                    "value": 123
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 1
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -27.5,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": -3.5,
+                    "error": -22,
+                    "previousError": -23,
+                    "leftMotorVelocity": 108,
+                    "rightMotorVelocity": 101,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 56
+                },
+                "right": {
+                    "value": 78
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 108,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 101,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -58.75,
+                    "iTerm": 0.0,
+                    "dTerm": -648.0,
+                    "controlOutput": -706.75,
+                    "error": -47,
+                    "previousError": -20,
+                    "leftMotorVelocity": 811,
+                    "rightMotorVelocity": -601,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 70
+                },
+                "right": {
+                    "value": 117
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": 60.0,
+                    "iTerm": 0.0,
+                    "dTerm": 1440.0,
+                    "controlOutput": 1500.0,
+                    "error": 48,
+                    "previousError": -12,
+                    "leftMotorVelocity": -1395,
+                    "rightMotorVelocity": 1605,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 117
+                },
+                "right": {
+                    "value": 69
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 1
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -30.0,
+                    "iTerm": 0.0,
+                    "dTerm": 72.0,
+                    "controlOutput": 42.0,
+                    "error": -24,
+                    "previousError": -27,
+                    "leftMotorVelocity": 63,
+                    "rightMotorVelocity": 147,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 54
+                },
+                "right": {
+                    "value": 78
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 63,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 147,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -36.25,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -36.25,
+                    "error": -29,
+                    "previousError": -29,
+                    "leftMotorVelocity": 141,
+                    "rightMotorVelocity": 68,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 51
+                },
+                "right": {
+                    "value": 80
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 141,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 68,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -35.0,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": -11.0,
+                    "error": -28,
+                    "previousError": -29,
+                    "leftMotorVelocity": 116,
+                    "rightMotorVelocity": 94,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 51
+                },
+                "right": {
+                    "value": 79
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 116,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 94,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -35.0,
+                    "iTerm": 0.0,
+                    "dTerm": 552.0,
+                    "controlOutput": 517.0,
+                    "error": -28,
+                    "previousError": -51,
+                    "leftMotorVelocity": -412,
+                    "rightMotorVelocity": 622,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 51
+                },
+                "right": {
+                    "value": 79
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 1
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -25.0,
+                    "iTerm": 0.0,
+                    "dTerm": -24.0,
+                    "controlOutput": -49.0,
+                    "error": -20,
+                    "previousError": -19,
+                    "leftMotorVelocity": 154,
+                    "rightMotorVelocity": 56,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 49
+                },
+                "right": {
+                    "value": 69
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 56,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -23.75,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -23.75,
+                    "error": -19,
+                    "previousError": -19,
+                    "leftMotorVelocity": 128,
+                    "rightMotorVelocity": 81,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 50
+                },
+                "right": {
+                    "value": 69
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 128,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 81,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -22.5,
+                    "iTerm": 0.0,
+                    "dTerm": -48.0,
+                    "controlOutput": -70.5,
+                    "error": -18,
+                    "previousError": -16,
+                    "leftMotorVelocity": 175,
+                    "rightMotorVelocity": 34,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 51
+                },
+                "right": {
+                    "value": 69
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 50,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -21.25,
+                    "iTerm": 0.0,
+                    "dTerm": 96.0,
+                    "controlOutput": 74.75,
+                    "error": -17,
+                    "previousError": -21,
+                    "leftMotorVelocity": 30,
+                    "rightMotorVelocity": 179,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 51
+                },
+                "right": {
+                    "value": 68
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 50,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -8.75,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -8.75,
+                    "error": -7,
+                    "previousError": -7,
+                    "leftMotorVelocity": 113,
+                    "rightMotorVelocity": 96,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 54
+                },
+                "right": {
+                    "value": 61
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 113,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 96,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -6.25,
+                    "iTerm": 0.0,
+                    "dTerm": 432.0,
+                    "controlOutput": 425.75,
+                    "error": -5,
+                    "previousError": -23,
+                    "leftMotorVelocity": -320,
+                    "rightMotorVelocity": 530,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 54
+                },
+                "right": {
+                    "value": 59
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 1
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -8.75,
+                    "iTerm": 0.0,
+                    "dTerm": 864.0,
+                    "controlOutput": 855.25,
+                    "error": -7,
+                    "previousError": -43,
+                    "leftMotorVelocity": -750,
+                    "rightMotorVelocity": 960,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 53
+                },
+                "right": {
+                    "value": 60
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 1
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -7.5,
+                    "iTerm": 0.0,
+                    "dTerm": 864.0,
+                    "controlOutput": 856.5,
+                    "error": -6,
+                    "previousError": -42,
+                    "leftMotorVelocity": -751,
+                    "rightMotorVelocity": 961,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 53
+                },
+                "right": {
+                    "value": 59
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 1
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -6.25,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": 17.75,
+                    "error": -5,
+                    "previousError": -6,
+                    "leftMotorVelocity": 87,
+                    "rightMotorVelocity": 122,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 53
+                },
+                "right": {
+                    "value": 58
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 87,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 122,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -56.25,
+                    "iTerm": 0.0,
+                    "dTerm": -888.0,
+                    "controlOutput": -944.25,
+                    "error": -45,
+                    "previousError": -8,
+                    "leftMotorVelocity": 1049,
+                    "rightMotorVelocity": -839,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 66
+                },
+                "right": {
+                    "value": 111
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -8.75,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -8.75,
+                    "error": -7,
+                    "previousError": -7,
+                    "leftMotorVelocity": 113,
+                    "rightMotorVelocity": 96,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 53
+                },
+                "right": {
+                    "value": 60
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 113,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 96,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -17.5,
+                    "iTerm": 0.0,
+                    "dTerm": -168.0,
+                    "controlOutput": -185.5,
+                    "error": -14,
+                    "previousError": -7,
+                    "leftMotorVelocity": 290,
+                    "rightMotorVelocity": -80,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 54
+                },
+                "right": {
+                    "value": 68
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 80,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -78.75,
+                    "iTerm": 0.0,
+                    "dTerm": 120.0,
+                    "controlOutput": 41.25,
+                    "error": -63,
+                    "previousError": -68,
+                    "leftMotorVelocity": 63,
+                    "rightMotorVelocity": 146,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 63
+                },
+                "right": {
+                    "value": 126
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 63,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 146,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -107.5,
+                    "iTerm": 0.0,
+                    "dTerm": -168.0,
+                    "controlOutput": -275.5,
+                    "error": -86,
+                    "previousError": -79,
+                    "leftMotorVelocity": 380,
+                    "rightMotorVelocity": -170,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 75
+                },
+                "right": {
+                    "value": 161
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -103.75,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": -79.75,
+                    "error": -83,
+                    "previousError": -84,
+                    "leftMotorVelocity": 184,
+                    "rightMotorVelocity": 25,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 71
+                },
+                "right": {
+                    "value": 154
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 50,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -80.0,
+                    "iTerm": 0.0,
+                    "dTerm": -48.0,
+                    "controlOutput": -128.0,
+                    "error": -64,
+                    "previousError": -62,
+                    "leftMotorVelocity": 233,
+                    "rightMotorVelocity": -23,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 71
+                },
+                "right": {
+                    "value": 135
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 50,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -98.75,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -98.75,
+                    "error": -79,
+                    "previousError": -79,
+                    "leftMotorVelocity": 203,
+                    "rightMotorVelocity": 6,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 67
+                },
+                "right": {
+                    "value": 146
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 50,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -82.5,
+                    "iTerm": 0.0,
+                    "dTerm": -24.0,
+                    "controlOutput": -106.5,
+                    "error": -66,
+                    "previousError": -65,
+                    "leftMotorVelocity": 211,
+                    "rightMotorVelocity": -1,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 69
+                },
+                "right": {
+                    "value": 135
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 50,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -68.75,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": -44.75,
+                    "error": -55,
+                    "previousError": -56,
+                    "leftMotorVelocity": 149,
+                    "rightMotorVelocity": 60,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 68
+                },
+                "right": {
+                    "value": 123
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 149,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 60,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -76.25,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -76.25,
+                    "error": -61,
+                    "previousError": -61,
+                    "leftMotorVelocity": 181,
+                    "rightMotorVelocity": 28,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 64
+                },
+                "right": {
+                    "value": 125
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 50,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -81.25,
+                    "iTerm": 0.0,
+                    "dTerm": -24.0,
+                    "controlOutput": -105.25,
+                    "error": -65,
+                    "previousError": -64,
+                    "leftMotorVelocity": 210,
+                    "rightMotorVelocity": 0,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 70
+                },
+                "right": {
+                    "value": 135
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 50,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -98.75,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -98.75,
+                    "error": -79,
+                    "previousError": -79,
+                    "leftMotorVelocity": 203,
+                    "rightMotorVelocity": 6,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 74
+                },
+                "right": {
+                    "value": 153
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 50,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -31.25,
+                    "iTerm": 0.0,
+                    "dTerm": 96.0,
+                    "controlOutput": 64.75,
+                    "error": -25,
+                    "previousError": -29,
+                    "leftMotorVelocity": 40,
+                    "rightMotorVelocity": 169,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 57
+                },
+                "right": {
+                    "value": 82
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 50,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -160.0,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": -136.0,
+                    "error": -128,
+                    "previousError": -129,
+                    "leftMotorVelocity": 241,
+                    "rightMotorVelocity": -31,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 57
+                },
+                "right": {
+                    "value": 185
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 50,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -27.5,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -27.5,
+                    "error": -22,
+                    "previousError": -22,
+                    "leftMotorVelocity": 132,
+                    "rightMotorVelocity": 77,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 52
+                },
+                "right": {
+                    "value": 74
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 132,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 77,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -32.5,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -32.5,
+                    "error": -26,
+                    "previousError": -26,
+                    "leftMotorVelocity": 137,
+                    "rightMotorVelocity": 72,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 52
+                },
+                "right": {
+                    "value": 78
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 137,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 72,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -65.0,
+                    "iTerm": 0.0,
+                    "dTerm": 744.0,
+                    "controlOutput": 679.0,
+                    "error": -52,
+                    "previousError": -83,
+                    "leftMotorVelocity": -574,
+                    "rightMotorVelocity": 784,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 53
+                },
+                "right": {
+                    "value": 105
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 1
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -25.0,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -25.0,
+                    "error": -20,
+                    "previousError": -20,
+                    "leftMotorVelocity": 130,
+                    "rightMotorVelocity": 80,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 50
+                },
+                "right": {
+                    "value": 70
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 130,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 80,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -22.5,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -22.5,
+                    "error": -18,
+                    "previousError": -18,
+                    "leftMotorVelocity": 127,
+                    "rightMotorVelocity": 82,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 50
+                },
+                "right": {
+                    "value": 68
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 127,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 82,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -17.5,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -17.5,
+                    "error": -14,
+                    "previousError": -14,
+                    "leftMotorVelocity": 122,
+                    "rightMotorVelocity": 87,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 50
+                },
+                "right": {
+                    "value": 64
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 122,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 87,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -15.0,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -15.0,
+                    "error": -12,
+                    "previousError": -12,
+                    "leftMotorVelocity": 120,
+                    "rightMotorVelocity": 90,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 49
+                },
+                "right": {
+                    "value": 61
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 120,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 90,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -47.5,
+                    "iTerm": 0.0,
+                    "dTerm": -648.0,
+                    "controlOutput": -695.5,
+                    "error": -38,
+                    "previousError": -11,
+                    "leftMotorVelocity": 800,
+                    "rightMotorVelocity": -590,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 21
+                },
+                "right": {
+                    "value": 59
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -71.25,
+                    "iTerm": 0.0,
+                    "dTerm": -1104.0,
+                    "controlOutput": -1175.25,
+                    "error": -57,
+                    "previousError": -11,
+                    "leftMotorVelocity": 1280,
+                    "rightMotorVelocity": -1070,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 51
+                },
+                "right": {
+                    "value": 108
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -20.0,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": 4.0,
+                    "error": -16,
+                    "previousError": -17,
+                    "leftMotorVelocity": 101,
+                    "rightMotorVelocity": 109,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 52
+                },
+                "right": {
+                    "value": 68
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 101,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 109,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -66.25,
+                    "iTerm": 0.0,
+                    "dTerm": -984.0,
+                    "controlOutput": -1050.25,
+                    "error": -53,
+                    "previousError": -12,
+                    "leftMotorVelocity": 1155,
+                    "rightMotorVelocity": -945,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 57
+                },
+                "right": {
+                    "value": 110
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 1
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -17.5,
+                    "iTerm": 0.0,
+                    "dTerm": -24.0,
+                    "controlOutput": -41.5,
+                    "error": -14,
+                    "previousError": -13,
+                    "leftMotorVelocity": 146,
+                    "rightMotorVelocity": 63,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 52
+                },
+                "right": {
+                    "value": 66
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 146,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 63,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -15.0,
+                    "iTerm": 0.0,
+                    "dTerm": 984.0,
+                    "controlOutput": 969.0,
+                    "error": -12,
+                    "previousError": -53,
+                    "leftMotorVelocity": -864,
+                    "rightMotorVelocity": 1074,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 53
+                },
+                "right": {
+                    "value": 65
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 1
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -10.0,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -10.0,
+                    "error": -8,
+                    "previousError": -8,
+                    "leftMotorVelocity": 115,
+                    "rightMotorVelocity": 95,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 51
+                },
+                "right": {
+                    "value": 59
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 115,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 95,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -6.25,
+                    "iTerm": 0.0,
+                    "dTerm": 1128.0,
+                    "controlOutput": 1121.75,
+                    "error": -5,
+                    "previousError": -52,
+                    "leftMotorVelocity": -1016,
+                    "rightMotorVelocity": 1226,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 51
+                },
+                "right": {
+                    "value": 56
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 1
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -2.5,
+                    "iTerm": 0.0,
+                    "dTerm": -24.0,
+                    "controlOutput": -26.5,
+                    "error": -2,
+                    "previousError": -1,
+                    "leftMotorVelocity": 131,
+                    "rightMotorVelocity": 78,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 46
+                },
+                "right": {
+                    "value": 48
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 131,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 78,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -1.25,
+                    "iTerm": 0.0,
+                    "dTerm": -48.0,
+                    "controlOutput": -49.25,
+                    "error": -1,
+                    "previousError": 1,
+                    "leftMotorVelocity": 154,
+                    "rightMotorVelocity": 55,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 45
+                },
+                "right": {
+                    "value": 46
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 150,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 55,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": 1.25,
+                    "iTerm": 0.0,
+                    "dTerm": 48.0,
+                    "controlOutput": 49.25,
+                    "error": 1,
+                    "previousError": -1,
+                    "leftMotorVelocity": 55,
+                    "rightMotorVelocity": 154,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 47
+                },
+                "right": {
+                    "value": 46
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 55,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 150,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": 1.25,
+                    "iTerm": 0.0,
+                    "dTerm": 24.0,
+                    "controlOutput": 25.25,
+                    "error": 1,
+                    "previousError": 0,
+                    "leftMotorVelocity": 79,
+                    "rightMotorVelocity": 130,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 47
+                },
+                "right": {
+                    "value": 46
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 79,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 130,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -1.25,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": -1.25,
+                    "error": -1,
+                    "previousError": -1,
+                    "leftMotorVelocity": 106,
+                    "rightMotorVelocity": 103,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 45
+                },
+                "right": {
+                    "value": 46
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 106,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 103,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": 0.0,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": 0.0,
+                    "error": 0,
+                    "previousError": 0,
+                    "leftMotorVelocity": 105,
+                    "rightMotorVelocity": 105,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 45
+                },
+                "right": {
+                    "value": 45
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 105,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 105,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": 0.0,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": 0.0,
+                    "error": 0,
+                    "previousError": 0,
+                    "leftMotorVelocity": 105,
+                    "rightMotorVelocity": 105,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 45
+                },
+                "right": {
+                    "value": 45
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 105,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 105,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": -1.25,
+                    "iTerm": 0.0,
+                    "dTerm": -24.0,
+                    "controlOutput": -25.25,
+                    "error": -1,
+                    "previousError": 0,
+                    "leftMotorVelocity": 130,
+                    "rightMotorVelocity": 79,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 45
+                },
+                "right": {
+                    "value": 46
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 130,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 79,
+                    "direction": 0
+                }
+            }
+        }
+    },
+    {
+        "status": "success",
+        "data": {
+            "controller": {
+                "config": {
+                    "kp": 1.25,
+                    "ki": 0.0,
+                    "kd": 24.0,
+                    "minEffSpeed": 50,
+                    "maxEffSpeed": 150,
+                    "targetVelocity": 105,
+                    "maxITermMagnitude": 75
+                },
+                "state": {
+                    "pTerm": 0.0,
+                    "iTerm": 0.0,
+                    "dTerm": 0.0,
+                    "controlOutput": 0.0,
+                    "error": 0,
+                    "previousError": 0,
+                    "leftMotorVelocity": 105,
+                    "rightMotorVelocity": 105,
+                    "initialized": 1
+                }
+            },
+            "reflectance": {
+                "left": {
+                    "value": 45
+                },
+                "right": {
+                    "value": 45
+                }
+            },
+            "motors": {
+                "left": {
+                    "speed": 105,
+                    "direction": 0
+                },
+                "right": {
+                    "speed": 105,
+                    "direction": 0
+                }
+            }
+        }
+    }
+]
