@@ -34,10 +34,7 @@
 
 cli_status_t cliLineFollowingController_getKp(uint8_t argNumber, char* args[])
 {
-    pid_constant_t* pidConstants = 
-                    lineFollowingController_getPidConstants();
-
-    int val = FLOAT_OFFSET * pidConstants->kp;
+    int val = FLOAT_OFFSET * lineFollowingController_getConfig()->kp;
 
     char str[100]; 
     sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %i}" CMD_EOL_STR, 
@@ -48,21 +45,16 @@ cli_status_t cliLineFollowingController_getKp(uint8_t argNumber, char* args[])
 
 cli_status_t cliLineFollowingController_setKp(uint8_t argNumber, char* args[])
 {
-    pid_constant_t* pidConstants = 
-                    lineFollowingController_getPidConstants();
 
-    pidConstants->kp = (float) atof((const char*) args[0]);
-
+    lineFollowingController_getConfig()->kp = (float) atof((const char*) 
+                                              args[0]);
     Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
     return COMMAND_OK;
 }
 
 cli_status_t cliLineFollowingController_getKd(uint8_t argNumber, char* args[])
 {
-    pid_constant_t* pidConstants = 
-                    lineFollowingController_getPidConstants();
-
-    int val = FLOAT_OFFSET * pidConstants->kd;
+    int val = FLOAT_OFFSET * lineFollowingController_getConfig()->kd;
 
     char str[100]; 
     sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %i}" CMD_EOL_STR, 
@@ -73,22 +65,15 @@ cli_status_t cliLineFollowingController_getKd(uint8_t argNumber, char* args[])
 
 cli_status_t cliLineFollowingController_setKd(uint8_t argNumber, char* args[])
 {
-    pid_constant_t* pidConstants = 
-                    lineFollowingController_getPidConstants();
-
-    pidConstants->kd = (float) atof((const char*) args[0]);
-
+    lineFollowingController_getConfig()->kd = (float) atof((const char*)
+                                              args[0]);
     Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
     return COMMAND_OK;
 }
 
 cli_status_t cliLineFollowingController_getKi(uint8_t argNumber, char* args[])
 {
-    pid_constant_t* pidConstants = 
-                    lineFollowingController_getPidConstants();
-
-    int val = FLOAT_OFFSET * pidConstants->ki;
-
+    int val = FLOAT_OFFSET * lineFollowingController_getConfig()->ki;
     char str[100]; 
     sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %i}" CMD_EOL_STR, 
             val);
@@ -98,18 +83,15 @@ cli_status_t cliLineFollowingController_getKi(uint8_t argNumber, char* args[])
 
 cli_status_t cliLineFollowingController_setKi(uint8_t argNumber, char* args[])
 {
-    pid_constant_t* pidConstants = 
-                    lineFollowingController_getPidConstants();
-
-    pidConstants->ki = (float) atof((const char*) args[0]);
-
+    lineFollowingController_getConfig()->ki = (float) atof((const char*)
+                                              args[0]);
     Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
     return COMMAND_OK;
 }
 
 cli_status_t cliLineFollowingController_getErr(uint8_t argNumber, char* args[])
 {
-    int error = *lineFollowingController_getError();
+    int error = lineFollowingController_getState()->error;
     char str[100]; 
     sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %i}" CMD_EOL_STR, 
             error);
@@ -119,17 +101,16 @@ cli_status_t cliLineFollowingController_getErr(uint8_t argNumber, char* args[])
 
 cli_status_t cliLineFollowingController_setTarg(uint8_t argNumber, char* args[])
 {
-    uint8_t* targ = lineFollowingController_getTargSpeed();
-    
-    *targ = (uint8_t) strtol((const char*) args[0], NULL, 0);
-
+    lineFollowingController_getConfig()->targetVelocity = (uint8_t) strtol(
+                                                          (const char*) args[0],
+                                                          NULL, 0);
     Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
     return COMMAND_OK;
 }
 
 cli_status_t cliLineFollowingController_getTarg(uint8_t argNumber, char* args[])
 {
-    uint8_t targ = *lineFollowingController_getTargSpeed();
+    uint8_t targ = lineFollowingController_getConfig()->targetVelocity;
     char str[100]; 
     sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %i}" CMD_EOL_STR, 
             targ);
@@ -137,43 +118,17 @@ cli_status_t cliLineFollowingController_getTarg(uint8_t argNumber, char* args[])
     return COMMAND_OK;
 }
 
-cli_status_t cliLineFollowingController_getErrorDeadbandHalfWidth(uint8_t
-                                                                  argNumber,
-                                                                  char* args[])
-{
-    uint8_t deadband = *lineFollowingController_getErrorDeadbandHalfWidth();
-    char str[100]; 
-    sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %i}" CMD_EOL_STR, 
-            deadband);
-    Serial.print(str);
-    return COMMAND_OK;
-}
-
-cli_status_t cliLineFollowingController_setErrorDeadbandHalfWidth(uint8_t
-                                                                  argNumber,
-                                                                  char* args[])
-{
-    uint8_t* deadbandPtr = lineFollowingController_getErrorDeadbandHalfWidth();
-
-    *deadbandPtr = (uint8_t) strtol((const char*) args[0], NULL, 0);
-
-    Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
-    return COMMAND_OK;
-}
-
 cli_status_t cliLineFollowingController_setMax(uint8_t argNumber, char* args[])
 {
-    uint8_t* max = lineFollowingController_getMaxEffSpeed();
-    
-    *max = (uint8_t) strtol((const char*) args[0], NULL, 0);
-
+    lineFollowingController_getConfig()->maxEffSpeed = (uint8_t) strtol((const
+                                                       char*) args[0], NULL, 0);
     Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
     return COMMAND_OK;
 }
 
 cli_status_t cliLineFollowingController_getMax(uint8_t argNumber, char* args[])
 {
-    uint8_t max = *lineFollowingController_getMaxEffSpeed();
+    uint8_t max = lineFollowingController_getConfig()->maxEffSpeed;
     char str[100]; 
     sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %i}" CMD_EOL_STR, 
             max);
@@ -183,20 +138,53 @@ cli_status_t cliLineFollowingController_getMax(uint8_t argNumber, char* args[])
 
 cli_status_t cliLineFollowingController_setMin(uint8_t argNumber, char* args[])
 {
-    uint8_t* min = lineFollowingController_getMinEffSpeed();
-    
-    *min = (uint8_t) strtol((const char*) args[0], NULL, 0);
-
+    lineFollowingController_getConfig()->minEffSpeed = (uint8_t) strtol((const
+                                                       char*) args[0], NULL, 0);
     Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
     return COMMAND_OK;
 }
 
 cli_status_t cliLineFollowingController_getMin(uint8_t argNumber, char* args[])
 {
-    uint8_t min = *lineFollowingController_getMinEffSpeed();
+    uint8_t min = lineFollowingController_getConfig()->minEffSpeed;
     char str[100]; 
     sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %i}" CMD_EOL_STR, 
             min);
+    Serial.print(str);
+    return COMMAND_OK;
+}
+
+cli_status_t cliLineFollowingController_poll(uint8_t argNumber, char* args[])
+{
+    line_following_controller_config_t config;
+    config = *lineFollowingController_getConfig();
+
+    line_following_controller_state_t state;
+    state = *lineFollowingController_getState();
+
+    char str[1000];
+    sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": {\"controller\":"
+            " {\"config\": {\"kp\": %f, \"ki\": %f, \"kd\": %f, "
+            "\"minEffSpeed\": %i, \"maxEffSpeed\": %i, \"targetVelocity\": %i,"
+            " \"maxITermMagnitude\": %i}, \"state\": {\"pTerm\": %f, "
+            "\"iTerm\": %f, \"dTerm\": %f, \"controlOutput\": %f, "
+            "\"error\": %i, \"previousError\": %i, \"leftMotorVelocity\": %i, "
+            "\"rightMotorVelocity\": %i, \"initialized\": %i}}, "
+            "\"reflectance\": {\"left\": {\"value\": %i}, "
+            "\"right\":{\"value\": %i}}, \"motors\": {\"left\":{\"speed\": %i, "
+            "\"direction\": %i}, \"right\":{\"speed\": %i, "
+            "\"direction\": %i}}}}" CMD_EOL_STR,
+            config.kp, config.ki, config.kd, config.minEffSpeed,
+            config.maxEffSpeed, config.targetVelocity, config.maxITermMagnitude,
+            state.pTerm, state.iTerm, state.dTerm, state.controlOutput,
+            state.error, state.previousError, state.leftMotorVelocity,
+            state.rightMotorVelocity, state.initialized,
+            config.reflectanceArr[LEFT_REFLECTANCE]->value,
+            config.reflectanceArr[RIGHT_REFLECTANCE]->value,
+            config.motorArr[LEFT_DRIVING_MOTOR]->speed,
+            config.motorArr[LEFT_DRIVING_MOTOR]->direction,
+            config.motorArr[RIGHT_DRIVING_MOTOR]->speed,
+            config.motorArr[RIGHT_DRIVING_MOTOR]->direction);
     Serial.print(str);
     return COMMAND_OK;
 }

@@ -35,8 +35,8 @@ typedef struct {
     uint8_t         maxEffSpeed;
     uint8_t         targetVelocity;
     uint8_t         maxITermMagnitude;
-    reflectance_t*  reflectanceArr;
-    dc_motor_two_t* motorArr;
+    reflectance_t*  reflectanceArr[NUM_LINE_FOLLOWING_SENSORS];
+    dc_motor_two_t* motorArr[NUM_DRIVING_MOTORS];
 } line_following_controller_config_t;
 
 typedef struct {

@@ -27,11 +27,11 @@ static line_following_controller_config_t config =
     .ki                = 0.0f,
     .kd                = 0.0f,
     .minEffSpeed       = 30,
-    .maxEffSpeed       = 180,
+    .maxEffSpeed       = 0,
     .targetVelocity    = 105,
     .maxITermMagnitude = 75,
-    .reflectanceArr    = 0,
-    .motorArr          = 0
+    .reflectanceArr    = {0, 0},
+    .motorArr          = {0, 0}
 };
 
 static line_following_controller_state_t state =
@@ -125,13 +125,13 @@ robot_status_t lineFollowingController_spinOnce()
 
     state.previousError = state.error;
 
-    error = config.reflectanceArr[LEFT_REFLECTANCE]->value -
+    state.error = config.reflectanceArr[LEFT_REFLECTANCE]->value -
             config.reflectanceArr[RIGHT_REFLECTANCE]->value;
 
-    pTerm = config.kp * state.error;
-    iTerm += config.ki * state.error;
-    dTerm = config.kd * (state.error - state.previousError);
-    iTerm = CLAMP(state.iTerm, -config.maxITermMagnitude,
+    state.pTerm = config.kp * state.error;
+    state.iTerm += config.ki * state.error;
+    state.dTerm = config.kd * (state.error - state.previousError);
+    state.iTerm = CLAMP(state.iTerm, -config.maxITermMagnitude,
                   config.maxITermMagnitude);
 
     state.controlOutput = state.pTerm + state.iTerm + state.dTerm;
