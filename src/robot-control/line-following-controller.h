@@ -28,10 +28,28 @@
 *******************************************************************************/
 
 typedef struct {
-    float kp;
-    float ki;
-    float kd;
-} pid_constant_t;
+    float           kp;
+    float           ki;
+    float           kd;
+    uint8_t         minEffSpeed;
+    uint8_t         maxEffSpeed;
+    uint8_t         targetVelocity;
+    uint8_t         maxITermMagnitude;
+    reflectance_t*  reflectanceArr[NUM_LINE_FOLLOWING_SENSORS];
+    dc_motor_two_t* motorArr[NUM_DRIVING_MOTORS];
+} line_following_controller_config_t;
+
+typedef struct {
+    float           pTerm;
+    float           iTerm;
+    float           dTerm;
+    float           controlOutput;
+    int16_t         error;
+    int16_t         previousError;
+    int16_t         leftMotorVelocity;
+    int16_t         rightMotorVelocity;
+    bool            initialized;
+} line_following_controller_state_t;
 
 /*******************************************************************************
 *                               Variables
@@ -48,16 +66,8 @@ robot_status_t lineFollowingController_init(reflectance_t* sensor1,
 
 robot_status_t lineFollowingController_spinOnce();
 
-pid_constant_t* lineFollowingController_getPidConstants();
+line_following_controller_config_t* lineFollowingController_getConfig();
 
-uint8_t* lineFollowingController_getMinEffSpeed();
-
-uint8_t* lineFollowingController_getMaxEffSpeed();
-
-uint8_t* lineFollowingController_getTargSpeed();
-
-int16_t* lineFollowingController_getError();
-
-uint8_t* lineFollowingController_getErrorDeadbandHalfWidth();
+line_following_controller_state_t* lineFollowingController_getState();
 
 #endif // LINE_FOLLOWING_CONTROLLER
