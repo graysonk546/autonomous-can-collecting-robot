@@ -13,6 +13,9 @@
 *                               Static Functions
 *******************************************************************************/
 
+static void _runMotor(dc_motor_two_t* motor, int16_t velocity,
+                      int16_t previousVelocity);
+
 /*******************************************************************************
 *                               Constants
 *******************************************************************************/
@@ -152,30 +155,12 @@ robot_status_t lineFollowingController_spinOnce()
         state.rightMotorVelocity = config.targetVelocity;
     }
 
-    if (state.leftMotorVelocity >= 0)
-    {
-        dcMotorTwo_run(config.motorArr[LEFT_DRIVING_MOTOR],
-                       CLAMP(state.leftMotorVelocity, config.minEffSpeed,
-                       config.maxEffSpeed), CW_DIRECTION);
-    }
-    else
-    {
-        dcMotorTwo_run(config.motorArr[LEFT_DRIVING_MOTOR],
-                       CLAMP(-state.leftMotorVelocity, config.minEffSpeed,
-                       config.maxEffSpeed), CCW_DIRECTION);
-    }
-    if (state.rightMotorVelocity >= 0)
-    {
-        dcMotorTwo_run(config.motorArr[RIGHT_DRIVING_MOTOR],
-                       CLAMP(state.rightMotorVelocity, config.minEffSpeed,
-                       config.maxEffSpeed), CW_DIRECTION);
-    }
-    else
-    {
-        dcMotorTwo_run(config.motorArr[RIGHT_DRIVING_MOTOR],
-                       CLAMP(-state.rightMotorVelocity, config.minEffSpeed,
-                       config.maxEffSpeed), CCW_DIRECTION);
-    }
+    _runMotor(config.motorArr[LEFT_DRIVING_MOTOR], state.leftMotorVelocity,
+              state.previousLeftMotorVelocity);
+    
+    _runMotor(config.motorArr[RIGHT_DRIVING_MOTOR], state.rightMotorVelocity,
+              state.previousRightMotorVelocity);
+
     return ROBOT_OK;
 }
 
@@ -187,4 +172,50 @@ line_following_controller_config_t* lineFollowingController_getConfig()
 line_following_controller_state_t* lineFollowingController_getState()
 {
     return &state;
+}
+
+static void _runMotor(dc_motor_two_t* motor, int16_t velocity,
+                      int16_t previousVelocity)
+{
+    uint8_t speed;
+    rotation_dir_t dir;
+    if (velocity > config.maxEffSpeed)
+    {
+        speed = config.maxEffSpeed;
+        dir = CW_DIRECTION;
+    }
+    else if (velocity > config.minEffSpeed)
+    {
+        speed = (uint8_t) velocity;
+        dir = CW_DIRECTION;
+    }
+    else if (velocity > -config.minEffSpeed)
+    {
+        if (velocity > previousVelocity)
+        {
+            speed = config.minEffSpeed;
+            dir = CW_DIRECTION;
+        }
+        else if (velocity < previousVelocity)
+        {
+            speed = -config.minEffSpeed;
+            dir = CCW_DIRECTION;
+        }
+        else
+        {
+            speed = motor->speed;
+            dir = motor->direction;
+        }
+    }
+    else if (velocity > -config.maxEffSpeed)
+    {
+        speed = (uint8_t) (-velocity);
+        dir = CCW_DIRECTION;
+    }
+    else
+    {
+        speed = config.maxEffSpeed;
+        dir = CCW_DIRECTION;
+    }
+    dcMotorTwo_run(motor, speed, dir);
 }

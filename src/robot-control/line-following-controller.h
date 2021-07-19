@@ -47,7 +47,9 @@ typedef struct {
     int16_t         error;
     int16_t         previousError;
     int16_t         leftMotorVelocity;
+    int16_t         previousLeftMotorVelocity;
     int16_t         rightMotorVelocity;
+    int16_t         previousRightMotorVelocity;
     bool            initialized;
 } line_following_controller_state_t;
 
