@@ -26,28 +26,32 @@ static void _runMotor(dc_motor_two_t* motor, int16_t velocity,
 
 static line_following_controller_config_t config =
 {
-    .kp                = 1.0f,
-    .ki                = 0.0f,
-    .kd                = 0.0f,
-    .minEffSpeed       = 30,
-    .maxEffSpeed       = 0,
-    .targetVelocity    = 105,
-    .maxITermMagnitude = 75,
-    .reflectanceArr    = {0, 0},
-    .motorArr          = {0, 0}
+    .kp                              = 1.0f,
+    .ki                              = 0.0f,
+    .kd                              = 0.0f,
+    .delocalizedGain                 = 1.05f,
+    .minEffSpeed                     = 30,
+    .maxEffSpeed                     = 0,
+    .targetVelocity                  = 105,
+    .maxITermMagnitude               = 75,
+    .delocalizedReflectanceThreshold = 50,
+    .reflectanceArr                  = {0, 0},
+    .motorArr                        = {0, 0}
 };
 
 static line_following_controller_state_t state =
 {
-    .pTerm              = 0.0f,
-    .iTerm              = 0.0f,
-    .dTerm              = 0.0f,
-    .controlOutput      = 0.0f,
-    .error              = 0,
-    .previousError      = 0,
-    .leftMotorVelocity  = config.targetVelocity,
-    .rightMotorVelocity = config.targetVelocity,
-    .initialized        = false
+    .pTerm                      = 0.0f,
+    .iTerm                      = 0.0f,
+    .dTerm                      = 0.0f,
+    .controlOutput              = 0.0f,
+    .error                      = 0,
+    .previousError              = 0,
+    .leftMotorVelocity          = config.targetVelocity,
+    .previousLeftMotorVelocity  = 0,
+    .rightMotorVelocity         = config.targetVelocity,
+    .previousRightMotorVelocity = 0,
+    .initialized                = false
 };
 
 /*******************************************************************************
@@ -128,8 +132,18 @@ robot_status_t lineFollowingController_spinOnce()
 
     state.previousError = state.error;
 
-    state.error = config.reflectanceArr[LEFT_REFLECTANCE]->value -
-            config.reflectanceArr[RIGHT_REFLECTANCE]->value;
+    if (config.reflectanceArr[LEFT_REFLECTANCE]->value <
+        config.delocalizedReflectanceThreshold &&
+        config.reflectanceArr[RIGHT_REFLECTANCE]->value <
+        config.delocalizedReflectanceThreshold)
+    {
+        state.error = config.delocalizedGain * state.previousError;
+    }
+    else
+    {
+        state.error = config.reflectanceArr[LEFT_REFLECTANCE]->value -
+                      config.reflectanceArr[RIGHT_REFLECTANCE]->value;
+    }
 
     state.pTerm = config.kp * state.error;
     state.iTerm += config.ki * state.error;

@@ -31,10 +31,12 @@ typedef struct {
     float           kp;
     float           ki;
     float           kd;
+    float           delocalizedGain;
     uint8_t         minEffSpeed;
     uint8_t         maxEffSpeed;
     uint8_t         targetVelocity;
     uint8_t         maxITermMagnitude;
+    uint16_t        delocalizedReflectanceThreshold;
     reflectance_t*  reflectanceArr[NUM_LINE_FOLLOWING_SENSORS];
     dc_motor_two_t* motorArr[NUM_DRIVING_MOTORS];
 } line_following_controller_config_t;
