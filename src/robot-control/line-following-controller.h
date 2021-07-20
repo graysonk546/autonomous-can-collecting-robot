@@ -1,17 +1,18 @@
-
-#ifndef DC_MOTOR
-#define DC_MOTOR
+#ifndef LINE_FOLLOWING_CONTROLLER
+#define LINE_FOLLOWING_CONTROLLER
 
 /*******************************************************************************
 *                               Standard Libraries
 *******************************************************************************/
 
-#include <pt.h>
+#include <stdint.h>
 
 /*******************************************************************************
 *                               Header Files
 *******************************************************************************/
 
+#include "robot-core/reflectance.h"
+#include "robot-core/dc-motor-two.h"
 #include "utilities/util-vars.h"
 
 /*******************************************************************************
@@ -22,22 +23,33 @@
 *                               Constants
 *******************************************************************************/
 
-#define MAX_SPEED    255
-#define STATIC_SPEED 0
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
 
-typedef enum {
-    CW_DIRECTION,
-    CC_DIRECTION
-} dc_motor_dir_t;
+typedef struct {
+    float           kp;
+    float           ki;
+    float           kd;
+    uint8_t         minEffSpeed;
+    uint8_t         maxEffSpeed;
+    uint8_t         targetVelocity;
+    uint8_t         maxITermMagnitude;
+    reflectance_t*  reflectanceArr[NUM_LINE_FOLLOWING_SENSORS];
+    dc_motor_two_t* motorArr[NUM_DRIVING_MOTORS];
+} line_following_controller_config_t;
 
-typedef enum {
-    DC_MOTOR_1,
-    DC_MOTOR_2
-} dc_motor_t;
+typedef struct {
+    float           pTerm;
+    float           iTerm;
+    float           dTerm;
+    float           controlOutput;
+    int16_t         error;
+    int16_t         previousError;
+    int16_t         leftMotorVelocity;
+    int16_t         rightMotorVelocity;
+    bool            initialized;
+} line_following_controller_state_t;
 
 /*******************************************************************************
 *                               Variables
@@ -47,19 +59,15 @@ typedef enum {
 *                               Functions
 *******************************************************************************/
 
-/*******************************************************************************
- * Requires: None
- * Effects:  Returns robot_status_t indicating state of initialization
- * Modifies: None
- * ****************************************************************************/
-robot_status_t dcMotor_init(dc_motor_t motor);
+robot_status_t lineFollowingController_init(reflectance_t* sensor1,
+                                            reflectance_t* sensor2,
+                                            dc_motor_two_t* motor1,
+                                            dc_motor_two_t* motor2);
 
-/*******************************************************************************
- * Requires: Requires dc_motor_dir_t for direciton of spin and uint8_t for
- *           desired speed (0-256)
- * Effects:  Returns robot_status_t indicating state of initialization
- * Modifies: None
- * ****************************************************************************/
-robot_status_t dcMotor_run(dc_motor_t motor, uint8_t speed, dc_motor_dir_t dir);
+robot_status_t lineFollowingController_spinOnce();
 
-#endif // DC_MOTOR
+line_following_controller_config_t* lineFollowingController_getConfig();
+
+line_following_controller_state_t* lineFollowingController_getState();
+
+#endif // LINE_FOLLOWING_CONTROLLER

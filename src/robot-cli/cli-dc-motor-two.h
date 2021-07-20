@@ -37,7 +37,11 @@ cli_status_t cliDcMotorTwo_init(uint8_t argNumber, char* args[]);
 
 cli_status_t cliDcMotorTwo_run(uint8_t argNumber, char* args[]);
 
-#define DC_MOTOR_TWO_COMMANDS                                                                     \
-    {cliDcMotorTwo_init, "dc-two-init", "<periph>",         "init the 2D dc-motor periph", 1, 1}, \
-    {cliDcMotorTwo_run,  "dc-two-run",  "<periph> <speed> <dir>", "run the 2D dc motor", 3, 3},
+cli_status_t cliDcMotorTwo_getSpeed(uint8_t argNumber, char* args[]);
+
+
+#define DC_MOTOR_TWO_COMMANDS                                                                               \
+    {cliDcMotorTwo_init,     "dc-two-init", "<periph>",               "init the 2D dc-motor periph", 1, 1}, \
+    {cliDcMotorTwo_run,      "dc-two-run",  "<periph> <speed> <dir>", "run the 2D dc motor",         3, 3}, \
+    {cliDcMotorTwo_getSpeed, "dc-speed",    "<periph>",               "get motor speed",             1, 1},
 #endif // CLI_DC_MOTOR_TWO
