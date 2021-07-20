@@ -104,12 +104,15 @@ robot_status_t taskDriving_init()
 
 void taskDriving_ISR()
 {
+<<<<<<< HEAD
+=======
     // if (millis() - taskDriving.taskTime)
     // {
     //     PT_SEM_SIGNAL(&taskDriving.taskThread, &taskDriving.taskMutex);
     //     taskDriving.taskTime = millis();
     // }
 
+>>>>>>> master
     PT_SEM_SIGNAL(&taskDriving.taskThread, &taskDriving.taskMutex);
 }
 
