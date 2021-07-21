@@ -10,6 +10,7 @@
 *******************************************************************************/
 
 #include "dc-motor-two.h"
+#include "utilities/robot-config.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -31,8 +32,8 @@ static dc_motor_two_t dcMotorTwoArr[] =
 {
     [LEFT_DRIVING_MOTOR] =
     {
-        .cw_pin      = PB6,
-        .ccw_pin     = PB7,
+        .cw_pin      = PIN_LEFT_DRIVING_MOTOR_CW,
+        .ccw_pin     = PIN_LEFT_DRIVING_MOTOR_CCW,
         .direction   = CW_DIRECTION,
         .speed       = STATIC_SPEED,
         .id          = LEFT_DRIVING_MOTOR,
@@ -40,8 +41,8 @@ static dc_motor_two_t dcMotorTwoArr[] =
     },
     [RIGHT_DRIVING_MOTOR] =
     {
-        .cw_pin      = PB8,
-        .ccw_pin     = PB9,
+        .cw_pin      = PIN_RIGHT_DRIVING_MOTOR_CW,
+        .ccw_pin     = PIN_RIGHT_DRIVING_MOTOR_CCW,
         .direction   = CW_DIRECTION,
         .speed       = STATIC_SPEED,
         .id          = RIGHT_DRIVING_MOTOR,
