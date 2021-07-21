@@ -40,8 +40,8 @@ static dc_motor_two_t dcMotorTwoArr[] =
     },
     [RIGHT_DRIVING_MOTOR] =
     {
-        .cw_pin      = PB9,
-        .ccw_pin     = PB8,
+        .cw_pin      = PB8,
+        .ccw_pin     = PB9,
         .direction   = CW_DIRECTION,
         .speed       = STATIC_SPEED,
         .id          = RIGHT_DRIVING_MOTOR,

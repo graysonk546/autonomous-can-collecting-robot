@@ -81,7 +81,7 @@ void loop()
     // Looping achieves thread scheduling
     _drivingTask(&task_driving->taskThread);
     _cliTask(&task_cli->taskThread);
-    _clawTask(&task_claw->taskThread);
+    // _clawTask(&task_claw->taskThread);
 }
 
 /*******************************************************************************
