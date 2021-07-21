@@ -33,7 +33,8 @@
 
 cli_status_t cliServo_init(uint8_t argNumber, char* args[])
 {
-    servo_id_t servo_id = (servo_id_t) strtol((const char*) args[0], NULL, 0);
+    servo_motor_id_t servo_id = (servo_motor_id_t) strtol((const char*) args[0],
+                                                          NULL, 0);
 
     if (servo_id != HOPPER_ROTATION_SERVO)
     {
@@ -42,7 +43,7 @@ cli_status_t cliServo_init(uint8_t argNumber, char* args[])
         return COMMAND_OK;
     }
 
-    servo_t* servo = servo_get(servo_id);
+    servo_motor_t* servo = servo_get(servo_id);
 
     if (servo_init(servo) == ROBOT_OK)
     {
@@ -58,7 +59,8 @@ cli_status_t cliServo_init(uint8_t argNumber, char* args[])
 
 cli_status_t cliServo_rotate(uint8_t argNumber, char* args[])
 {
-    servo_id_t servo_id = (servo_id_t) strtol((const char*) args[0], NULL, 0);
+    servo_motor_id_t servo_id = (servo_motor_id_t) strtol((const char*) args[0],
+                                                          NULL, 0);
     uint8_t angle = (uint8_t) strtol((const char*) args[1], NULL, 0);
     if (servo_id != HOPPER_ROTATION_SERVO)
     {
@@ -66,7 +68,7 @@ cli_status_t cliServo_rotate(uint8_t argNumber, char* args[])
                       " reflectance sensor\"}" CMD_EOL_STR));
         return COMMAND_OK;
     }
-    servo_t* servo = servo_get(servo_id);
+    servo_motor_t* servo = servo_get(servo_id);
 
     if (angle > MAX_ANGLE || angle < MIN_ANGLE)
     {

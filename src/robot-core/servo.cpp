@@ -28,7 +28,7 @@
 *                               Variables
 *******************************************************************************/
 
-static servo_t servoArr[] =
+static servo_motor_t servoArr[] =
 {
     [HOPPER_ROTATION_SERVO] =
     {
@@ -38,13 +38,13 @@ static servo_t servoArr[] =
         .initialized = false
 
     }
-}
+};
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-robot_status_t servo_init(servo_t* servo)
+robot_status_t servo_init(servo_motor_t* servo)
 {
     servo->motor.attach(servo->pin);
     servo->angle = 0;
@@ -53,7 +53,7 @@ robot_status_t servo_init(servo_t* servo)
     return ROBOT_OK;
 }
 
-robot_status_t servo_rotate(servo_t* servo, uint8_t angle)
+robot_status_t servo_rotate(servo_motor_t* servo, uint8_t angle)
 {
     if (servo->initialized)
     {
@@ -67,7 +67,7 @@ robot_status_t servo_rotate(servo_t* servo, uint8_t angle)
     }
 }
 
-servo_t* servo_get(servo_id_t id)
+servo_motor_t* servo_get(servo_motor_id_t id)
 {
     return &servoArr[id];
 }

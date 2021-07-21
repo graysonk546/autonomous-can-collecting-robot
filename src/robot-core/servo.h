@@ -32,16 +32,16 @@
 typedef enum
 {
     HOPPER_ROTATION_SERVO
-} servo_id_t;
+} servo_motor_id_t;
 
-typedef struct
+struct servo_motor_t
 {
     Servo            motor;
     const uint8_t    pin;
     uint8_t          angle;
-    const servo_id_t id;
+    const servo_motor_id_t id;
     bool             initialized;
-} servo_t;
+};
 
 /*******************************************************************************
 *                               Variables
@@ -57,7 +57,7 @@ typedef struct
  *           ROBOT_ERR otherwise
  * Modifies: servo.angle
  * ****************************************************************************/
-robot_status_t servo_init(servo_t* servo);
+robot_status_t servo_init(servo_motor_t* servo);
 
 /*******************************************************************************
  * Requires: ptr to servo_t that has been initialized using servo_init; angle
@@ -66,13 +66,13 @@ robot_status_t servo_init(servo_t* servo);
  *           servo_init, and returns ROBOT_OK otherwise
  * Modifies: servo.angle
  * ****************************************************************************/
-robot_status_t servo_rotate(servo_t* servo, uint8_t angle);
+robot_status_t servo_rotate(servo_motor_t* servo, uint8_t angle);
 
 /*******************************************************************************
  * Requires: servo_id_T id that corresponds to a given servo_t servo
  * Effects:  returns a ptr to the corresponding servo_t servo
  * Modifies: None
  * ****************************************************************************/
-servo_t* servo_get(servo_id_t id);
+servo_motor_t* servo_get(servo_motor_id_t id);
 
 #endif // SERVO
