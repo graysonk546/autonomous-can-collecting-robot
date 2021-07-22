@@ -25,8 +25,8 @@
 *                               Structures
 *******************************************************************************/
 typedef enum {
-    RIGHT_REFLECTANCE,
-    LEFT_REFLECTANCE
+    LEFT_REFLECTANCE,
+    RIGHT_REFLECTANCE
 } reflectance_id_t;
 
 typedef struct {

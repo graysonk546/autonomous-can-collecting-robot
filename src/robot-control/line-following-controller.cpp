@@ -153,6 +153,9 @@ robot_status_t lineFollowingController_spinOnce()
 
     state.controlOutput = state.pTerm + state.iTerm + state.dTerm;
 
+    state.previousLeftMotorVelocity = state.leftMotorVelocity;
+    state.previousRightMotorVelocity = state.rightMotorVelocity;
+
     if (state.controlOutput < 0)
     {
         state.leftMotorVelocity = config.targetVelocity - state.controlOutput;
@@ -212,7 +215,7 @@ static void _runMotor(dc_motor_two_t* motor, int16_t velocity,
         }
         else if (velocity < previousVelocity)
         {
-            speed = -config.minEffSpeed;
+            speed = config.minEffSpeed;
             dir = CCW_DIRECTION;
         }
         else

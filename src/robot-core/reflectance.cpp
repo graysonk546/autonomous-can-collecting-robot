@@ -27,16 +27,16 @@
 *******************************************************************************/
 static reflectance_t reflectanceArr[] =
 {
-    [RIGHT_REFLECTANCE] = 
-    {
-        .pin         = PA5,
-        .id          = RIGHT_REFLECTANCE,
-        .initialized = false
-    },
     [LEFT_REFLECTANCE] = 
     {
-        .pin         = PA4,
+        .pin         = PA5,
         .id          = LEFT_REFLECTANCE,
+        .initialized = false
+    },
+    [RIGHT_REFLECTANCE] = 
+    {
+        .pin         = PA4,
+        .id          = RIGHT_REFLECTANCE,
         .initialized = false
     }
 };
