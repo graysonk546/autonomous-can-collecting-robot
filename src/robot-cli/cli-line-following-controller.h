@@ -71,6 +71,12 @@ cli_status_t cliLineFollowingController_getDelocalizedReflectanceThreshold(
 cli_status_t cliLineFollowingController_setDelocalizedReflectanceThreshold(
     uint8_t argNumber, char* args[]);
 
+cli_status_t cliLineFollowingController_getNegMinEffSpeed(uint8_t argNumber,
+                                                         char* args[]);
+
+cli_status_t cliLineFollowingController_setNegMinEffSpeed(uint8_t argNumber,
+                                                          char* args[]);
+
 cli_status_t cliLineFollowingController_poll(uint8_t argNumber, char* args[]);
 
 #define LINE_FOLLOWING_CONTROLLER_COMMANDS                                                                                                    \
@@ -91,6 +97,8 @@ cli_status_t cliLineFollowingController_poll(uint8_t argNumber, char* args[]);
     {cliLineFollowingController_setDelocalizedGain,                  "set-delocalized-gain",            "<gain>",    "set delocalized gain",                   1, 1}, \
     {cliLineFollowingController_getDelocalizedReflectanceThreshold,  "get-delocalized-ref-thresh",      "",          "get delocalized reflectance threshold",  0, 0}, \
     {cliLineFollowingController_setDelocalizedReflectanceThreshold,  "set-delocalized-ref-thresh",      "<thresh>",  "set delocalized reflectance threshold",  1, 1}, \
+    {cliLineFollowingController_getNegMinEffSpeed,                   "get-neg-min-speed",               "",          "get neg min effective speed",            0, 0}, \
+    {cliLineFollowingController_setNegMinEffSpeed,                   "set-neg-min-speed",               "<speed>",   "set neg min effective speed",            1, 1}, \
     {cliLineFollowingController_poll,                                "poll-line-following-controller",  "",          "poll line following controller",         0, 0},
 
 #endif // CLI_LINE_FOLLOWING_CONTROLLER

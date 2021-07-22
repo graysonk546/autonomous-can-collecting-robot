@@ -31,6 +31,7 @@ static line_following_controller_config_t config =
     .kd                              = 0.0f,
     .delocalizedGain                 = 1.05f,
     .minEffSpeed                     = 30,
+    .negMinEffSpeed                  = 30,
     .maxEffSpeed                     = 0,
     .targetVelocity                  = 105,
     .maxITermMagnitude               = 75,
@@ -206,7 +207,7 @@ static void _runMotor(dc_motor_two_t* motor, int16_t velocity,
         speed = (uint8_t) velocity;
         dir = CW_DIRECTION;
     }
-    else if (velocity > -config.minEffSpeed)
+    else if (velocity > -config.negMinEffSpeed)
     {
         if (velocity > previousVelocity)
         {
@@ -215,7 +216,7 @@ static void _runMotor(dc_motor_two_t* motor, int16_t velocity,
         }
         else if (velocity < previousVelocity)
         {
-            speed = config.minEffSpeed;
+            speed = config.negMinEffSpeed;
             dir = CCW_DIRECTION;
         }
         else

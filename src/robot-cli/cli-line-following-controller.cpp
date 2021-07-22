@@ -195,6 +195,28 @@ cli_status_t cliLineFollowingController_setDelocalizedReflectanceThreshold(
     return COMMAND_OK;
 }
 
+cli_status_t cliLineFollowingController_getNegMinEffSpeed(uint8_t argNumber,
+                                                         char* args[])
+{
+    uint8_t speed = lineFollowingController_getConfig()->negMinEffSpeed;
+    char str[100]; 
+    sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %i}" CMD_EOL_STR, 
+            speed);
+    Serial.print(str);
+    return COMMAND_OK;
+}
+
+cli_status_t cliLineFollowingController_setNegMinEffSpeed(uint8_t argNumber,
+                                                          char* args[])
+{
+    lineFollowingController_getConfig()->negMinEffSpeed = (u_int8_t) strtol(
+                                                          (const char*) args[0],
+                                                          NULL, 0);
+
+    Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
+    return COMMAND_OK;
+}
+
 cli_status_t cliLineFollowingController_poll(uint8_t argNumber, char* args[])
 {
     line_following_controller_config_t config;
@@ -209,7 +231,8 @@ cli_status_t cliLineFollowingController_poll(uint8_t argNumber, char* args[])
             "\"delocalizedGain\": %f, \"minEffSpeed\": %i, "
             "\"maxEffSpeed\": %i, \"targetVelocity\": %i,"
             " \"maxITermMagnitude\": %i, "
-            "\"delocalizedReflectanceThreshold\": %i}, \"state\": "
+            "\"delocalizedReflectanceThreshold\": %i, "
+            "\"negMinEffSpeed\": %i}, \"state\": "
             "{\"pTerm\": %f, \"iTerm\": %f, \"dTerm\": %f, "
             "\"controlOutput\": %f, \"error\": %i, \"previousError\": %i, "
             "\"leftMotorVelocity\": %i, \"previousLeftMotorVelocity\": %i, "
@@ -221,6 +244,7 @@ cli_status_t cliLineFollowingController_poll(uint8_t argNumber, char* args[])
             config.kp, config.ki, config.kd, config.delocalizedGain,
             config.minEffSpeed, config.maxEffSpeed, config.targetVelocity,
             config.maxITermMagnitude, config.delocalizedReflectanceThreshold,
+            config.negMinEffSpeed,
             state.pTerm, state.iTerm, state.dTerm, state.controlOutput,
             state.error, state.previousError, state.leftMotorVelocity,
             state.previousLeftMotorVelocity, state.rightMotorVelocity,

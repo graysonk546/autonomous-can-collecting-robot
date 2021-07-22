@@ -33,6 +33,7 @@ typedef struct {
     float           kd;
     float           delocalizedGain;
     uint8_t         minEffSpeed;
+    uint8_t         negMinEffSpeed;
     uint8_t         maxEffSpeed;
     uint8_t         targetVelocity;
     uint8_t         maxITermMagnitude;
