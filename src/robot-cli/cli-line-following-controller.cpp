@@ -71,24 +71,6 @@ cli_status_t cliLineFollowingController_setKd(uint8_t argNumber, char* args[])
     return COMMAND_OK;
 }
 
-cli_status_t cliLineFollowingController_getKi(uint8_t argNumber, char* args[])
-{
-    int val = FLOAT_OFFSET * lineFollowingController_getConfig()->ki;
-    char str[100]; 
-    sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %i}" CMD_EOL_STR, 
-            val);
-    Serial.print(str);
-    return COMMAND_OK;
-}
-
-cli_status_t cliLineFollowingController_setKi(uint8_t argNumber, char* args[])
-{
-    lineFollowingController_getConfig()->ki = (float) atof((const char*)
-                                              args[0]);
-    Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
-    return COMMAND_OK;
-}
-
 cli_status_t cliLineFollowingController_getErr(uint8_t argNumber, char* args[])
 {
     int error = lineFollowingController_getState()->error;
@@ -153,27 +135,6 @@ cli_status_t cliLineFollowingController_getMin(uint8_t argNumber, char* args[])
     return COMMAND_OK;
 }
 
-cli_status_t cliLineFollowingController_getDelocalizedGain(uint8_t argNumber,
-                                                            char* args[])
-{
-    float gain = lineFollowingController_getConfig()->delocalizedGain;
-    char str[100]; 
-    sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %f}" CMD_EOL_STR, 
-            gain);
-    Serial.print(str);
-    return COMMAND_OK;
-}
-
-cli_status_t cliLineFollowingController_setDelocalizedGain(uint8_t argNumber,
-                                                           char* args[])
-{
-    lineFollowingController_getConfig()->delocalizedGain = (float)
-                                                           atof((const char*)
-                                                           args[0]);
-    Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
-    return COMMAND_OK;
-}
-
 cli_status_t cliLineFollowingController_getDelocalizedReflectanceThreshold(
     uint8_t argNumber, char* args[])
 {
@@ -195,25 +156,44 @@ cli_status_t cliLineFollowingController_setDelocalizedReflectanceThreshold(
     return COMMAND_OK;
 }
 
-cli_status_t cliLineFollowingController_getNegMinEffSpeed(uint8_t argNumber,
-                                                         char* args[])
+cli_status_t cliLineFollowingController_setPreviousSpinOffset(uint8_t argNumber,
+                                                              char* args[])
 {
-    uint8_t speed = lineFollowingController_getConfig()->negMinEffSpeed;
+    lineFollowingController_getConfig()->previousSpinOffset = (u_int16_t)
+        strtol((const char*) args[0], NULL, 0);
+    Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
+    return COMMAND_OK;
+}
+
+cli_status_t cliLineFollowingController_getPreviousSpinOffset(uint8_t argNumber,
+                                                              char* args[])
+{
+    uint16_t offset = lineFollowingController_getConfig()->previousSpinOffset;
     char str[100]; 
     sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %i}" CMD_EOL_STR, 
-            speed);
+            offset);
     Serial.print(str);
     return COMMAND_OK;
 }
 
-cli_status_t cliLineFollowingController_setNegMinEffSpeed(uint8_t argNumber,
-                                                          char* args[])
+cli_status_t cliLineFollowingController_setDelocalizedErrorMagnitude(uint8_t
+    argNumber, char* args[])
 {
-    lineFollowingController_getConfig()->negMinEffSpeed = (u_int8_t) strtol(
-                                                          (const char*) args[0],
-                                                          NULL, 0);
-
+    lineFollowingController_getConfig()->delocalizedErrorMagnitude = 
+        (u_int16_t) strtol((const char*) args[0], NULL, 0);
     Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
+    return COMMAND_OK;
+}
+
+cli_status_t cliLineFollowingController_getDelocalizedErrorMagnitude(uint8_t
+    argNumber, char* args[])
+{
+    uint16_t magnitude = lineFollowingController_getConfig()->
+                         delocalizedErrorMagnitude;
+    char str[100]; 
+    sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %i}" CMD_EOL_STR, 
+            magnitude);
+    Serial.print(str);
     return COMMAND_OK;
 }
 
@@ -227,28 +207,30 @@ cli_status_t cliLineFollowingController_poll(uint8_t argNumber, char* args[])
 
     char str[1000];
     sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": {\"controller\":"
-            " {\"config\": {\"kp\": %f, \"ki\": %f, \"kd\": %f, "
-            "\"delocalizedGain\": %f, \"minEffSpeed\": %i, "
-            "\"maxEffSpeed\": %i, \"targetVelocity\": %i,"
-            " \"maxITermMagnitude\": %i, "
+            " {\"config\": {\"kp\": %f, \"kd\": %f, "
+            "\"minEffSpeed\": %i, "
+            "\"maxEffSpeed\": %i, \"targetVelocity\": %i, "
             "\"delocalizedReflectanceThreshold\": %i, "
-            "\"negMinEffSpeed\": %i}, \"state\": "
-            "{\"pTerm\": %f, \"iTerm\": %f, \"dTerm\": %f, "
+            "\"previousSpinOffset\": %i, \"delocalizedErrorMagnitude\": %i}, \"state\": "
+            "{\"pTerm\": %f, \"dTerm\": %f, "
             "\"controlOutput\": %f, \"error\": %i, \"previousError\": %i, "
             "\"leftMotorVelocity\": %i, \"previousLeftMotorVelocity\": %i, "
             "\"rightMotorVelocity\": %i, \"previousRightMotorVelocity\": %i, "
+            "\"moduloSpinOffsetCounter\": %i, \"lastSpinTime\": %lu, "
+            "\"lastSpinDuration\": %lu, "
             "\"initialized\": %i}}, \"reflectance\": {\"left\": "
             "{\"value\": %i}, \"right\":{\"value\": %i}}, \"motors\": "
             "{\"left\": {\"speed\": %i, \"direction\": %i}, \"right\": "
             "{\"speed\": %i, \"direction\": %i}}}}" CMD_EOL_STR,
-            config.kp, config.ki, config.kd, config.delocalizedGain,
+            config.kp, config.kd,
             config.minEffSpeed, config.maxEffSpeed, config.targetVelocity,
-            config.maxITermMagnitude, config.delocalizedReflectanceThreshold,
-            config.negMinEffSpeed,
-            state.pTerm, state.iTerm, state.dTerm, state.controlOutput,
+            config.delocalizedReflectanceThreshold,
+            config.previousSpinOffset, config.delocalizedErrorMagnitude,
+            state.pTerm, state.dTerm, state.controlOutput,
             state.error, state.previousError, state.leftMotorVelocity,
             state.previousLeftMotorVelocity, state.rightMotorVelocity,
-            state.previousRightMotorVelocity, state.initialized,
+            state.previousRightMotorVelocity, state.moduloSpinOffsetCounter,
+            state.lastSpinTime, state.lastSpinDuration, state.initialized,
             config.reflectanceArr[LEFT_REFLECTANCE]->value,
             config.reflectanceArr[RIGHT_REFLECTANCE]->value,
             config.motorArr[LEFT_DRIVING_MOTOR]->speed,

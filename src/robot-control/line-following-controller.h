@@ -29,22 +29,19 @@
 
 typedef struct {
     float           kp;
-    float           ki;
     float           kd;
-    float           delocalizedGain;
     uint8_t         minEffSpeed;
-    uint8_t         negMinEffSpeed;
     uint8_t         maxEffSpeed;
     uint8_t         targetVelocity;
-    uint8_t         maxITermMagnitude;
     uint16_t        delocalizedReflectanceThreshold;
+    uint16_t        previousSpinOffset;
+    uint16_t        delocalizedErrorMagnitude;
     reflectance_t*  reflectanceArr[NUM_LINE_FOLLOWING_SENSORS];
     dc_motor_two_t* motorArr[NUM_DRIVING_MOTORS];
 } line_following_controller_config_t;
 
 typedef struct {
     float           pTerm;
-    float           iTerm;
     float           dTerm;
     float           controlOutput;
     int16_t         error;
@@ -53,6 +50,9 @@ typedef struct {
     int16_t         previousLeftMotorVelocity;
     int16_t         rightMotorVelocity;
     int16_t         previousRightMotorVelocity;
+    uint16_t        moduloSpinOffsetCounter;
+    unsigned long   lastSpinTime;
+    unsigned long   lastSpinDuration;
     bool            initialized;
 } line_following_controller_state_t;
 
