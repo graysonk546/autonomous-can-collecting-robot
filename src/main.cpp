@@ -35,6 +35,9 @@ static char _canCollectionTask(struct pt* thread);
 *                               Constants
 *******************************************************************************/
 
+#define GROUND_DETECTED_DISTANCE 3  // cm
+#define MAX_GROUND_DETECTOR_DISTANCE 100  // cm
+
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
@@ -51,6 +54,10 @@ static robot_task_t* task_canCollection;
 
 // Flags (in place of semaphores for the time being)
 static bool flag;
+
+static NewPing groundDetector(PA11, PA12, MAX_GROUND_DETECTOR_DISTANCE);
+
+static bool groundDetected;
 
 /*******************************************************************************
 *                               Setup and Loop
@@ -78,25 +85,33 @@ void setup()
     {
 
     }
-
-    // init sonar
     
     // Get task references
     task_driving = taskDriving_getTask();
     task_cli = taskCli_getTask();
     task_claw = taskClaw_getTask();
     task_canCollection = taskCanCollection_getTask();
+
+    groundDetected = false;
 }
 
 void loop()
 {
-    // Looping achieves thread scheduling
-
-    // call static function startupch
-    _drivingTask(&task_driving->taskThread);
-    _cliTask(&task_cli->taskThread);
-    _clawTask(&task_claw->taskThread);
-    _canCollectionTask(&task_canCollection->taskThread);
+    if(!groundDetected)
+    {
+        if (groundDetector.ping_cm() <= GROUND_DETECTED_DISTANCE)
+        {
+            groundDetected = true;
+        }
+    }
+    else
+    {
+        // call static function startupch
+        _drivingTask(&task_driving->taskThread);
+        _cliTask(&task_cli->taskThread);
+        _clawTask(&task_claw->taskThread);
+        _canCollectionTask(&task_canCollection->taskThread);
+    }
 }
 
 /*******************************************************************************
