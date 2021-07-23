@@ -149,11 +149,11 @@ robot_status_t lineFollowingController_spinOnce()
         config.reflectanceArr[RIGHT_REFLECTANCE]->value <
         config.delocalizedReflectanceThreshold)
     {
-        if (state.previousError > 0)
+        if (errorArr[errorIndex-1] > 0)
         {
             state.error = config.delocalizedErrorMagnitude;
         }
-        else if (state.previousError < 0)
+        else if (errorArr[errorIndex-1] < 0)
         {
             state.error = -config.delocalizedErrorMagnitude;
         }
