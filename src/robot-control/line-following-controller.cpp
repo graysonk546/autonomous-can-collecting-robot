@@ -151,11 +151,11 @@ robot_status_t lineFollowingController_spinOnce()
         config.reflectanceArr[RIGHT_REFLECTANCE]->value <
         config.delocalizedReflectanceThreshold)
     {
-        if (errorArr[errorIndex-1] > 0)
+        if (state.previousError > 0)
         {
             state.error = config.delocalizedErrorMagnitude;
         }
-        else if (errorArr[errorIndex-1] < 0)
+        else if (state.previousError < 0)
         {
             state.error = -config.delocalizedErrorMagnitude;
         }
@@ -171,10 +171,7 @@ robot_status_t lineFollowingController_spinOnce()
     }
 
     state.pTerm = config.kp * state.error;
-    if (state.moduloSpinOffsetCounter % config.previousSpinOffset == 0)
-    {
-        state.dTerm = config.kd * (state.error - state.previousError);
-    }
+    state.dTerm = config.kd * (state.error - state.previousError);
 
     state.controlOutput = state.pTerm + state.dTerm;
 
