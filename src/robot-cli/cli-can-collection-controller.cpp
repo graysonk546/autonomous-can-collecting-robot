@@ -1,7 +1,3 @@
-
-#ifndef COMMAND_LISTING
-#define COMMAND_LISTING
-
 /*******************************************************************************
 *                               Standard Includes
 *******************************************************************************/
@@ -10,14 +6,8 @@
 *                               Header File Includes
 *******************************************************************************/
 
-#include "robot-core/command.h"
-#include "cli-command.h"
-#include "cli-dc-motor-one.h"
-#include "cli-dc-motor-two.h"
-#include "cli-line-following-controller.h"
 #include "cli-can-collection-controller.h"
-#include "cli-reflectance.h"
-#include "cli-sonar.h"
+#include "stdio.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -27,29 +17,34 @@
 *                               Constants
 *******************************************************************************/
 
-#define LIST_TERMINATOR "END_OF_LIST"
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
 
 /*******************************************************************************
-*                               Variables 
+*                               Variables
 *******************************************************************************/
-
-static const command_t commandArr[] = {
-    COMMAND_COMMANDS
-    CAN_COLLECTION_CONTROLLER_COMMANDS
-    DC_MOTOR_ONE_COMMANDS
-    DC_MOTOR_TWO_COMMANDS
-    LINE_FOLLOWING_CONTROLLER_COMMANDS
-    REFLECTANCE_COMMANDS
-    SONAR_COMMANDS
-    {NULL, LIST_TERMINATOR, NULL, NULL, 0, 0}
-};
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-#endif // COMMAND_LISTING
+cli_status_t cliCanCollectionController_getRollerSpeed(uint8_t argNumber,
+                                                       char* args[])
+{
+    int8_t speed = canCollectionController_getConfig()->rollerSpeed;
+    char str[100]; 
+    sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %i}" CMD_EOL_STR, 
+            speed);
+    Serial.print(str);
+    return COMMAND_OK;
+}
+
+cli_status_t cliCanCollectionController_setRollerSpeed(uint8_t argNumber,
+                                                       char* args[])
+{
+    canCollectionController_getConfig()->rollerSpeed = (uint8_t) strtol((const
+                                                       char*) args[0], NULL, 0);
+    Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
+    return COMMAND_OK;
+}

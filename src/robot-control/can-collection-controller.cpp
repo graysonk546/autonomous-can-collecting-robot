@@ -60,3 +60,13 @@ robot_status_t canCollectionController_spinOnce()
     dcMotorOne_run(state.rollerMotor, config.rollerSpeed);
     return ROBOT_OK;
 }
+
+can_collection_controller_config_t* canCollectionController_getConfig()
+{
+    return &config;
+}
+
+can_collection_controller_state_t* canCollectionController_getState()
+{
+    return &state;
+}

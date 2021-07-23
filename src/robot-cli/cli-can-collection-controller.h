@@ -1,7 +1,5 @@
-
-#ifndef COMMAND_LISTING
-#define COMMAND_LISTING
-
+#ifndef CLI_CAN_COLLECTION_CONTROLLER
+#define CLI_CAN_COLLECTION_CONTROLLER
 /*******************************************************************************
 *                               Standard Includes
 *******************************************************************************/
@@ -10,14 +8,10 @@
 *                               Header File Includes
 *******************************************************************************/
 
-#include "robot-core/command.h"
 #include "cli-command.h"
-#include "cli-dc-motor-one.h"
-#include "cli-dc-motor-two.h"
-#include "cli-line-following-controller.h"
-#include "cli-can-collection-controller.h"
-#include "cli-reflectance.h"
-#include "cli-sonar.h"
+#include "robot-core/command.h"
+#include "utilities/util-vars.h"
+#include "robot-control/can-collection-controller.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -27,29 +21,26 @@
 *                               Constants
 *******************************************************************************/
 
-#define LIST_TERMINATOR "END_OF_LIST"
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
 
 /*******************************************************************************
-*                               Variables 
+*                               Variables
 *******************************************************************************/
-
-static const command_t commandArr[] = {
-    COMMAND_COMMANDS
-    CAN_COLLECTION_CONTROLLER_COMMANDS
-    DC_MOTOR_ONE_COMMANDS
-    DC_MOTOR_TWO_COMMANDS
-    LINE_FOLLOWING_CONTROLLER_COMMANDS
-    REFLECTANCE_COMMANDS
-    SONAR_COMMANDS
-    {NULL, LIST_TERMINATOR, NULL, NULL, 0, 0}
-};
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-#endif // COMMAND_LISTING
+cli_status_t cliCanCollectionController_getRollerSpeed(uint8_t argNumber,
+                                                       char* args[]);
+
+cli_status_t cliCanCollectionController_setRollerSpeed(uint8_t argNumber,
+                                                       char* args[]);
+
+#define CAN_COLLECTION_CONTROLLER_COMMANDS                                                                                                    \
+    {cliCanCollectionController_getRollerSpeed,  "get-roller-speed",        "",     "get roller speed",  0, 0}, \
+    {cliCanCollectionController_setRollerSpeed,  "set-roller-speed",   "<speed>",  "set roller speed",   1, 1},
+
+#endif // CLI_CAN_COLLECTION_CONTROLLER
