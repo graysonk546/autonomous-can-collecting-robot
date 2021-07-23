@@ -20,6 +20,9 @@ static void _runMotor(dc_motor_two_t* motor, int16_t velocity,
 *                               Constants
 *******************************************************************************/
 
+
+#define ERROR_WINDOW_SIZE 100
+
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
@@ -37,6 +40,9 @@ static line_following_controller_config_t config =
     .reflectanceArr                  = {0, 0},
     .motorArr                        = {0, 0}
 };
+
+static int16_t errorArr[ERROR_WINDOW_SIZE];
+static int16_t errorIndex = 0;
 
 static line_following_controller_state_t state =
 {
@@ -132,14 +138,6 @@ robot_status_t lineFollowingController_spinOnce()
     state.lastSpinDuration = timeNow - state.lastSpinTime;
     state.lastSpinTime = timeNow;
 
-    if (++state.moduloSpinOffsetCounter % config.previousSpinOffset == 0)
-    {
-        state.moduloSpinOffsetCounter = 0;
-        state.previousError = state.error;
-        // state.previousLeftMotorVelocity = state.leftMotorVelocity;
-        // state.previousRightMotorVelocity = state.rightMotorVelocity;
-    }
-
     state.previousLeftMotorVelocity = state.leftMotorVelocity;
     state.previousRightMotorVelocity = state.rightMotorVelocity;
 
@@ -171,10 +169,22 @@ robot_status_t lineFollowingController_spinOnce()
     }
 
     state.pTerm = config.kp * state.error;
-    if (state.moduloSpinOffsetCounter % config.previousSpinOffset == 0)
+
+    if (errorIndex < ERROR_WINDOW_SIZE)
     {
-        state.dTerm = config.kd * (state.error - state.previousError);
+        errorArr[errorIndex] = state.error;
+        errorIndex++;
     }
+    else
+    {
+        for (uint16_t i = 0; i < (ERROR_WINDOW_SIZE-1); i++)
+        {
+            errorArr[i] = errorArr[i+1];
+        }
+        errorArr[ERROR_WINDOW_SIZE-1] = state.error;
+    }
+    state.previousError = errorArr[0];
+    state.dTerm = config.kd * (state.error - state.previousError);
 
     state.controlOutput = state.pTerm + state.dTerm;
 
