@@ -91,8 +91,8 @@ cli_status_t cliLineFollowingController_poll(uint8_t argNumber, char* args[]);
     {cliLineFollowingController_setDelocalizedReflectanceThreshold,  "set-delocalized-ref-thresh",       "<thresh>",  "set delocalized reflectance threshold",  1, 1}, \
     {cliLineFollowingController_getPreviousSpinOffset,               "get-previous-spin-offset",         "",          "get previous spin offset",               0, 0}, \
     {cliLineFollowingController_setPreviousSpinOffset,               "set-previous-spin-offset",         "<offset>",  "set previous spin offset",               1, 1}, \
-    {cliLineFollowingController_getDelocalizedErrorMagnitude,        "get-delocalized-error-magnitude",  "",          "get delocalized error magnitude",        0, 0}, \
-    {cliLineFollowingController_setDelocalizedErrorMagnitude,        "set-delocalized-error-magnitude",  "<mag>",     "set delocalized error magnitude",        1, 1}, \
+    {cliLineFollowingController_getDelocalizedErrorMagnitude,        "get-delocalized-error-mag",        "",          "get delocalized error magnitude",        0, 0}, \
+    {cliLineFollowingController_setDelocalizedErrorMagnitude,        "set-delocalized-error-mag",        "<mag>",     "set delocalized error magnitude",        1, 1}, \
     {cliLineFollowingController_poll,                                "poll-line-following-controller",   "",          "poll line following controller",         0, 0},
 
 #endif // CLI_LINE_FOLLOWING_CONTROLLER

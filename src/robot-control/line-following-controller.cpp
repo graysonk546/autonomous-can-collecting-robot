@@ -134,10 +134,14 @@ robot_status_t lineFollowingController_spinOnce()
 
     if (++state.moduloSpinOffsetCounter % config.previousSpinOffset == 0)
     {
+        state.moduloSpinOffsetCounter = 0;
         state.previousError = state.error;
-        state.previousLeftMotorVelocity = state.leftMotorVelocity;
-        state.previousRightMotorVelocity = state.rightMotorVelocity;
+        // state.previousLeftMotorVelocity = state.leftMotorVelocity;
+        // state.previousRightMotorVelocity = state.rightMotorVelocity;
     }
+
+    state.previousLeftMotorVelocity = state.leftMotorVelocity;
+    state.previousRightMotorVelocity = state.rightMotorVelocity;
 
     reflectance_read(config.reflectanceArr[0]);
     reflectance_read(config.reflectanceArr[1]);
@@ -167,7 +171,10 @@ robot_status_t lineFollowingController_spinOnce()
     }
 
     state.pTerm = config.kp * state.error;
-    state.dTerm = config.kd * (state.error - state.previousError);
+    if (state.moduloSpinOffsetCounter % config.previousSpinOffset == 0)
+    {
+        state.dTerm = config.kd * (state.error - state.previousError);
+    }
 
     state.controlOutput = state.pTerm + state.dTerm;
 
