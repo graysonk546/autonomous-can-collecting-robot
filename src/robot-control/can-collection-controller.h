@@ -1,16 +1,18 @@
-#ifndef UTIL_VARS_H
-#define UTIL_VARS_H
+#ifndef CAN_COLLECTION_CONTROLLER
+#define CAN_COLLECTION_CONTROLLER
 
 /*******************************************************************************
-*                               Standard Includes
+*                               Standard Libraries
 *******************************************************************************/
 
-#include <pt.h>
-#include <pt-sem.h>
+#include <stdint.h>
 
 /*******************************************************************************
-*                               Header File Includes
+*                               Header Files
 *******************************************************************************/
+
+#include "utilities/util-vars.h"
+#include "robot-core/dc-motor-one.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -20,42 +22,19 @@
 *                               Constants
 *******************************************************************************/
 
-#define NUM_DRIVING_MOTORS 2
-#define NUM_LINE_FOLLOWING_SENSORS 2
-
-/*******************************************************************************
-*                                 Macros
-*******************************************************************************/
-
-#define CLAMP(x, low, high)  (((x) > (high)) ? (high) : (((x) < (low)) ? \
-              (low) : (x)))
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
 
-typedef void (*ISR_func_t)(void);
+typedef struct {
+    uint8_t rollerSpeed;
+} can_collection_controller_config_t;
 
-typedef enum {
-    ROBOT_OK,
-    ROBOT_ERR
-} robot_status_t;
+typedef struct {
 
-typedef enum {
-    ROBOT_CLI,
-    ROBOT_DRIVING,
-    ROBOT_CLAW,
-    ROBOT_CAN_COLLECTION,
-    ROBOT_SKY_CRANE
-} robot_task_id_t;
-
-typedef struct{
-    struct pt_sem   taskMutex;
-    struct pt       taskThread;
-    robot_task_id_t taskId;
-    ISR_func_t      taskISR;
-    unsigned long   taskTime;
-} robot_task_t;
+    dc_motor_one_t* rollerMotor;
+    bool initialized;
+} can_collection_controller_state_t;
 
 /*******************************************************************************
 *                               Variables
@@ -65,4 +44,12 @@ typedef struct{
 *                               Functions
 *******************************************************************************/
 
-#endif // UTIL_VARS_H
+robot_status_t canCollectionController_init(dc_motor_one_t* rollerMotor);
+
+robot_status_t canCollectionController_spinOnce();
+
+can_collection_controller_config_t* canCollectionController_getConfig();
+
+can_collection_controller_state_t* canCollectionController_getState();
+
+#endif // CAN_COLLECTION_CONTROLLER
