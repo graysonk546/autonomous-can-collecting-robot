@@ -95,12 +95,8 @@ void loop()
     // call static function startupch
     _drivingTask(&task_driving->taskThread);
     _cliTask(&task_cli->taskThread);
-<<<<<<< HEAD
-    // _clawTask(&task_claw->taskThread);
-=======
     _clawTask(&task_claw->taskThread);
     _canCollectionTask(&task_canCollection->taskThread);
->>>>>>> 28-create-can-collection-controller
 }
 
 /*******************************************************************************
