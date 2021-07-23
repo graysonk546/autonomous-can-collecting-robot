@@ -6,6 +6,7 @@
 #include <Arduino.h>
 #include <pt.h>
 #include <pt-sem.h>
+#include <NewPing.h>
 
 /*******************************************************************************
 *                               Header Files
@@ -14,9 +15,11 @@
 #include "robot-core/command.h"
 #include "robot-core/sonar.h"
 #include "robot-control/line-following-controller.h"
+#include "robot-control/can-collection-controller.h"
 #include "robot-tasks/task-driving.h"
 #include "robot-tasks/task-cli.h"
 #include "robot-tasks/task-claw.h"
+#include "robot-tasks/task-can-collection.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -26,6 +29,7 @@
 static char _drivingTask(struct pt* thread);
 static char _cliTask(struct pt* thread);
 static char _clawTask(struct pt* thread);
+static char _canCollectionTask(struct pt* thread);
 
 /*******************************************************************************
 *                               Constants
@@ -43,6 +47,7 @@ static char _clawTask(struct pt* thread);
 static robot_task_t* task_driving;
 static robot_task_t* task_cli;
 static robot_task_t* task_claw;
+static robot_task_t* task_canCollection;
 
 // Flags (in place of semaphores for the time being)
 static bool flag;
@@ -69,19 +74,29 @@ void setup()
     {
         // TODO: Figure out some sort of error handler
     }
+    if (taskCanCollection_init() != ROBOT_OK)
+    {
+
+    }
+
+    // init sonar
     
     // Get task references
     task_driving = taskDriving_getTask();
     task_cli = taskCli_getTask();
     task_claw = taskClaw_getTask();
+    task_canCollection = taskCanCollection_getTask();
 }
 
 void loop()
 {
     // Looping achieves thread scheduling
+
+    // call static function startupch
     _drivingTask(&task_driving->taskThread);
     _cliTask(&task_cli->taskThread);
     _clawTask(&task_claw->taskThread);
+    _canCollectionTask(&task_canCollection->taskThread);
 }
 
 /*******************************************************************************
@@ -129,4 +144,15 @@ static PT_THREAD(_clawTask(struct pt* thread))
         // Critical section
     }
     PT_END(thread);
-} 
+}
+
+static PT_THREAD(_canCollectionTask(struct pt* thread))
+{
+    PT_BEGIN(thread);
+    while (true)
+    {
+        PT_SEM_WAIT(thread, &task_canCollection->taskMutex);
+        canCollectionController_spinOnce();
+    }
+    PT_END(thread);
+}
