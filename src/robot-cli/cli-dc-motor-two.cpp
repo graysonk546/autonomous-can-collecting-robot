@@ -45,6 +45,10 @@ cli_status_t cliDcMotorTwo_init(uint8_t argNumber, char* args[])
     {
         motor = dcMotorTwo_get(RIGHT_DRIVING_MOTOR);
     }
+    else if (motor_id == ROLLER_MOTOR)
+    {
+        motor = dcMotorTwo_get(ROLLER_MOTOR);
+    }
     else
     {
         Serial.print(F(CMD_JSON "{\"status\": \"error\", \"data\": \"invalid"
@@ -77,6 +81,10 @@ cli_status_t cliDcMotorTwo_run(uint8_t argNumber, char* args[])
     else if (motor_id == RIGHT_DRIVING_MOTOR)
     {
         motor = dcMotorTwo_get(RIGHT_DRIVING_MOTOR);
+    }
+    else if (motor_id == ROLLER_MOTOR)
+    {
+        motor = dcMotorTwo_get(ROLLER_MOTOR);
     }
     else
     {
@@ -133,6 +141,10 @@ cli_status_t cliDcMotorTwo_getSpeed(uint8_t argNumber, char* args[])
     else if (motor_id == RIGHT_DRIVING_MOTOR)
     {
         motor = dcMotorTwo_get(RIGHT_DRIVING_MOTOR);
+    }
+    else if (motor_id == ROLLER_MOTOR)
+    {
+        motor = dcMotorTwo_get(ROLLER_MOTOR);
     }
     else
     {

@@ -46,6 +46,7 @@ typedef enum {
     ROBOT_DRIVING,
     ROBOT_CLAW,
     ROBOT_CAN_COLLECTION,
+    ROBOT_HOPPER_LOADING,
     ROBOT_SKY_CRANE
 } robot_task_id_t;
 

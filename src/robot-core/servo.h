@@ -31,7 +31,8 @@
 
 typedef enum
 {
-    HOPPER_ROTATION_SERVO
+    HOPPER_ROTATION_SERVO,
+    HOPPER_LOADING_SERVO
 } servo_motor_id_t;
 
 struct servo_motor_t

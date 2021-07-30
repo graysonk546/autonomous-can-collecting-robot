@@ -97,21 +97,28 @@ void setup()
 
 void loop()
 {
-    if(!groundDetected)
-    {
-        if (groundDetector.ping_cm() <= GROUND_DETECTED_DISTANCE)
-        {
-            groundDetected = true;
-        }
-    }
-    else
-    {
-        // call static function startupch
-        _drivingTask(&task_driving->taskThread);
-        _cliTask(&task_cli->taskThread);
-        _clawTask(&task_claw->taskThread);
-        _canCollectionTask(&task_canCollection->taskThread);
-    }
+    // UNCOMMENT WHEN SONAR IS SETUP
+    // if(!groundDetected)
+    // {
+    //     if (groundDetector.ping_cm() <= GROUND_DETECTED_DISTANCE)
+    //     {
+    //         groundDetected = true;
+    //     }
+    // }
+    // else
+    // {
+    //     // call static function startupch
+    //     _drivingTask(&task_driving->taskThread);
+    //     _cliTask(&task_cli->taskThread);
+    //     _clawTask(&task_claw->taskThread);
+    //     _canCollectionTask(&task_canCollection->taskThread);
+    // }
+
+    _drivingTask(&task_driving->taskThread);
+    _cliTask(&task_cli->taskThread);
+    _clawTask(&task_claw->taskThread);
+    _canCollectionTask(&task_canCollection->taskThread);
+
 }
 
 /*******************************************************************************

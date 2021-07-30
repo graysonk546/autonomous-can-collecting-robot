@@ -30,7 +30,7 @@
 
 static dc_motor_two_t dcMotorTwoArr[] =
 {
-    [LEFT_DRIVING_MOTOR] =
+    [RIGHT_DRIVING_MOTOR] =
     {
         .cw_pin      = PIN_LEFT_DRIVING_MOTOR_CW,
         .ccw_pin     = PIN_LEFT_DRIVING_MOTOR_CCW,
@@ -39,7 +39,7 @@ static dc_motor_two_t dcMotorTwoArr[] =
         .id          = LEFT_DRIVING_MOTOR,
         .initialized = false
     },
-    [RIGHT_DRIVING_MOTOR] =
+    [LEFT_DRIVING_MOTOR] =
     {
         .cw_pin      = PIN_RIGHT_DRIVING_MOTOR_CW,
         .ccw_pin     = PIN_RIGHT_DRIVING_MOTOR_CCW,
@@ -47,6 +47,16 @@ static dc_motor_two_t dcMotorTwoArr[] =
         .speed       = STATIC_SPEED,
         .id          = RIGHT_DRIVING_MOTOR,
         .initialized = false
+    },
+    [ROLLER_MOTOR] = 
+    {
+        .cw_pin      = PIN_ROLLER_CW,
+        .ccw_pin     = PIN_ROLLER_CCW,
+        .direction   = CW_DIRECTION,
+        .speed       = STATIC_SPEED,
+        .id          = ROLLER_MOTOR,
+        .initialized = false
+
     }
 };
 
