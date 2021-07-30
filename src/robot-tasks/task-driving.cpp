@@ -109,7 +109,6 @@ void taskDriving_ISR()
     //     PT_SEM_SIGNAL(&taskDriving.taskThread, &taskDriving.taskMutex);
     //     taskDriving.taskTime = millis();
     // }
-
     PT_SEM_SIGNAL(&taskDriving.taskThread, &taskDriving.taskMutex);
 }
 

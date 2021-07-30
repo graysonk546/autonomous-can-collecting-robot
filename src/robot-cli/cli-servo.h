@@ -1,6 +1,5 @@
-#ifndef ROBOT_CONFIG_H
-#define ROBOT_CONFIG_H
-
+#ifndef CLI_SERVO
+#define CLI_SERV
 /*******************************************************************************
 *                               Standard Includes
 *******************************************************************************/
@@ -8,6 +7,9 @@
 /*******************************************************************************
 *                               Header File Includes
 *******************************************************************************/
+
+#include "cli-command.h"
+#include "utilities/util-vars.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -21,17 +23,6 @@
 *                               Structures
 *******************************************************************************/
 
-typedef enum {
-    PIN_LEFT_DRIVING_MOTOR_CW          = PB8,
-    PIN_LEFT_DRIVING_MOTOR_CCW         = PB9,
-    PIN_RIGHT_DRIVING_MOTOR_CW         = PB7,
-    PIN_RIGHT_DRIVING_MOTOR_CCW        = PB6,
-    PIR_ROLLER_MOTOR                   = PA7,
-    PIN_RIGHT_LINE_FOLLOWING_IR_SENSOR = PA4,
-    PIN_LEFT_LINE_FOLLOWING_IR_SENSOR  = PA5,
-    PIN_HOPPER_ROTATION_SERVO          = PB11
-} robot_pin_t;
-
 /*******************************************************************************
 *                               Variables
 *******************************************************************************/
@@ -40,4 +31,11 @@ typedef enum {
 *                               Functions
 *******************************************************************************/
 
-#endif // ROBOT_CONFIG_H
+cli_status_t cliServo_init(uint8_t argNumber, char* args[]);
+
+cli_status_t cliServo_rotate(uint8_t argNumber, char* args[]);
+
+#define SERVO_COMMANDS                                                                     \
+    {cliServo_init,    "servo-init",    "<periph>",          "init servo",        1, 1},\
+    {cliServo_rotate,  "servo-rotate",  "<periph> <angle>",  "rotate the servo",  2, 2},
+#endif // CLI_SERVO
