@@ -68,6 +68,15 @@ robot_status_t taskHopperLoading_init()
     //     return ROBOT_ERR;
     // }
 
+    servo_motor_t* servo = servo_get(HOPPER_LOADING_SERVO);
+
+    if (servo_init(servo) != ROBOT_OK)
+    {
+        return ROBOT_ERR;
+    }
+
+
+
     // //Intialize the timer for sampling the line follower signal
     // timer = new HardwareTimer(TIM2);
     // timer->setOverflow(2000, HERTZ_FORMAT);
@@ -85,10 +94,10 @@ robot_status_t taskHopperLoading_init()
 void taskHopperLoading_ISR()
 {
 
-    PT_SEM_SIGNAL(&taskDriving.taskThread, &taskDriving.taskMutex);
+    PT_SEM_SIGNAL(&taskHopperLoading.taskThread, &taskHopperLoading.taskMutex);
 }
 
 robot_task_t* taskHopperLoading_getTask()
 {
-    return &taskDriving;
+    return &taskHopperLoading;
 }

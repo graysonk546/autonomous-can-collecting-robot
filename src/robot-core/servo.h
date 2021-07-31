@@ -42,6 +42,7 @@ struct servo_motor_t
     uint8_t          angle;
     const servo_motor_id_t id;
     bool             initialized;
+    uint8_t          initAngle;
 };
 
 /*******************************************************************************

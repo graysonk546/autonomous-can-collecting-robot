@@ -32,7 +32,8 @@ typedef enum {
     PIN_ROLLER_CW                      = PB0,
     PIN_ROLLER_CCW                     = PB1,
     PIN_CAN_DETECTOR                   = PB14,
-    PIN_HOPPER_ROTATION_SERVO          = PB11
+    PIN_HOPPER_ROTATION_SERVO          = PB11,
+    PIN_HOPPER_LOADING_SERVO           = PA1
 } robot_pin_t;
 
 /*******************************************************************************

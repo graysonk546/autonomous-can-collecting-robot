@@ -48,13 +48,13 @@ static dc_motor_two_t dcMotorTwoArr[] =
         .id          = RIGHT_DRIVING_MOTOR,
         .initialized = false
     },
-    [ROLLER_MOTOR] = 
+    [ROLLER_DRIVING_MOTOR] = 
     {
         .cw_pin      = PIN_ROLLER_CW,
         .ccw_pin     = PIN_ROLLER_CCW,
         .direction   = CW_DIRECTION,
         .speed       = STATIC_SPEED,
-        .id          = ROLLER_MOTOR,
+        .id          = ROLLER_DRIVING_MOTOR,
         .initialized = false
 
     }

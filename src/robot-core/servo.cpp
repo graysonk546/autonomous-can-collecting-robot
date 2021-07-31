@@ -35,8 +35,17 @@ static servo_motor_t servoArr[] =
         .pin = PIN_HOPPER_ROTATION_SERVO,
         .angle = 0,
         .id = HOPPER_ROTATION_SERVO,
-        .initialized = false
+        .initialized = false,
+        .initAngle = 0
 
+    },
+    [HOPPER_LOADING_SERVO] = 
+    {
+        .pin = PIN_HOPPER_LOADING_SERVO,
+        .angle = 0,
+        .id = HOPPER_LOADING_SERVO,
+        .initialized = false,
+        .initAngle = 0
     }
 };
 
@@ -47,8 +56,7 @@ static servo_motor_t servoArr[] =
 robot_status_t servo_init(servo_motor_t* servo)
 {
     servo->motor.attach(servo->pin);
-    servo->angle = 0;
-    servo->motor.write(servo->angle);
+    servo->motor.write(servo->initAngle);
     servo->initialized = true;
     return ROBOT_OK;
 }

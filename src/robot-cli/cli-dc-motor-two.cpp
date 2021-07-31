@@ -45,9 +45,9 @@ cli_status_t cliDcMotorTwo_init(uint8_t argNumber, char* args[])
     {
         motor = dcMotorTwo_get(RIGHT_DRIVING_MOTOR);
     }
-    else if (motor_id == ROLLER_MOTOR)
+    else if (motor_id == ROLLER_DRIVING_MOTOR)
     {
-        motor = dcMotorTwo_get(ROLLER_MOTOR);
+        motor = dcMotorTwo_get(ROLLER_DRIVING_MOTOR);
     }
     else
     {
@@ -82,9 +82,9 @@ cli_status_t cliDcMotorTwo_run(uint8_t argNumber, char* args[])
     {
         motor = dcMotorTwo_get(RIGHT_DRIVING_MOTOR);
     }
-    else if (motor_id == ROLLER_MOTOR)
+    else if (motor_id == ROLLER_DRIVING_MOTOR)
     {
-        motor = dcMotorTwo_get(ROLLER_MOTOR);
+        motor = dcMotorTwo_get(ROLLER_DRIVING_MOTOR);
     }
     else
     {
@@ -142,9 +142,9 @@ cli_status_t cliDcMotorTwo_getSpeed(uint8_t argNumber, char* args[])
     {
         motor = dcMotorTwo_get(RIGHT_DRIVING_MOTOR);
     }
-    else if (motor_id == ROLLER_MOTOR)
+    else if (motor_id == ROLLER_DRIVING_MOTOR)
     {
-        motor = dcMotorTwo_get(ROLLER_MOTOR);
+        motor = dcMotorTwo_get(ROLLER_DRIVING_MOTOR);
     }
     else
     {
