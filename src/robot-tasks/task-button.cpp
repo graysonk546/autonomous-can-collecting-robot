@@ -1,16 +1,18 @@
-
 /*******************************************************************************
 *                               Standard Libraries
 *******************************************************************************/
 
+#include <pt.h>
+#include <pt-sem.h>
 #include <Arduino.h>
-#include <HardwareTimer.h>
 
 /*******************************************************************************
 *                               Header Files
 *******************************************************************************/
 
-#include "sonar.h"
+#include "task-button.h"
+#include "utilities/util-vars.h"
+#include "utilities/robot-config.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -20,12 +22,6 @@
 *                               Constants
 *******************************************************************************/
 
-#define SONAR_PWM_TIMER     TIM3
-#define SONAR_TIMER_CHANNEL 4
-#define SONAR_PWM_FREQ      100  // 16Hz ~ 60ms PWM period (recomended)
-#define SONAR_PWM_DUTY      3    // 3% duty cycle ~ 2ms pulse
-#define SONAR_TRIG_PIN      PB1
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
@@ -34,23 +30,50 @@
 *                               Variables
 *******************************************************************************/
 
-static HardwareTimer* pwmTimer;
+static robot_task_t taskButton =
+{
+    .taskId      = ROBOT_TASK_BUTTON,
+    .taskTime    = millis(),
+    .taskFlag    = false
+};
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-robot_status_t sonar_init()
+robot_status_t taskButton_init()
 {
-    // Initializing PWM (replaces analogWrite)
-    pwmTimer = new HardwareTimer(SONAR_PWM_TIMER);
-    pwmTimer->setPWM(SONAR_TIMER_CHANNEL, SONAR_TRIG_PIN, SONAR_PWM_FREQ, 
-                     SONAR_PWM_DUTY);
+    // if(dcMotorOne_init(dcMotorOne_get(ROLLER_MOTOR)) != ROBOT_OK)
+    // {
+    //     return ROBOT_ERR;
+    // }
+    // else if (canCollectionController_init(dcMotorOne_get(ROLLER_MOTOR)) !=
+    //          ROBOT_OK)
+    // {
+    //     return ROBOT_ERR;
+    // }
+
+    // taskCanCollectionTimer = new HardwareTimer(TIM3);
+    // taskCanCollectionTimer->setOverflow(100, HERTZ_FORMAT);
+    // taskCanCollectionTimer->refresh();
+    // taskCanCollectionTimer->attachInterrupt(taskCanCollection_ISR);
+    // taskCanCollectionTimer->resume();
+
+    pinMode(PIN_BUTTON, INPUT);
+    attachInterrupt(digitalPinToInterrupt(PIN_BUTTON), taskButton_ISR, 
+                     FALLING);
+
+    PT_INIT(&taskButton.taskThread);
+    // PT_SEM_INIT(&taskButton.taskMutex, 0);
     return ROBOT_OK;
 }
 
-robot_status_t sonar_deInit()
+void taskButton_ISR()
 {
-    digitalWrite(SONAR_TRIG_PIN, LOW);
-    return ROBOT_OK;
+    taskButton.taskFlag = !taskButton.taskFlag;
+}
+
+robot_task_t* taskButton_getTask()
+{
+    return &taskButton;
 }

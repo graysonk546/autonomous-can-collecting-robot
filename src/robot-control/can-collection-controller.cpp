@@ -40,9 +40,9 @@ static can_collection_controller_state_t state =
 *                               Functions
 *******************************************************************************/
 
-robot_status_t canCollectionController_init(dc_motor_one_t* rollerMotor)
+robot_status_t canCollectionController_init(dc_motor_two_t* rollerMotor)
 {
-    if (!rollerMotor->id == ROLLER_MOTOR)
+    if (!rollerMotor->id == ROLLER_DRIVING_MOTOR)
     {
         return ROBOT_ERR;
     }
@@ -57,7 +57,7 @@ robot_status_t canCollectionController_spinOnce()
     {
         return ROBOT_ERR;
     }
-    dcMotorOne_run(state.rollerMotor, config.rollerSpeed);
+    dcMotorTwo_run(state.rollerMotor, config.rollerSpeed, CCW_DIRECTION);
     return ROBOT_OK;
 }
 

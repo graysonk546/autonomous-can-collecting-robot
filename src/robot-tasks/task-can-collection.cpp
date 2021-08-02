@@ -11,7 +11,7 @@
 *******************************************************************************/
 
 #include "task-can-collection.h"
-#include "robot-core/dc-motor-one.h"
+#include "robot-core/dc-motor-two.h"
 #include "robot-control/can-collection-controller.h"
 #include "utilities/util-vars.h"
 
@@ -48,11 +48,11 @@ HardwareTimer* taskCanCollectionTimer;
 
 robot_status_t taskCanCollection_init()
 {
-    if(dcMotorOne_init(dcMotorOne_get(ROLLER_MOTOR)) != ROBOT_OK)
+    if(dcMotorTwo_init(dcMotorTwo_get(ROLLER_DRIVING_MOTOR)) != ROBOT_OK)
     {
         return ROBOT_ERR;
     }
-    else if (canCollectionController_init(dcMotorOne_get(ROLLER_MOTOR)) !=
+    else if (canCollectionController_init(dcMotorTwo_get(ROLLER_DRIVING_MOTOR)) !=
              ROBOT_OK)
     {
         return ROBOT_ERR;

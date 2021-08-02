@@ -36,10 +36,10 @@ cli_status_t cliServo_init(uint8_t argNumber, char* args[])
     servo_motor_id_t servo_id = (servo_motor_id_t) strtol((const char*) args[0],
                                                           NULL, 0);
 
-    if (servo_id != HOPPER_ROTATION_SERVO)
+    if (servo_id != HOPPER_ROTATION_SERVO && servo_id != HOPPER_LOADING_SERVO)
     {
          Serial.print(F(CMD_JSON "{\"status\": \"error\", \"data\": \"invalid"
-                     " reflectance sensor\"}" CMD_EOL_STR));
+                     " servo\"}" CMD_EOL_STR));
         return COMMAND_OK;
     }
 
@@ -62,7 +62,7 @@ cli_status_t cliServo_rotate(uint8_t argNumber, char* args[])
     servo_motor_id_t servo_id = (servo_motor_id_t) strtol((const char*) args[0],
                                                           NULL, 0);
     uint8_t angle = (uint8_t) strtol((const char*) args[1], NULL, 0);
-    if (servo_id != HOPPER_ROTATION_SERVO)
+    if (servo_id != HOPPER_ROTATION_SERVO && servo_id != HOPPER_LOADING_SERVO)
     {
          Serial.print(F(CMD_JSON "{\"status\": \"error\", \"data\": \"invalid"
                       " reflectance sensor\"}" CMD_EOL_STR));
@@ -85,5 +85,24 @@ cli_status_t cliServo_rotate(uint8_t argNumber, char* args[])
          Serial.print(F(CMD_JSON "{\"status\": \"error\", \"data\": "
                       "\"servo rotate failed\"}" CMD_EOL_STR));
     }
+    return COMMAND_OK;
+}
+
+cli_status_t cliServo_getInitAngle(uint8_t argNumber, char* args[])
+{
+    servo_motor_id_t servo_id = (servo_motor_id_t) strtol((const char*) args[0],
+                                                          NULL, 0);
+    if (servo_id != HOPPER_ROTATION_SERVO)
+    {
+         Serial.print(F(CMD_JSON "{\"status\": \"error\", \"data\": \"invalid"
+                      " servo\"}" CMD_EOL_STR));
+        return COMMAND_OK;
+    }
+    servo_motor_t* servo = servo_get(servo_id);
+    return COMMAND_OK;
+}
+
+cli_status_t cliServo_setInitAngle(uint8_t argNumber, char* args[])
+{
     return COMMAND_OK;
 }

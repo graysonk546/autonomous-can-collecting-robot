@@ -11,9 +11,10 @@
 *                               Header Files
 *******************************************************************************/
 
-#include "task-driving.h"
+#include "task-hopper-loading.h"
 #include "robot-core/servo.h"
 #include "utilities/util-vars.h"
+#include "utilities/robot-config.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -22,6 +23,8 @@
 /*******************************************************************************
 *                               Constants
 *******************************************************************************/
+
+static uint16_t CAN_LOADING_SENSOR_DELAY = 100;
 
 /*******************************************************************************
 *                               Structures
@@ -43,31 +46,6 @@ static robot_task_t taskHopperLoading =
 
 robot_status_t taskHopperLoading_init()
 {
-    // if (reflectance_init(reflectance_get(RIGHT_REFLECTANCE)) != ROBOT_OK)
-    // {
-    //     return ROBOT_ERR;
-    // }
-    // else if (reflectance_init(reflectance_get(LEFT_REFLECTANCE)) != ROBOT_OK)
-    // {
-    //     return ROBOT_ERR;
-    // }
-    // else if (dcMotorTwo_init(dcMotorTwo_get(RIGHT_DRIVING_MOTOR)) != ROBOT_OK)
-    // {
-    //     return ROBOT_ERR;
-    // }
-    // else if (dcMotorTwo_init(dcMotorTwo_get(LEFT_DRIVING_MOTOR)) != ROBOT_OK)
-    // {
-    //     return ROBOT_ERR;
-    // } 
-    // else if (lineFollowingController_init(reflectance_get(RIGHT_REFLECTANCE), 
-    //                                       reflectance_get(LEFT_REFLECTANCE), 
-    //                                       dcMotorTwo_get(RIGHT_DRIVING_MOTOR), 
-    //                                       dcMotorTwo_get(LEFT_DRIVING_MOTOR)) != 
-    //                                       ROBOT_OK)
-    // {
-    //     return ROBOT_ERR;
-    // }
-
     servo_motor_t* servo = servo_get(HOPPER_LOADING_SERVO);
 
     if (servo_init(servo) != ROBOT_OK)
@@ -75,19 +53,19 @@ robot_status_t taskHopperLoading_init()
         return ROBOT_ERR;
     }
 
+    // Setup can detector pin and interrupt
+    pinMode(PIN_CAN_DETECTOR, INPUT);
+    attachInterrupt(digitalPinToInterrupt(PIN_CAN_DETECTOR), 
+                    taskHopperLoading_ISR, RISING);
 
+    // Initialize the driving task pt thread
+    PT_INIT(&taskHopperLoading.taskThread);
+    // Initialize the driving task pt sem
+    PT_SEM_INIT(&taskHopperLoading.taskMutex, 0);
 
-    // //Intialize the timer for sampling the line follower signal
-    // timer = new HardwareTimer(TIM2);
-    // timer->setOverflow(2000, HERTZ_FORMAT);
-    // timer->refresh();
-    // timer->attachInterrupt(taskDriving_ISR);
-    // timer->resume();
+    // Update the task time
+    taskHopperLoading.taskTime = millis();
 
-    // // Initialize the driving task pt thread
-    // PT_INIT(&taskDriving.taskThread);
-    // // Initialize the driving task pt sem
-    // PT_SEM_INIT(&taskDriving.taskMutex, 0);
     return ROBOT_OK;
 }
 
@@ -95,6 +73,13 @@ void taskHopperLoading_ISR()
 {
 
     PT_SEM_SIGNAL(&taskHopperLoading.taskThread, &taskHopperLoading.taskMutex);
+    taskHopperLoading.taskTime = millis();
+
+    // if (millis() - taskHopperLoading.taskTime > CAN_LOADING_SENSOR_DELAY)
+    // {
+    //     PT_SEM_SIGNAL(&taskHopperLoading.taskThread, &taskHopperLoading.taskMutex);
+    //     taskHopperLoading.taskTime = millis();
+    // }
 }
 
 robot_task_t* taskHopperLoading_getTask()

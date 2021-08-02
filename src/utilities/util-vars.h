@@ -47,6 +47,7 @@ typedef enum {
     ROBOT_CLAW,
     ROBOT_CAN_COLLECTION,
     ROBOT_HOPPER_LOADING,
+    ROBOT_TASK_BUTTON,
     ROBOT_SKY_CRANE
 } robot_task_id_t;
 
@@ -56,6 +57,7 @@ typedef struct{
     robot_task_id_t taskId;
     ISR_func_t      taskISR;
     unsigned long   taskTime;
+    bool            taskFlag;
 } robot_task_t;
 
 /*******************************************************************************

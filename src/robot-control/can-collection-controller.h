@@ -12,7 +12,7 @@
 *******************************************************************************/
 
 #include "utilities/util-vars.h"
-#include "robot-core/dc-motor-one.h"
+#include "robot-core/dc-motor-two.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -32,7 +32,7 @@ typedef struct {
 
 typedef struct {
 
-    dc_motor_one_t* rollerMotor;
+    dc_motor_two_t* rollerMotor;
     bool initialized;
 } can_collection_controller_state_t;
 
@@ -44,7 +44,7 @@ typedef struct {
 *                               Functions
 *******************************************************************************/
 
-robot_status_t canCollectionController_init(dc_motor_one_t* rollerMotor);
+robot_status_t canCollectionController_init(dc_motor_two_t* rollerMotor);
 
 robot_status_t canCollectionController_spinOnce();
 

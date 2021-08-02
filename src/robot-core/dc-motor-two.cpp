@@ -56,7 +56,6 @@ static dc_motor_two_t dcMotorTwoArr[] =
         .speed       = STATIC_SPEED,
         .id          = ROLLER_DRIVING_MOTOR,
         .initialized = false
-
     }
 };
 

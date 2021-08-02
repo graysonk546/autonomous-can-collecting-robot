@@ -35,6 +35,10 @@ cli_status_t cliServo_init(uint8_t argNumber, char* args[]);
 
 cli_status_t cliServo_rotate(uint8_t argNumber, char* args[]);
 
+cli_status_t cliServo_getInitAngle(uint8_t argNumber, char* args[]);
+
+cli_status_t cliServo_setInitAngle(uint8_t argNumber, char* args[]);
+
 #define SERVO_COMMANDS                                                                     \
     {cliServo_init,    "servo-init",    "<periph>",          "init servo",        1, 1},\
     {cliServo_rotate,  "servo-rotate",  "<periph> <angle>",  "rotate the servo",  2, 2},

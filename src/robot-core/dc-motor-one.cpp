@@ -31,7 +31,7 @@ static dc_motor_one_t dcMotorOneArr[] =
 {
     [ROLLER_MOTOR] = 
     {
-        .pin         = PA7,
+        // .pin         = PA7,
         .speed       = STATIC_SPEED,
         .id          = ROLLER_MOTOR,
         .initialized = false
