@@ -77,10 +77,10 @@ void setup()
     {
 
     }
-    // if (taskDriving_init() != ROBOT_OK)
-    // {
+    if (taskDriving_init() != ROBOT_OK)
+    {
 
-    // }
+    }
     if (taskCanCollection_init() != ROBOT_OK)
     {
     }
@@ -128,6 +128,7 @@ void loop()
     //     _canCollectionTask(&task_canCollection->taskThread);
     //     _drivingTask(&task_driving->taskThread);
     // }
+    _drivingTask(&task_driving->taskThread);
     _canCollectionTask(&task_canCollection->taskThread);
     // _hopperLoadingTask(&task_hopperLoading->taskThread);
     _cliTask(&task_cli->taskThread);
@@ -175,7 +176,6 @@ static PT_THREAD(_hopperLoadingTask(struct pt* thread))
     while (true)
     {
         PT_SEM_WAIT(thread, &task_hopperLoading->taskMutex);
-        Serial.println("_hopperLoadingTask Critical Section...");
     }
     PT_END(thread);
 }

@@ -45,7 +45,7 @@ static rotary_speed_encoder_t rotarySpeedEncoderArr[] =
 
 robot_status_t rotarySpeedEncoder_init(rotary_speed_encoder_t* encoder)
 {
-    pinMode(encoder->pin, INPUT);
+    pinMode(encoder->pin, INPUT_PULLDOWN);
     encoder->lastInterruptTime = millis();
     attachInterrupt(digitalPinToInterrupt(encoder->pin), encoder->isr, RISING);
     encoder->initialized = true;
