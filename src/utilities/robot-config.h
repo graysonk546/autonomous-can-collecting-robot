@@ -24,18 +24,14 @@
 *******************************************************************************/
 
 typedef enum {
-    PIN_LEFT_DRIVING_MOTOR_CW          = PB6,
-    PIN_LEFT_DRIVING_MOTOR_CCW         = PB7,
-    PIN_RIGHT_DRIVING_MOTOR_CW         = PB9,
-    PIN_RIGHT_DRIVING_MOTOR_CCW        = PB8,
-<<<<<<< HEAD
-    PIN_ROLLER_MOTOR                   = PA7,
-=======
+    PIN_LEFT_DRIVING_MOTOR_CW          = PB7,
+    PIN_LEFT_DRIVING_MOTOR_CCW         = PB6,
+    PIN_RIGHT_DRIVING_MOTOR_CW         = PB8,
+    PIN_RIGHT_DRIVING_MOTOR_CCW        = PB9,
     PIR_ROLLER_MOTOR                   = PA7,
-    PIN_ROLLER_MOTOR_ENCODER           = PA10,
->>>>>>> 22-rotary-speed-encoder
-    PIN_RIGHT_LINE_FOLLOWING_IR_SENSOR = PA4,
-    PIN_LEFT_LINE_FOLLOWING_IR_SENSOR  = PA5,
+    PIN_ROLLER_MOTOR_ENCODER           = PA15,
+    PIN_RIGHT_LINE_FOLLOWING_IR_SENSOR = PA5,
+    PIN_LEFT_LINE_FOLLOWING_IR_SENSOR  = PA4,
     PIN_ROLLER_CW                      = PB0,
     PIN_ROLLER_CCW                     = PB1,
     PIN_CAN_DETECTOR                   = PB4,

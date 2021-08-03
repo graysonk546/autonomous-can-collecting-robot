@@ -52,8 +52,13 @@ robot_status_t taskCanCollection_init()
     {
         return ROBOT_ERR;
     }
-    else if (canCollectionController_init(dcMotorTwo_get(ROLLER_DRIVING_MOTOR)) !=
-             ROBOT_OK)
+    else if (rotarySpeedEncoder_init(
+             rotarySpeedEncoder_get(ROLLER_SPEED_ENCODER)) != ROBOT_OK)
+    {
+        return ROBOT_ERR;
+    }
+    else if (canCollectionController_init(dcMotorTwo_get(ROLLER_DRIVING_MOTOR),
+             rotarySpeedEncoder_get(ROLLER_SPEED_ENCODER)) != ROBOT_OK)
     {
         return ROBOT_ERR;
     }
@@ -66,6 +71,7 @@ robot_status_t taskCanCollection_init()
 
     PT_INIT(&taskCanCollection.taskThread);
     PT_SEM_INIT(&taskCanCollection.taskMutex, 0);
+    Serial.println("taskCanCollection_init() called...");
     return ROBOT_OK;
 }
 

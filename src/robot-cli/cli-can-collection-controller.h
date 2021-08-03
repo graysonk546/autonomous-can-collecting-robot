@@ -40,7 +40,7 @@ cli_status_t cliCanCollectionController_setRollerSpeed(uint8_t argNumber,
                                                        char* args[]);
 
 #define CAN_COLLECTION_CONTROLLER_COMMANDS                                                                                                    \
-    {cliCanCollectionController_getRollerSpeed,  "get-roller-speed",        "",     "get roller speed",  0, 0}, \
-    {cliCanCollectionController_setRollerSpeed,  "set-roller-speed",   "<speed>",  "set roller speed",   1, 1},
+    // {cliCanCollectionController_getRollerSpeed,  "get-roller-speed",        "",     "get roller speed",  0, 0}, \
+    // {cliCanCollectionController_setRollerSpeed,  "set-roller-speed",   "<speed>",  "set roller speed",   1, 1},
 
 #endif // CLI_CAN_COLLECTION_CONTROLLER

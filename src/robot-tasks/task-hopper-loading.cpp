@@ -54,7 +54,7 @@ robot_status_t taskHopperLoading_init()
     }
 
     // Setup can detector pin and interrupt
-    pinMode(PIN_CAN_DETECTOR, INPUT);
+    pinMode(PIN_CAN_DETECTOR, INPUT_PULLDOWN);
     attachInterrupt(digitalPinToInterrupt(PIN_CAN_DETECTOR), 
                     taskHopperLoading_ISR, RISING);
 
@@ -75,12 +75,6 @@ void taskHopperLoading_ISR()
     Serial.println("taskHopperLoading_ISR() called");
     PT_SEM_SIGNAL(&taskHopperLoading.taskThread, &taskHopperLoading.taskMutex);
     taskHopperLoading.taskTime = millis();
-
-    // if (millis() - taskHopperLoading.taskTime > CAN_LOADING_SENSOR_DELAY)
-    // {
-    //     PT_SEM_SIGNAL(&taskHopperLoading.taskThread, &taskHopperLoading.taskMutex);
-    //     taskHopperLoading.taskTime = millis();
-    // }
 }
 
 robot_task_t* taskHopperLoading_getTask()

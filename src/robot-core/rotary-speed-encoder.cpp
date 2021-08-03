@@ -47,6 +47,7 @@ robot_status_t rotarySpeedEncoder_init(rotary_speed_encoder_t* encoder)
 {
     pinMode(encoder->pin, INPUT);
     encoder->lastInterruptTime = millis();
+    attachInterrupt(digitalPinToInterrupt(encoder->pin), encoder->isr, RISING);
     encoder->initialized = true;
     return ROBOT_OK;
 }
@@ -58,5 +59,6 @@ rotary_speed_encoder_t* rotarySpeedEncoder_get(rotary_speed_encoder_id_t id)
 
 static void _rollerSpeedEncoder_ISR()
 {
+    Serial.println("Encoder edge...");
     rotarySpeedEncoderArr[ROLLER_SPEED_ENCODER].lastInterruptTime = millis();
 }

@@ -9,6 +9,7 @@
 *******************************************************************************/
 
 #include "reflectance.h"
+#include "utilities/robot-config.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -29,13 +30,13 @@ static reflectance_t reflectanceArr[] =
 {
     [LEFT_REFLECTANCE] = 
     {
-        .pin         = PA5,
+        .pin         = PIN_LEFT_LINE_FOLLOWING_IR_SENSOR,
         .id          = LEFT_REFLECTANCE,
         .initialized = false
     },
     [RIGHT_REFLECTANCE] = 
     {
-        .pin         = PA4,
+        .pin         = PIN_RIGHT_LINE_FOLLOWING_IR_SENSOR,
         .id          = RIGHT_REFLECTANCE,
         .initialized = false
     }
