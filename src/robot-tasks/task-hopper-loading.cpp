@@ -72,6 +72,7 @@ robot_status_t taskHopperLoading_init()
 void taskHopperLoading_ISR()
 {
 
+    Serial.println("taskHopperLoading_ISR() called");
     PT_SEM_SIGNAL(&taskHopperLoading.taskThread, &taskHopperLoading.taskMutex);
     taskHopperLoading.taskTime = millis();
 

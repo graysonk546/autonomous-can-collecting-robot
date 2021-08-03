@@ -1,15 +1,15 @@
-#ifndef ROBOT_CONFIG_H
-#define ROBOT_CONFIG_H
+#ifndef ROTARY_SPEED_ENCODER
+#define ROTARY_SPEED_ENCODER
 
 /*******************************************************************************
-*                               Standard Includes
+*                               Standard Libraries
 *******************************************************************************/
-
-#include <Arduino.h>
 
 /*******************************************************************************
-*                               Header File Includes
+*                               Header Files
 *******************************************************************************/
+
+#include "utilities/util-vars.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -24,25 +24,16 @@
 *******************************************************************************/
 
 typedef enum {
-    PIN_LEFT_DRIVING_MOTOR_CW          = PB6,
-    PIN_LEFT_DRIVING_MOTOR_CCW         = PB7,
-    PIN_RIGHT_DRIVING_MOTOR_CW         = PB9,
-    PIN_RIGHT_DRIVING_MOTOR_CCW        = PB8,
-<<<<<<< HEAD
-    PIN_ROLLER_MOTOR                   = PA7,
-=======
-    PIR_ROLLER_MOTOR                   = PA7,
-    PIN_ROLLER_MOTOR_ENCODER           = PA10,
->>>>>>> 22-rotary-speed-encoder
-    PIN_RIGHT_LINE_FOLLOWING_IR_SENSOR = PA4,
-    PIN_LEFT_LINE_FOLLOWING_IR_SENSOR  = PA5,
-    PIN_ROLLER_CW                      = PB0,
-    PIN_ROLLER_CCW                     = PB1,
-    PIN_CAN_DETECTOR                   = PB4,
-    PIN_HOPPER_ROTATION_SERVO          = PA0,
-    PIN_HOPPER_LOADING_SERVO           = PA1,
-    PIN_BUTTON                         = PB14
-} robot_pin_t;
+    ROLLER_SPEED_ENCODER
+} rotary_speed_encoder_id_t;
+
+typedef struct {
+    const uint8_t                   pin;
+    const rotary_speed_encoder_id_t id;
+    void                            (*isr)(void);
+    unsigned long                   lastInterruptTime;
+    bool                            initialized;
+} rotary_speed_encoder_t;
 
 /*******************************************************************************
 *                               Variables
@@ -52,4 +43,8 @@ typedef enum {
 *                               Functions
 *******************************************************************************/
 
-#endif // ROBOT_CONFIG_H
+robot_status_t rotarySpeedEncoder_init(rotary_speed_encoder_t* encoder);
+
+rotary_speed_encoder_t* rotarySpeedEncoder_get(rotary_speed_encoder_id_t id);
+
+#endif // ROTARY_SPEED_ENCODER

@@ -125,11 +125,11 @@ void loop()
     if (task_button->taskFlag)
     {
         _hopperLoadingTask(&task_hopperLoading->taskThread);
-        // _canCollectionTask(&task_canCollection->taskThread);
-        // _drivingTask(&task_driving->taskThread);
+        _canCollectionTask(&task_canCollection->taskThread);
+        _drivingTask(&task_driving->taskThread);
     }
 
-    // _hopperLoadingTask(&task_hopperLoading->taskThread);
+    _hopperLoadingTask(&task_hopperLoading->taskThread);
     //     _canCollectionTask(&task_canCollection->taskThread);
     //     _drivingTask(&task_driving->taskThread);
     _cliTask(&task_cli->taskThread);
