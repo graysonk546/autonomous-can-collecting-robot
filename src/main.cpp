@@ -81,9 +81,9 @@ void setup()
     // {
 
     // }
-    // if (taskCanCollection_init() != ROBOT_OK)
-    // {
-    // }
+    if (taskCanCollection_init() != ROBOT_OK)
+    {
+    }
     // if (taskHopperLoading_init() != ROBOT_OK)
     // {
     // }
@@ -128,7 +128,7 @@ void loop()
     //     _canCollectionTask(&task_canCollection->taskThread);
     //     _drivingTask(&task_driving->taskThread);
     // }
-    // _canCollectionTask(&task_canCollection->taskThread);
+    _canCollectionTask(&task_canCollection->taskThread);
     // _hopperLoadingTask(&task_hopperLoading->taskThread);
     _cliTask(&task_cli->taskThread);
 

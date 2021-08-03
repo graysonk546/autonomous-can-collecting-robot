@@ -60,6 +60,7 @@ robot_status_t taskHopperLoading_init()
 
     // Initialize the driving task pt thread
     PT_INIT(&taskHopperLoading.taskThread);
+
     // Initialize the driving task pt sem
     PT_SEM_INIT(&taskHopperLoading.taskMutex, 0);
 

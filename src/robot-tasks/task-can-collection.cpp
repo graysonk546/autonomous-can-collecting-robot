@@ -58,7 +58,7 @@ robot_status_t taskCanCollection_init()
         return ROBOT_ERR;
     }
     else if (canCollectionController_init(dcMotorTwo_get(ROLLER_DRIVING_MOTOR),
-             rotarySpeedEncoder_get(ROLLER_SPEED_ENCODER)) != ROBOT_OK)
+             rotarySpeedEncoder_get(ROLLER_SPEED_ENCODER), servo_get(HOPPER_LOADING_SERVO)) != ROBOT_OK)
     {
         return ROBOT_ERR;
     }

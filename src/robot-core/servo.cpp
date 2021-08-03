@@ -66,7 +66,6 @@ robot_status_t servo_rotate(servo_motor_t* servo, uint8_t angle)
     if (servo->initialized)
     {
         servo->angle = CLAMP(angle, MIN_ANGLE, MAX_ANGLE);
-        Serial.println("Calling servo write...");
         servo->motor.write(servo->angle);
         return ROBOT_OK;
     }

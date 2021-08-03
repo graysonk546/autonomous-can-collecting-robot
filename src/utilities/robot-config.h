@@ -34,10 +34,11 @@ typedef enum {
     PIN_LEFT_LINE_FOLLOWING_IR_SENSOR  = PA4,
     PIN_ROLLER_CW                      = PB0,
     PIN_ROLLER_CCW                     = PB1,
-    PIN_CAN_DETECTOR                   = PB4,
+    PIN_CAN_DETECTOR                   = PB3,
     PIN_HOPPER_ROTATION_SERVO          = PA0,
     PIN_HOPPER_LOADING_SERVO           = PA1,
-    PIN_BUTTON                         = PB14
+    PIN_BUTTON                         = PB14,
+    PIN_RETURN_VEHICLE_DETECTOR        = PB4
 } robot_pin_t;
 
 /*******************************************************************************
