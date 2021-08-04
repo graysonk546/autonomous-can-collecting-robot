@@ -36,6 +36,7 @@ typedef enum {
 
 typedef enum {
     WAITING_FOR_CAN,
+    WAITING_TO_LOAD,
     LOADING_CAN,
     RESETTING_LOADER,
 } can_loader_state_t;

@@ -59,6 +59,5 @@ rotary_speed_encoder_t* rotarySpeedEncoder_get(rotary_speed_encoder_id_t id)
 
 static void _rollerSpeedEncoder_ISR()
 {
-    Serial.println("Encoder edge...");
     rotarySpeedEncoderArr[ROLLER_SPEED_ENCODER].lastInterruptTime = millis();
 }

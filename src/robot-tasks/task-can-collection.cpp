@@ -63,7 +63,7 @@ robot_status_t taskCanCollection_init()
         return ROBOT_ERR;
     }
 
-    taskCanCollectionTimer = new HardwareTimer(TIM3);
+    taskCanCollectionTimer = new HardwareTimer(TIM4);
     taskCanCollectionTimer->setOverflow(100, HERTZ_FORMAT);
     taskCanCollectionTimer->refresh();
     taskCanCollectionTimer->attachInterrupt(taskCanCollection_ISR);

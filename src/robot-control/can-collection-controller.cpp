@@ -28,13 +28,13 @@ static void _canDetected_ISR();
 
 static can_collection_controller_config_t config =
 {
-    .inwardsRollerSpeed = 230,
+    .inwardsRollerSpeed = 255,
     .outwardsRollerSpeed = 200,
-    .loaderServoIdleAngle = 90,
-    .loaderServoDepositAngle = 180,
+    .loaderServoIdleAngle = 0,
+    .loaderServoDepositAngle = 150,
     .maxRollerStallDuration = 5000ul,
     .tolerableRollerStallDuration = 500ul,
-    .canDetectionToInsertionDelay = 2500ul,
+    .canDetectionToInsertionDelay = 1000ul,
     .loaderServoRotationTimeout = 500ul
 };
 
@@ -93,7 +93,7 @@ robot_status_t canCollectionController_init(dc_motor_two_t* rollerMotor,
     }
 
     pinMode(PIN_CAN_DETECTOR, INPUT_PULLDOWN);
-    attachInterrupt(digitalPinToInterrupt(PIN_CAN_DETECTOR), _canDetected_ISR, RISING);
+    attachInterrupt(digitalPinToInterrupt(PIN_CAN_DETECTOR), _canDetected_ISR, FALLING);
 
     state.rollerMotor = rollerMotor;
     state.rollerEncoder = rollerEncoder;
@@ -108,7 +108,6 @@ robot_status_t canCollectionController_init(dc_motor_two_t* rollerMotor,
 
 robot_status_t canCollectionController_spinOnce()
 {
-
     if (!state.initialized)
     {
         return ROBOT_ERR;
@@ -121,33 +120,45 @@ robot_status_t canCollectionController_spinOnce()
     {
         state.loaderState = WAITING_FOR_CAN;
     }
-    else if (state.nextLoaderState == LOADING_CAN)
+    else if (state.nextLoaderState == WAITING_TO_LOAD)
     {
-        state.loaderState = LOADING_CAN;
+        state.loaderState = WAITING_TO_LOAD;
         if (state.previousLoaderState == WAITING_FOR_CAN)
         {
+            Serial.print("Can detected at ");
+            Serial.println(timeNow);
+            state.timeLastCanDetected = timeNow;
+        }
+        else if (timeNow - state.timeLastCanDetected > config.canDetectionToInsertionDelay)
+        {
+            Serial.print("WAITING_FOR_CAN --> LOADING_CAN at ");
+            Serial.println(timeNow);
+            state.loaderState = LOADING_CAN;
             state.timeLastLoadingStarted = timeNow;
         }
+    }
+    else if (state.nextLoaderState == LOADING_CAN)
+    {
         if (timeNow - state.timeLastLoadingStarted > config.loaderServoRotationTimeout)
         {
+            Serial.print("LOADING_CAN --> RESETTING_LOADER at ");
+            Serial.println(timeNow);
             state.loaderState = RESETTING_LOADER;
-        }
-    }
-    else
-    {
-        state.loaderState = RESETTING_LOADER;
-        if (state.previousLoaderState == LOADING_CAN)
-        {
             state.timeLastLoaderResettingStarted = timeNow;
         }
+    }
+    else if (state.nextLoaderState == RESETTING_LOADER)
+    {
         if (timeNow - state.timeLastLoaderResettingStarted > config.loaderServoRotationTimeout)
         {
+            Serial.print("RESETTING_CAN --> WAITING_FOR_CAN at ");
+            Serial.println(timeNow);
             state.loaderState = WAITING_FOR_CAN;
         }
     }
     state.nextLoaderState = state.loaderState;
 
-    if (state.loaderState == WAITING_FOR_CAN || state.nextLoaderState == RESETTING_LOADER)
+    if (state.loaderState == WAITING_FOR_CAN || state.loaderState == RESETTING_LOADER || state.loaderState == WAITING_TO_LOAD)
     {
         servo_rotate(state.loaderServo, config.loaderServoIdleAngle);
     }
@@ -189,10 +200,11 @@ robot_status_t canCollectionController_spinOnce()
 
 static void _canDetected_ISR()
 {
-    Serial.println("_canDetected_ISR() called");
     if (state.loaderState == WAITING_FOR_CAN)
     {
-        state.nextLoaderState = LOADING_CAN;
+        Serial.print("ISR switching from WAITING_FOR_CAN to WAITING_TO_LOAD at ");
+        Serial.println(millis());
+        state.nextLoaderState = WAITING_TO_LOAD;
     }
 }
 

@@ -42,7 +42,7 @@ static servo_motor_t servoArr[] =
     [HOPPER_LOADING_SERVO] = 
     {
         .pin = PIN_HOPPER_LOADING_SERVO,
-        .angle = 0,
+        .angle = 0,                                                                  
         .id = HOPPER_LOADING_SERVO,
         .initialized = false,
         .initAngle = 0
