@@ -98,10 +98,10 @@ void setup()
     {
 
     }
-    if (taskReturnVehicleDetection_init() != ROBOT_OK)
-    {
+    // if (taskReturnVehicleDetection_init() != ROBOT_OK)
+    // {
 
-    }
+    // }
     
     // Get task references
     task_driving = taskDriving_getTask();
@@ -129,14 +129,14 @@ void loop()
                 Serial.println("Ground successfully detected...");
             }
         }
-        else if (task_returnVehicleDetection->taskFlag)
-        {
-            canCollectionController_shutDown();
-            lineFollowingController_shutDown();
-            servo_rotate(servo_get(HOPPER_ROTATION_SERVO), 180);
-            delay(1000);
-            servo_rotate(servo_get(HOPPER_DOOR_SERVO), 180);
-        }
+        // else if (task_returnVehicleDetection->taskFlag)
+        // {
+        //     canCollectionController_shutDown();
+        //     lineFollowingController_shutDown();
+        //     servo_rotate(servo_get(HOPPER_ROTATION_SERVO), 180);
+        //     delay(1000);
+        //     servo_rotate(servo_get(HOPPER_DOOR_SERVO), 180);
+        // }
     }
     // UNCOMMENT WHEN SONAR IS SETUP
     // if(!groundDetectedFlag)
@@ -198,7 +198,7 @@ static PT_THREAD(_drivingTask(struct pt* thread))
     while (true)
     {
         PT_SEM_WAIT(thread, &task_driving->taskMutex);
-        if (groundDetected && !task_returnVehicleDetection->taskFlag)
+        if (groundDetected)
         {
             lineFollowingController_spinOnce();
         }
@@ -233,7 +233,7 @@ static PT_THREAD(_canCollectionTask(struct pt* thread))
     while (true)
     {
         PT_SEM_WAIT(thread, &task_canCollection->taskMutex);
-        if (groundDetected && !task_returnVehicleDetection->taskFlag)
+        if (groundDetected)
         {
             canCollectionController_spinOnce();
         }
