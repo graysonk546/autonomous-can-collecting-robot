@@ -52,6 +52,14 @@ robot_status_t taskButton_init()
 
 void taskButton_ISR()
 {
+    for (uint8_t i = 0; i < 5; i++)
+    {
+        if (digitalRead(PIN_BUTTON) != LOW)
+        {
+            return;
+        }
+    }
+    Serial.println("Button pressed...");
     taskButton.taskFlag = true;
 }
 

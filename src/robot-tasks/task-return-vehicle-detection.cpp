@@ -61,6 +61,13 @@ robot_status_t taskReturnVehicleDetection_init()
 
 void taskReturnVehicleDetection_ISR()
 {
+    for (uint8_t i = 0; i < 5; i++)
+    {
+        if (digitalRead(PIN_RETURN_VEHICLE_DETECTOR) != HIGH)
+        {
+            return;
+        }
+    }
     taskReturnVehicleDetection.taskFlag = true;
     Serial.println("taskReturnVehicle_ISR() called");
 }

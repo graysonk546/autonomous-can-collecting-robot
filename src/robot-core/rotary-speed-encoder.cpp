@@ -59,5 +59,13 @@ rotary_speed_encoder_t* rotarySpeedEncoder_get(rotary_speed_encoder_id_t id)
 
 static void _rollerSpeedEncoder_ISR()
 {
+    for (uint8_t i = 0; i < 5; i++)
+    {
+        if (digitalRead(PIN_ROLLER_MOTOR_ENCODER) != HIGH)
+        {
+            return;
+        }
+
+    }
     rotarySpeedEncoderArr[ROLLER_SPEED_ENCODER].lastInterruptTime = millis();
 }

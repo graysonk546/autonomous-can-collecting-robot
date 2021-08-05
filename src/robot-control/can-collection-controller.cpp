@@ -231,7 +231,14 @@ robot_status_t canCollectionController_spinOnce()
 
 static void _canDetected_ISR()
 {
-    Serial.println("can detected...");
+    for (uint8_t i = 0; i < 5; i++)
+    {
+        if (digitalRead(PIN_CAN_DETECTOR) != LOW)
+        {
+            return;
+        }
+    }
+    Serial.println("Can detected....");
     if (state.loaderState == WAITING_FOR_CAN)
     {
         state.nextLoaderState = WAITING_TO_LOAD;
