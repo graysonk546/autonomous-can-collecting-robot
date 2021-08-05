@@ -1,16 +1,18 @@
-#ifndef UTIL_VARS_H
-#define UTIL_VARS_H
+#ifndef TASK_RETURN_VEHICLE_DETECTION
+#define TASK_RETURN_VEHICLE_DETECTION
 
 /*******************************************************************************
-*                               Standard Includes
+*                               Standard Libraries
 *******************************************************************************/
 
 #include <pt.h>
 #include <pt-sem.h>
 
 /*******************************************************************************
-*                               Header File Includes
+*                               Header Files
 *******************************************************************************/
+
+#include "utilities/util-vars.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -20,45 +22,15 @@
 *                               Constants
 *******************************************************************************/
 
-#define NUM_DRIVING_MOTORS 2
-#define NUM_LINE_FOLLOWING_SENSORS 2
-
-/*******************************************************************************
-*                                 Macros
-*******************************************************************************/
-
-#define CLAMP(x, low, high)  (((x) > (high)) ? (high) : (((x) < (low)) ? \
-              (low) : (x)))
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
 
-typedef void (*ISR_func_t)(void);
-
 typedef enum {
-    ROBOT_OK,
-    ROBOT_ERR
-} robot_status_t;
-
-typedef enum {
-    ROBOT_CLI,
-    ROBOT_DRIVING,
-    ROBOT_CLAW,
-    ROBOT_CAN_COLLECTION,
-    ROBOT_HOPPER_LOADING,
-    ROBOT_TASK_BUTTON,
-    RETURN_VEHICLE_DETECTION
-} robot_task_id_t;
-
-typedef struct{
-    struct pt_sem   taskMutex;
-    struct pt       taskThread;
-    robot_task_id_t taskId;
-    ISR_func_t      taskISR;
-    unsigned long   taskTime;
-    bool            taskFlag;
-} robot_task_t;
+    WAITING_TO_DETECT_RETURN_VEHICLE,
+    RETURN_VEHICLE_DETECTED,
+    LOADING_INTO_RETURN_VEHICLE
+} task_return_vehicle_detection_status_t;
 
 /*******************************************************************************
 *                               Variables
@@ -68,4 +40,25 @@ typedef struct{
 *                               Functions
 *******************************************************************************/
 
-#endif // UTIL_VARS_H
+/*******************************************************************************
+ * Requires: None
+ * Effects:  Returns robot_status_t indicating state of initialization
+ * Modifies: None
+ * ****************************************************************************/
+robot_status_t taskReturnVehicleDetection_init();
+
+/*******************************************************************************
+ * Requires: None
+ * Effects:  None
+ * Modifies: Takes and releases pt_sem mutex in robot_task_t for driving
+ * ****************************************************************************/
+void taskReturnVehicleDetection_ISR();
+
+/*******************************************************************************
+ * Requires: None
+ * Effects:  Returns a robot_task_t pointer to the driving task
+ * Modifies: None
+ * ****************************************************************************/
+robot_task_t* taskReturnVehicleDetection_getTask();
+
+#endif // TASK_RETURN_VEHICLE_DETECTION

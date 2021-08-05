@@ -82,6 +82,10 @@ robot_status_t canCollectionController_init(dc_motor_two_t* rollerMotor,
 
 robot_status_t canCollectionController_spinOnce();
 
+robot_status_t canCollectionController_startUp();
+
+robot_status_t canCollectionController_shutDown();
+
 void canCollectionController_detectionISR();
 
 can_collection_controller_config_t* canCollectionController_getConfig();

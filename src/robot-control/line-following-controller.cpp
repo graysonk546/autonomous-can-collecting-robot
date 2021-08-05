@@ -29,8 +29,8 @@ static line_following_controller_config_t config =
     .kp                              = 1.0f,
     .kd                              = 0.0f,
     .minEffSpeed                     = 30,
-    .maxEffSpeed                     = 0,
-    .targetVelocity                  = 105,
+    .maxEffSpeed                     = 220,
+    .targetVelocity                  = 180,
     .delocalizedReflectanceThreshold = 50,
     .previousSpinOffset              = 100,
     .delocalizedErrorMagnitude       = 200,
@@ -123,6 +123,7 @@ robot_status_t lineFollowingController_init(reflectance_t* sensor1,
 
 robot_status_t lineFollowingController_spinOnce()
 {
+
     if (!state.initialized)
     {
         return ROBOT_ERR;
@@ -198,6 +199,33 @@ robot_status_t lineFollowingController_spinOnce()
               state.previousRightMotorVelocity);
 
     return ROBOT_OK;
+}
+
+robot_status_t lineFollowingController_startUp()
+{
+    if (state.initialized)
+    {
+        lineFollowingController_spinOnce();
+        return ROBOT_OK;
+    }
+    else
+    {
+        return ROBOT_ERR;
+    }
+}
+
+robot_status_t lineFollowingController_shutDown()
+{
+    if (state.initialized)
+    {
+        dcMotorTwo_run(config.motorArr[LEFT_DRIVING_MOTOR], STATIC_SPEED, CW_DIRECTION);
+        dcMotorTwo_run(config.motorArr[RIGHT_DRIVING_MOTOR], STATIC_SPEED, CW_DIRECTION);
+        return ROBOT_OK;
+    }
+    else
+    {
+        return ROBOT_ERR;
+    }
 }
 
 line_following_controller_config_t* lineFollowingController_getConfig()

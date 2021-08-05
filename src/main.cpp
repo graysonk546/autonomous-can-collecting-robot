@@ -20,6 +20,7 @@
 #include "robot-tasks/task-can-collection.h"
 #include "robot-tasks/task-hopper-loading.h"
 #include "robot-tasks/task-button.h"
+#include "robot-tasks/task-return-vehicle-detection.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -37,7 +38,7 @@ static char _buttonTask(struct pt* thread);
 *                               Constants
 *******************************************************************************/
 
-#define GROUND_DETECTED_DISTANCE 5  // cm
+#define GROUND_DETECTED_DISTANCE 4  // cm
 #define MIN_GROUND_DETECTOR_DISTANCE 2  // cm
 #define MAX_GROUND_DETECTOR_DISTANCE 100  // cm
 
@@ -73,17 +74,16 @@ void setup()
     // Initilize flags
     flag = true;
     groundDetected = false;
-    wasControllerCalledOnce = false;
 
     // Initialize peripherals
     if (taskCli_init() != ROBOT_OK)
     {
 
     }
-    // if (taskDriving_init() != ROBOT_OK)
-    // {
+    if (taskDriving_init() != ROBOT_OK)
+    {
 
-    // }
+    }
     if (taskCanCollection_init() != ROBOT_OK)
     {
     }
@@ -117,12 +117,19 @@ void loop()
             if (dist < GROUND_DETECTED_DISTANCE && dist > MIN_GROUND_DETECTOR_DISTANCE)
             {
                 groundDetected = true;
+                canCollectionController_startUp();
+                lineFollowingController_startUp();
                 Serial.println("Ground successfully detected...");
             }
         }
     }
     else
     {
+        if (groundDetected)
+        {
+            canCollectionController_shutDown();
+            lineFollowingController_shutDown();
+        }
         groundDetected = false;
     }
     // UNCOMMENT WHEN SONAR IS SETUP
@@ -148,12 +155,8 @@ void loop()
     //     _canCollectionTask(&task_canCollection->taskThread);
     //     _drivingTask(&task_driving->taskThread);
     // }
-    // _drivingTask(&task_driving->taskThread);
-<<<<<<< Updated upstream
-    // _canCollectionTask(&task_canCollection->taskThread);
-=======
-    _canCollectionTask(&task_canCollection->taskThread); 
->>>>>>> Stashed changes
+    _drivingTask(&task_driving->taskThread);
+    _canCollectionTask(&task_canCollection->taskThread);
     // _hopperLoadingTask(&task_hopperLoading->taskThread);
     _cliTask(&task_cli->taskThread);
 
@@ -224,12 +227,10 @@ static PT_THREAD(_canCollectionTask(struct pt* thread))
     while (true)
     {
         PT_SEM_WAIT(thread, &task_canCollection->taskMutex);
-        canCollectionController_spinOnce();
-        // if (groundDetected)
-        // {
-        //     Serial.println("Spinning controller...");
-            
-        // }
+        if (groundDetected)
+        {
+            canCollectionController_spinOnce();
+        }
     }
     PT_END(thread);
 }

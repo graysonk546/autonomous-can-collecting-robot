@@ -71,6 +71,10 @@ robot_status_t lineFollowingController_init(reflectance_t* sensor1,
 
 robot_status_t lineFollowingController_spinOnce();
 
+robot_status_t lineFollowingController_startUp();
+
+robot_status_t lineFollowingController_shutDown();
+
 line_following_controller_config_t* lineFollowingController_getConfig();
 
 line_following_controller_state_t* lineFollowingController_getState();

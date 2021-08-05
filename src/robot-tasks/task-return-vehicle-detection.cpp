@@ -1,16 +1,18 @@
-#ifndef UTIL_VARS_H
-#define UTIL_VARS_H
-
 /*******************************************************************************
-*                               Standard Includes
+*                               Standard Libraries
 *******************************************************************************/
 
 #include <pt.h>
 #include <pt-sem.h>
+#include <Arduino.h>
 
 /*******************************************************************************
-*                               Header File Includes
+*                               Header Files
 *******************************************************************************/
+
+#include "task-return-vehicle-detection.h"
+#include "utilities/util-vars.h"
+#include "utilities/robot-config.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -20,52 +22,41 @@
 *                               Constants
 *******************************************************************************/
 
-#define NUM_DRIVING_MOTORS 2
-#define NUM_LINE_FOLLOWING_SENSORS 2
-
-/*******************************************************************************
-*                                 Macros
-*******************************************************************************/
-
-#define CLAMP(x, low, high)  (((x) > (high)) ? (high) : (((x) < (low)) ? \
-              (low) : (x)))
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
-
-typedef void (*ISR_func_t)(void);
-
-typedef enum {
-    ROBOT_OK,
-    ROBOT_ERR
-} robot_status_t;
-
-typedef enum {
-    ROBOT_CLI,
-    ROBOT_DRIVING,
-    ROBOT_CLAW,
-    ROBOT_CAN_COLLECTION,
-    ROBOT_HOPPER_LOADING,
-    ROBOT_TASK_BUTTON,
-    RETURN_VEHICLE_DETECTION
-} robot_task_id_t;
-
-typedef struct{
-    struct pt_sem   taskMutex;
-    struct pt       taskThread;
-    robot_task_id_t taskId;
-    ISR_func_t      taskISR;
-    unsigned long   taskTime;
-    bool            taskFlag;
-} robot_task_t;
 
 /*******************************************************************************
 *                               Variables
 *******************************************************************************/
 
+static robot_task_t taskReturnVehicleDetection =
+{
+    .taskId      = RETURN_VEHICLE_DETECTION,
+    .taskTime    = millis(),
+    .taskFlag    = false
+};
+
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-#endif // UTIL_VARS_H
+robot_status_t taskReturnVehicleDetection_init()
+{
+    pinMode(PIN_RETURN_VEHICLE_DETECTOR, INPUT_PULLDOWN);
+    attachInterrupt(digitalPinToInterrupt(PIN_RETURN_VEHICLE_DETECTOR), taskReturnVehicleDetection_ISR, 
+                     FALLING);
+    PT_INIT(&taskReturnVehicleDetection.taskThread);
+    return ROBOT_OK;
+}
+
+void taskReturnVehicleDetection_ISR()
+{
+    taskReturnVehicleDetection.taskFlag = true;
+    Serial.println("taskReturnVehicle_ISR() called");
+}
+
+robot_task_t* taskReturnVehicleDetection_getTask()
+{
+    return &taskReturnVehicleDetection;
+}

@@ -98,12 +98,43 @@ robot_status_t canCollectionController_init(dc_motor_two_t* rollerMotor,
     state.rollerMotor = rollerMotor;
     state.rollerEncoder = rollerEncoder;
     state.loaderServo = loaderServo;
-    state.rollerState = ROLLING_INWARDS;
-    state.loaderState = state.previousLoaderState = state.nextLoaderState = WAITING_FOR_CAN;
-    state.timeLastCanDetected = state.timeLastLoadingStarted =
-        state.timeLastLoaderResettingStarted = millis();
+    
     state.initialized = true;
     return ROBOT_OK;
+}
+
+robot_status_t canCollectionController_startUp()
+{
+    Serial.println("Starting up can collection controller...");
+    if (state.initialized)
+    {
+        state.rollerState = ROLLING_INWARDS;
+        state.loaderState = state.previousLoaderState = state.nextLoaderState = WAITING_FOR_CAN;
+        state.timeLastCanDetected = state.timeLastLoadingStarted =
+            state.timeLastLoaderResettingStarted = state.rollerEncoder->lastInterruptTime = millis();
+        canCollectionController_spinOnce();
+        return ROBOT_OK;
+    }
+    else
+    {
+        return ROBOT_ERR;
+    }
+
+}
+
+robot_status_t canCollectionController_shutDown()
+{
+    Serial.println("Shutting down can controller...");
+    if (state.initialized)
+    {
+        state.rollerState = NOT_ROLLING;
+        canCollectionController_spinOnce();
+        return ROBOT_OK;
+    }
+    else
+    {
+        return ROBOT_ERR;
+    }
 }
 
 robot_status_t canCollectionController_spinOnce()
@@ -200,17 +231,9 @@ robot_status_t canCollectionController_spinOnce()
 
 static void _canDetected_ISR()
 {
-<<<<<<< Updated upstream
-    Serial.println("ISR called");
-    if (state.loaderState == WAITING_FOR_CAN)
-    {
-        Serial.println(millis());
-=======
     Serial.println("can detected...");
     if (state.loaderState == WAITING_FOR_CAN)
     {
-
->>>>>>> Stashed changes
         state.nextLoaderState = WAITING_TO_LOAD;
     }
 }
