@@ -155,7 +155,7 @@ robot_status_t canCollectionController_spinOnce()
             Serial.println(timeNow);
             state.loaderState = WAITING_FOR_CAN;
         }
-    }
+        }
     state.nextLoaderState = state.loaderState;
 
     if (state.loaderState == WAITING_FOR_CAN || state.loaderState == RESETTING_LOADER || state.loaderState == WAITING_TO_LOAD)
@@ -200,10 +200,17 @@ robot_status_t canCollectionController_spinOnce()
 
 static void _canDetected_ISR()
 {
+<<<<<<< Updated upstream
     Serial.println("ISR called");
     if (state.loaderState == WAITING_FOR_CAN)
     {
         Serial.println(millis());
+=======
+    Serial.println("can detected...");
+    if (state.loaderState == WAITING_FOR_CAN)
+    {
+
+>>>>>>> Stashed changes
         state.nextLoaderState = WAITING_TO_LOAD;
     }
 }

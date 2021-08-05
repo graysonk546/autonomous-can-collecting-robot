@@ -37,7 +37,8 @@ static char _buttonTask(struct pt* thread);
 *                               Constants
 *******************************************************************************/
 
-#define GROUND_DETECTED_DISTANCE 3  // cm
+#define GROUND_DETECTED_DISTANCE 5  // cm
+#define MIN_GROUND_DETECTOR_DISTANCE 2  // cm
 #define MAX_GROUND_DETECTOR_DISTANCE 100  // cm
 
 /*******************************************************************************
@@ -57,7 +58,8 @@ static robot_task_t* task_button;
 
 // Flags (in place of semaphores for the time being)
 static bool flag;
-static bool groundDetectedFlag;
+static bool groundDetected;
+static bool wasControllerCalledOnce;
 
 // Ground detection
 static NewPing groundDetector(PA11, PA12, MAX_GROUND_DETECTOR_DISTANCE);
@@ -70,7 +72,8 @@ void setup()
 {
     // Initilize flags
     flag = true;
-    groundDetectedFlag = false;
+    groundDetected = false;
+    wasControllerCalledOnce = false;
 
     // Initialize peripherals
     if (taskCli_init() != ROBOT_OK)
@@ -104,7 +107,24 @@ void setup()
 
 void loop()
 {
-
+    if (task_button->taskFlag)
+    {
+        if (!groundDetected)
+        {
+            Serial.print("Ping = ");
+            unsigned long dist = groundDetector.ping_cm();
+            Serial.println(dist);
+            if (dist < GROUND_DETECTED_DISTANCE && dist > MIN_GROUND_DETECTOR_DISTANCE)
+            {
+                groundDetected = true;
+                Serial.println("Ground successfully detected...");
+            }
+        }
+    }
+    else
+    {
+        groundDetected = false;
+    }
     // UNCOMMENT WHEN SONAR IS SETUP
     // if(!groundDetectedFlag)
     // {
@@ -129,7 +149,11 @@ void loop()
     //     _drivingTask(&task_driving->taskThread);
     // }
     // _drivingTask(&task_driving->taskThread);
+<<<<<<< Updated upstream
     // _canCollectionTask(&task_canCollection->taskThread);
+=======
+    _canCollectionTask(&task_canCollection->taskThread); 
+>>>>>>> Stashed changes
     // _hopperLoadingTask(&task_hopperLoading->taskThread);
     _cliTask(&task_cli->taskThread);
 
@@ -165,7 +189,10 @@ static PT_THREAD(_drivingTask(struct pt* thread))
     while (true)
     {
         PT_SEM_WAIT(thread, &task_driving->taskMutex);
-        lineFollowingController_spinOnce();
+        if (groundDetected)
+        {
+            lineFollowingController_spinOnce();
+        }
     }
     PT_END(thread);
 }
@@ -198,6 +225,11 @@ static PT_THREAD(_canCollectionTask(struct pt* thread))
     {
         PT_SEM_WAIT(thread, &task_canCollection->taskMutex);
         canCollectionController_spinOnce();
+        // if (groundDetected)
+        // {
+        //     Serial.println("Spinning controller...");
+            
+        // }
     }
     PT_END(thread);
 }

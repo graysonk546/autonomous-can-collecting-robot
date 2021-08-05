@@ -59,7 +59,7 @@ robot_status_t taskButton_init()
     // taskCanCollectionTimer->attachInterrupt(taskCanCollection_ISR);
     // taskCanCollectionTimer->resume();
 
-    pinMode(PIN_BUTTON, INPUT);
+    pinMode(PIN_BUTTON, INPUT_PULLDOWN);
     attachInterrupt(digitalPinToInterrupt(PIN_BUTTON), taskButton_ISR, 
                      FALLING);
 
@@ -71,7 +71,12 @@ robot_status_t taskButton_init()
 void taskButton_ISR()
 {
     taskButton.taskFlag = !taskButton.taskFlag;
+<<<<<<< Updated upstream
     Serial.println("Button pressed...");
+=======
+    Serial.print("Button task flag = ");
+    Serial.println(taskButton.taskFlag);
+>>>>>>> Stashed changes
 }
 
 robot_task_t* taskButton_getTask()
