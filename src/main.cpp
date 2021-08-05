@@ -198,7 +198,7 @@ static PT_THREAD(_drivingTask(struct pt* thread))
     while (true)
     {
         PT_SEM_WAIT(thread, &task_driving->taskMutex);
-        if (groundDetected)
+        if (groundDetected && !task_returnVehicleDetection->taskFlag)
         {
             lineFollowingController_spinOnce();
         }
@@ -233,7 +233,7 @@ static PT_THREAD(_canCollectionTask(struct pt* thread))
     while (true)
     {
         PT_SEM_WAIT(thread, &task_canCollection->taskMutex);
-        if (groundDetected)
+        if (groundDetected && !task_returnVehicleDetection->taskFlag)
         {
             canCollectionController_spinOnce();
         }
