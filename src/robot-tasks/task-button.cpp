@@ -71,6 +71,7 @@ robot_status_t taskButton_init()
 void taskButton_ISR()
 {
     taskButton.taskFlag = !taskButton.taskFlag;
+    Serial.println("Button pressed...");
 }
 
 robot_task_t* taskButton_getTask()

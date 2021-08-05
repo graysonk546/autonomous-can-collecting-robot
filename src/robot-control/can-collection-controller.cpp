@@ -200,9 +200,9 @@ robot_status_t canCollectionController_spinOnce()
 
 static void _canDetected_ISR()
 {
+    Serial.println("ISR called");
     if (state.loaderState == WAITING_FOR_CAN)
     {
-        Serial.print("ISR switching from WAITING_FOR_CAN to WAITING_TO_LOAD at ");
         Serial.println(millis());
         state.nextLoaderState = WAITING_TO_LOAD;
     }

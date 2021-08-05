@@ -79,15 +79,15 @@ cli_status_t cliServo_rotate(uint8_t argNumber, char* args[])
 
     // servo_motor_id_t servo_id = (servo_motor_id_t) strtol((const char*) args[0],
     //                                                       NULL, 0);
-    // int angle = (int) strtol((const char*) args[1], NULL, 0);
+    int angle = (int) strtol((const char*) args[1], NULL, 0);
 
-    // myServo.write(angle);
-    // Serial.print("Angle: ");
-    // Serial.println(angle);
+    myServo.write(angle);
+    Serial.print("Angle: ");
+    Serial.println(angle);
 
-    myServo.write(0);
-    delay(500);
-    myServo.write(90);
+    // myServo.write(0);
+    // delay(500);
+    // myServo.write(90);
 
     // if (servo_id != HOPPER_ROTATION_SERVO && servo_id != HOPPER_LOADING_SERVO)
     // {
