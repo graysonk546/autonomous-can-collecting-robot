@@ -39,7 +39,7 @@ static char _buttonTask(struct pt* thread);
 *                               Constants
 *******************************************************************************/
 
-#define GROUND_DETECTED_DISTANCE 4  // cm
+#define GROUND_DETECTED_DISTANCE 10  // cm
 #define MIN_GROUND_DETECTOR_DISTANCE 2  // cm
 #define MAX_GROUND_DETECTOR_DISTANCE 100  // cm
 
