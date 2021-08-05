@@ -44,14 +44,14 @@ static robot_task_t taskReturnVehicleDetection =
 
 robot_status_t taskReturnVehicleDetection_init()
 {
-    if (servo_init(servo_get(HOPPER_ROTATION_SERVO)) != ROBOT_OK)
-    {
-        return ROBOT_ERR;
-    }
-    if (servo_init(servo_get(HOPPER_DOOR_SERVO)) != ROBOT_OK)
-    {
-        return ROBOT_ERR;
-    }
+    // if (servo_init(servo_get(HOPPER_ROTATION_SERVO)) != ROBOT_OK)
+    // {
+    //     return ROBOT_ERR;
+    // }
+    // if (servo_init(servo_get(HOPPER_DOOR_SERVO)) != ROBOT_OK)
+    // {
+    //     return ROBOT_ERR;
+    // }
     pinMode(PIN_RETURN_VEHICLE_DETECTOR, INPUT_PULLDOWN);
     attachInterrupt(digitalPinToInterrupt(PIN_RETURN_VEHICLE_DETECTOR), taskReturnVehicleDetection_ISR, 
                      FALLING);
@@ -69,6 +69,8 @@ void taskReturnVehicleDetection_ISR()
         }
     }
     taskReturnVehicleDetection.taskFlag = true;
+    servo_init(servo_get(HOPPER_ROTATION_SERVO));
+    servo_init(servo_get(HOPPER_DOOR_SERVO));
     Serial.println("taskReturnVehicle_ISR() called");
 }
 
