@@ -52,9 +52,7 @@ robot_status_t taskButton_init()
 
 void taskButton_ISR()
 {
-    taskButton.taskFlag = !taskButton.taskFlag;
-    Serial.print("Button task flag = ");
-    Serial.println(taskButton.taskFlag);
+    taskButton.taskFlag = true;
 }
 
 robot_task_t* taskButton_getTask()

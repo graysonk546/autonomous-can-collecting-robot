@@ -34,6 +34,7 @@ static char _canCollectionTask(struct pt* thread);
 static char _hopperLoadingTask(struct pt* thread);
 static char _buttonTask(struct pt* thread);
 
+
 /*******************************************************************************
 *                               Constants
 *******************************************************************************/
@@ -56,6 +57,7 @@ static robot_task_t* task_cli;
 static robot_task_t* task_canCollection;
 static robot_task_t* task_hopperLoading;
 static robot_task_t* task_button;
+static robot_task_t* task_returnVehicleDetection;
 
 // Flags (in place of semaphores for the time being)
 static bool flag;
@@ -96,6 +98,10 @@ void setup()
     {
 
     }
+    if (taskReturnVehicleDetection_init() != ROBOT_OK)
+    {
+
+    }
     
     // Get task references
     task_driving = taskDriving_getTask();
@@ -103,6 +109,7 @@ void setup()
     task_canCollection = taskCanCollection_getTask();
     task_hopperLoading = taskHopperLoading_getTask();
     task_button = taskButton_getTask();
+    task_returnVehicleDetection = taskReturnVehicleDetection_getTask();
 }
 
 void loop()
@@ -122,15 +129,6 @@ void loop()
                 Serial.println("Ground successfully detected...");
             }
         }
-    }
-    else
-    {
-        if (groundDetected)
-        {
-            canCollectionController_shutDown();
-            lineFollowingController_shutDown();
-        }
-        groundDetected = false;
     }
     // UNCOMMENT WHEN SONAR IS SETUP
     // if(!groundDetectedFlag)
