@@ -13,6 +13,7 @@
 #include "task-return-vehicle-detection.h"
 #include "utilities/util-vars.h"
 #include "utilities/robot-config.h"
+#include "robot-core/servo.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -43,6 +44,14 @@ static robot_task_t taskReturnVehicleDetection =
 
 robot_status_t taskReturnVehicleDetection_init()
 {
+    if (servo_init(servo_get(HOPPER_ROTATION_SERVO)) != ROBOT_OK)
+    {
+        return ROBOT_ERR;
+    }
+    if (servo_init(servo_get(HOPPER_DOOR_SERVO)) != ROBOT_OK)
+    {
+        return ROBOT_ERR;
+    }
     pinMode(PIN_RETURN_VEHICLE_DETECTOR, INPUT_PULLDOWN);
     attachInterrupt(digitalPinToInterrupt(PIN_RETURN_VEHICLE_DETECTOR), taskReturnVehicleDetection_ISR, 
                      FALLING);

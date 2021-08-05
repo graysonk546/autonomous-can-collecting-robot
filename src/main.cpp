@@ -129,6 +129,14 @@ void loop()
                 Serial.println("Ground successfully detected...");
             }
         }
+        else if (task_returnVehicleDetection->taskFlag)
+        {
+            canCollectionController_shutDown();
+            lineFollowingController_shutDown();
+            servo_rotate(servo_get(HOPPER_ROTATION_SERVO), 180);
+            delay(1000);
+            servo_rotate(servo_get(HOPPER_DOOR_SERVO), 180);
+        }
     }
     // UNCOMMENT WHEN SONAR IS SETUP
     // if(!groundDetectedFlag)

@@ -46,7 +46,16 @@ static servo_motor_t servoArr[] =
         .id = HOPPER_LOADING_SERVO,
         .initialized = false,
         .initAngle = 0
+    },
+    [HOPPER_DOOR_SERVO] =
+    {
+        .pin = PIN_HOPPER_DOOR_SERVO,
+        .angle = 0,
+        .id = HOPPER_DOOR_SERVO,
+        .initialized = false,
+        .initAngle = 0
     }
+
 };
 
 /*******************************************************************************
