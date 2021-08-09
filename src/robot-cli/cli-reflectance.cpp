@@ -36,7 +36,7 @@ cli_status_t cliReflectance_init(uint8_t argNumber, char* args[])
     reflectance_id_t sensorId = (reflectance_id_t) strtol((const char*) args[0], 
                                                           NULL, 0);
     
-    if (sensorId > LEFT_REFLECTANCE || sensorId < RIGHT_REFLECTANCE)
+    if (sensorId > RIGHT_REFLECTANCE || sensorId < LEFT_REFLECTANCE)
     {
         Serial.print(F(CMD_JSON "{\"status\": \"error\", \"data\": \"invalid"
                      " reflectance sensor\"}" CMD_EOL_STR));
@@ -61,7 +61,7 @@ cli_status_t cliReflectance_read(uint8_t argNumber, char* args[])
     reflectance_id_t sensorId = (reflectance_id_t) strtol((const char*) args[0], 
                                                           NULL, 0);
     
-    if (sensorId > LEFT_REFLECTANCE || sensorId < RIGHT_REFLECTANCE)
+    if (sensorId < LEFT_REFLECTANCE || sensorId > RIGHT_REFLECTANCE)
     {
         Serial.print(F(CMD_JSON "{\"status\": \"error\", \"data\": \"invalid"
                      " reflectance sensor\"}" CMD_EOL_STR));

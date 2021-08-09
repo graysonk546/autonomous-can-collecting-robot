@@ -38,8 +38,9 @@ typedef enum
 
 typedef enum
 {
+    RIGHT_DRIVING_MOTOR,
     LEFT_DRIVING_MOTOR,
-    RIGHT_DRIVING_MOTOR
+    ROLLER_DRIVING_MOTOR
 } dc_motor_two_id_t;
 
 struct dc_motor_two_t

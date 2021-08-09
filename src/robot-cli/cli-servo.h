@@ -1,17 +1,14 @@
-#ifndef TASK_CLAW
-#define TASK_CLAW
-
+#ifndef CLI_SERVO
+#define CLI_SERV
 /*******************************************************************************
-*                               Standard Libraries
+*                               Standard Includes
 *******************************************************************************/
 
-#include <pt.h>
-#include <pt-sem.h>
-
 /*******************************************************************************
-*                               Header Files
+*                               Header File Includes
 *******************************************************************************/
 
+#include "cli-command.h"
 #include "utilities/util-vars.h"
 
 /*******************************************************************************
@@ -34,25 +31,15 @@
 *                               Functions
 *******************************************************************************/
 
-/*******************************************************************************
- * Requires: None
- * Effects:  Returns robot_status_t indicating state of initialization
- * Modifies: None
- * ****************************************************************************/
-robot_status_t taskClaw_init();
+cli_status_t cliServo_init(uint8_t argNumber, char* args[]);
 
-/*******************************************************************************
- * Requires: None
- * Effects:  Returns a robot_task_t pointer to the cli task
- * Modifies: None
- * ****************************************************************************/
-robot_task_t* taskClaw_getTask();
+cli_status_t cliServo_rotate(uint8_t argNumber, char* args[]);
 
-/*******************************************************************************
- * Requires: None
- * Effects:  None
- * Modifies: Takes task mutex, called when interrupt hits
- * ****************************************************************************/
-void taskClaw_ISR();
+cli_status_t cliServo_getInitAngle(uint8_t argNumber, char* args[]);
 
-#endif // TASK_CLAW
+cli_status_t cliServo_setInitAngle(uint8_t argNumber, char* args[]);
+
+#define SERVO_COMMANDS                                                                     \
+    {cliServo_init,    "servo-init",    "<periph>",          "init servo",        1, 1},\
+    {cliServo_rotate,  "servo-rotate",  "<periph> <angle>",  "rotate the servo",  2, 2},
+#endif // CLI_SERVO

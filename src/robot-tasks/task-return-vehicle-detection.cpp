@@ -1,15 +1,19 @@
-
 /*******************************************************************************
 *                               Standard Libraries
 *******************************************************************************/
 
+#include <pt.h>
+#include <pt-sem.h>
 #include <Arduino.h>
 
 /*******************************************************************************
 *                               Header Files
 *******************************************************************************/
 
-#include "dc-motor-one.h"
+#include "task-return-vehicle-detection.h"
+#include "utilities/util-vars.h"
+#include "utilities/robot-config.h"
+#include "robot-core/servo.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -27,45 +31,50 @@
 *                               Variables
 *******************************************************************************/
 
-static dc_motor_one_t dcMotorOneArr[] =
+static robot_task_t taskReturnVehicleDetection =
 {
-    [ROLLER_MOTOR] = 
-    {
-        // .pin         = PA7,
-        .speed       = STATIC_SPEED,
-        .id          = ROLLER_MOTOR,
-        .initialized = false
-    }
+    .taskId      = RETURN_VEHICLE_DETECTION,
+    .taskTime    = millis(),
+    .taskFlag    = false
 };
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-robot_status_t dcMotorOne_init(dc_motor_one_t* motor)
+robot_status_t taskReturnVehicleDetection_init()
 {
-    pinMode(motor->pin, OUTPUT);
-    motor->speed = STATIC_SPEED;
-    analogWrite(motor->pin, motor->speed);
-    motor->initialized = true;
-    return ROBOT_OK;
-}
-
-robot_status_t dcMotorOne_run(dc_motor_one_t* motor, uint8_t speed)
-{
-    if (motor->initialized)
-    {
-        motor->speed = speed;
-        analogWrite(motor->pin, motor->speed);
-        return ROBOT_OK;
-    }
-    else
+    if (servo_init(servo_get(HOPPER_ROTATION_SERVO)) != ROBOT_OK)
     {
         return ROBOT_ERR;
     }
+    if (servo_init(servo_get(HOPPER_DOOR_SERVO)) != ROBOT_OK)
+    {
+        return ROBOT_ERR;
+    }
+    pinMode(PIN_RETURN_VEHICLE_DETECTOR, INPUT_PULLDOWN);
+    attachInterrupt(digitalPinToInterrupt(PIN_RETURN_VEHICLE_DETECTOR), taskReturnVehicleDetection_ISR, 
+                     FALLING);
+    PT_INIT(&taskReturnVehicleDetection.taskThread);
+    return ROBOT_OK;
 }
 
-dc_motor_one_t* dcMotorOne_get(dc_motor_one_id_t id) 
+void taskReturnVehicleDetection_ISR()
 {
-    return &dcMotorOneArr[id];
+    for (uint8_t i = 0; i < 5; i++)
+    {
+        if (digitalRead(PIN_RETURN_VEHICLE_DETECTOR) != HIGH)
+        {
+            return;
+        }
+    }
+    taskReturnVehicleDetection.taskFlag = true;
+    // servo_init(servo_get(HOPPER_ROTATION_SERVO));
+    // servo_init(servo_get(HOPPER_DOOR_SERVO));
+    Serial.println("taskReturnVehicle_ISR() called");
+}
+
+robot_task_t* taskReturnVehicleDetection_getTask()
+{
+    return &taskReturnVehicleDetection;
 }

@@ -1,4 +1,3 @@
-
 /*******************************************************************************
 *                               Standard Libraries
 *******************************************************************************/
@@ -9,7 +8,9 @@
 *                               Header Files
 *******************************************************************************/
 
-#include "dc-motor-one.h"
+#include "servo.h"
+#include "utilities/robot-config.h"
+#include "utilities/util-vars.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -27,36 +28,54 @@
 *                               Variables
 *******************************************************************************/
 
-static dc_motor_one_t dcMotorOneArr[] =
+static servo_motor_t servoArr[] =
 {
-    [ROLLER_MOTOR] = 
+    [HOPPER_ROTATION_SERVO] =
     {
-        // .pin         = PA7,
-        .speed       = STATIC_SPEED,
-        .id          = ROLLER_MOTOR,
-        .initialized = false
+        .pin = PIN_HOPPER_ROTATION_SERVO,
+        .angle = 0,
+        .id = HOPPER_ROTATION_SERVO,
+        .initialized = false,
+        .initAngle = 0
+
+    },
+    [HOPPER_LOADING_SERVO] = 
+    {
+        .pin = PIN_HOPPER_LOADING_SERVO,
+        .angle = 0,                                                                  
+        .id = HOPPER_LOADING_SERVO,
+        .initialized = false,
+        .initAngle = 0
+    },
+    [HOPPER_DOOR_SERVO] =
+    {
+        .pin = PIN_HOPPER_DOOR_SERVO,
+        .angle = 0,
+        .id = HOPPER_DOOR_SERVO,
+        .initialized = false,
+        .initAngle = 0
     }
+
 };
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-robot_status_t dcMotorOne_init(dc_motor_one_t* motor)
+robot_status_t servo_init(servo_motor_t* servo)
 {
-    pinMode(motor->pin, OUTPUT);
-    motor->speed = STATIC_SPEED;
-    analogWrite(motor->pin, motor->speed);
-    motor->initialized = true;
+    servo->motor.attach(servo->pin);
+    servo->motor.write(servo->initAngle);
+    servo->initialized = true;
     return ROBOT_OK;
 }
 
-robot_status_t dcMotorOne_run(dc_motor_one_t* motor, uint8_t speed)
+robot_status_t servo_rotate(servo_motor_t* servo, uint8_t angle)
 {
-    if (motor->initialized)
+    if (servo->initialized)
     {
-        motor->speed = speed;
-        analogWrite(motor->pin, motor->speed);
+        servo->angle = CLAMP(angle, MIN_ANGLE, MAX_ANGLE);
+        servo->motor.write(servo->angle);
         return ROBOT_OK;
     }
     else
@@ -65,7 +84,7 @@ robot_status_t dcMotorOne_run(dc_motor_one_t* motor, uint8_t speed)
     }
 }
 
-dc_motor_one_t* dcMotorOne_get(dc_motor_one_id_t id) 
+servo_motor_t* servo_get(servo_motor_id_t id)
 {
-    return &dcMotorOneArr[id];
+    return &servoArr[id];
 }

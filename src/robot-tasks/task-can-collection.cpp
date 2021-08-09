@@ -1,4 +1,3 @@
-
 /*******************************************************************************
 *                               Standard Libraries
 *******************************************************************************/
@@ -11,8 +10,9 @@
 *                               Header Files
 *******************************************************************************/
 
-#include "task-claw.h"
-#include "robot-core/sonar.h"
+#include "task-can-collection.h"
+#include "robot-core/dc-motor-two.h"
+#include "robot-control/can-collection-controller.h"
 #include "utilities/util-vars.h"
 
 /*******************************************************************************
@@ -23,10 +23,6 @@
 *                               Constants
 *******************************************************************************/
 
-#define CLAW_INT_PIN PB11
-// TODO (#11): Increase timeout to match claw timing
-#define CLAW_TIMEOUT 500
-
 /*******************************************************************************
 *                               Structures
 *******************************************************************************/
@@ -35,62 +31,56 @@
 *                               Variables
 *******************************************************************************/
 
-// Default thread and not directly interrupt driven
-#ifdef UNO
-static robot_task_t taskClaw =
+static robot_task_t taskCanCollection =
 {
-    taskClaw.taskMutex,
-    taskClaw.taskThread,
-    taskClaw.taskId      = ROBOT_CLAW,
-    taskClaw.taskISR,
-    taskClaw.taskTime    = millis()
+    taskCanCollection.taskMutex,
+    taskCanCollection.taskThread,
+    taskCanCollection.taskId      = ROBOT_CAN_COLLECTION,
+    taskCanCollection.taskISR,
+    taskCanCollection.taskTime    = millis()
 };
-#elif STM32
-static robot_task_t taskClaw =
-{
-    .taskId   = ROBOT_CLAW,
-    .taskTime = millis()
-};
-#else
-static robot_task_t taskClaw = 
-{
-    .taskId   = ROBOT_CLAW,
-    .taskTime = millis()
-};
-#endif
+
+HardwareTimer* taskCanCollectionTimer;
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-robot_status_t taskClaw_init()
+robot_status_t taskCanCollection_init()
 {
-    // Initialize the periphs used in this task
-    if (sonar_init() != ROBOT_OK)
+    if(dcMotorTwo_init(dcMotorTwo_get(ROLLER_DRIVING_MOTOR)) != ROBOT_OK)
     {
         return ROBOT_ERR;
     }
-    // Initialize the interrupt pin
-    pinMode(CLAW_INT_PIN, INPUT);
-    attachInterrupt(digitalPinToInterrupt(CLAW_INT_PIN), 
-                    taskClaw_ISR, RISING);
-    // Initialize the claw task pt thread
-    PT_INIT(&taskClaw.taskThread);
-    // Initialize the claw task pt sem
-    PT_SEM_INIT(&taskClaw.taskMutex, 0);
+    else if (rotarySpeedEncoder_init(
+             rotarySpeedEncoder_get(ROLLER_SPEED_ENCODER)) != ROBOT_OK)
+    {
+        return ROBOT_ERR;
+    }
+    else if (canCollectionController_init(dcMotorTwo_get(ROLLER_DRIVING_MOTOR),
+             rotarySpeedEncoder_get(ROLLER_SPEED_ENCODER), servo_get(HOPPER_LOADING_SERVO)) != ROBOT_OK)
+    {
+        return ROBOT_ERR;
+    }
+
+    taskCanCollectionTimer = new HardwareTimer(TIM4);
+    taskCanCollectionTimer->setOverflow(100, HERTZ_FORMAT);
+    taskCanCollectionTimer->refresh();
+    taskCanCollectionTimer->attachInterrupt(taskCanCollection_ISR);
+    taskCanCollectionTimer->resume();
+
+    PT_INIT(&taskCanCollection.taskThread);
+    PT_SEM_INIT(&taskCanCollection.taskMutex, 0);
+    Serial.println("taskCanCollection_init() called...");
     return ROBOT_OK;
 }
 
-robot_task_t* taskClaw_getTask()
+void taskCanCollection_ISR()
 {
-    return &taskClaw;
+    PT_SEM_SIGNAL(&taskCanCollection.taskThread, &taskCanCollection.taskMutex);
 }
 
-void taskClaw_ISR()
+robot_task_t* taskCanCollection_getTask()
 {
-    if ((millis() - taskClaw.taskTime) > CLAW_TIMEOUT)
-    {
-        PT_SEM_SIGNAL(&taskClaw.taskThread, &taskClaw.taskMutex);
-        taskClaw.taskTime = millis();
-    }
+    return &taskCanCollection;
 }

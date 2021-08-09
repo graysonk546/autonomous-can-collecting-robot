@@ -1,19 +1,19 @@
-#ifndef ROBOT_CONFIG_H
-#define ROBOT_CONFIG_H
-
 /*******************************************************************************
-*                               Standard Includes
+*                               Standard Libraries
 *******************************************************************************/
 
-#include <Arduino.h>
-
 /*******************************************************************************
-*                               Header File Includes
+*                               Header Files
 *******************************************************************************/
+
+#include "utilities/robot-config.h"
+#include "rotary-speed-encoder.h"
 
 /*******************************************************************************
 *                               Static Functions
 *******************************************************************************/
+
+static void _rollerSpeedEncoder_ISR();
 
 /*******************************************************************************
 *                               Constants
@@ -23,31 +23,49 @@
 *                               Structures
 *******************************************************************************/
 
-typedef enum {
-    PIN_LEFT_DRIVING_MOTOR_CW          = PB7,
-    PIN_LEFT_DRIVING_MOTOR_CCW         = PB6,
-    PIN_RIGHT_DRIVING_MOTOR_CW         = PB8,
-    PIN_RIGHT_DRIVING_MOTOR_CCW        = PB9,
-    PIR_ROLLER_MOTOR                   = PA7,
-    PIN_ROLLER_MOTOR_ENCODER           = PA15,
-    PIN_RIGHT_LINE_FOLLOWING_IR_SENSOR = PA5,
-    PIN_LEFT_LINE_FOLLOWING_IR_SENSOR  = PA4,
-    PIN_ROLLER_CW                      = PB1,
-    PIN_ROLLER_CCW                     = PB0,
-    PIN_CAN_DETECTOR                   = PB3,
-    PIN_HOPPER_ROTATION_SERVO          = PA2,
-    PIN_HOPPER_LOADING_SERVO           = PA7,
-    PIN_BUTTON                         = PB12,
-    PIN_RETURN_VEHICLE_DETECTOR        = PB4,
-    PIN_HOPPER_DOOR_SERVO              = PA0
-} robot_pin_t;
-
 /*******************************************************************************
 *                               Variables
 *******************************************************************************/
+
+static rotary_speed_encoder_t rotarySpeedEncoderArr[] =
+{
+    [ROLLER_SPEED_ENCODER] =
+    {
+        .pin               = PIN_ROLLER_MOTOR_ENCODER,
+        .id                = ROLLER_SPEED_ENCODER,
+        .isr               = &(_rollerSpeedEncoder_ISR),
+        .lastInterruptTime = 0,
+        .initialized       = false
+    }
+};
 
 /*******************************************************************************
 *                               Functions
 *******************************************************************************/
 
-#endif // ROBOT_CONFIG_H
+robot_status_t rotarySpeedEncoder_init(rotary_speed_encoder_t* encoder)
+{
+    pinMode(encoder->pin, INPUT_PULLDOWN);
+    encoder->lastInterruptTime = millis();
+    attachInterrupt(digitalPinToInterrupt(encoder->pin), encoder->isr, RISING);
+    encoder->initialized = true;
+    return ROBOT_OK;
+}
+
+rotary_speed_encoder_t* rotarySpeedEncoder_get(rotary_speed_encoder_id_t id)
+{
+    return &rotarySpeedEncoderArr[id];
+}
+
+static void _rollerSpeedEncoder_ISR()
+{
+    for (uint8_t i = 0; i < 5; i++)
+    {
+        if (digitalRead(PIN_ROLLER_MOTOR_ENCODER) != HIGH)
+        {
+            return;
+        }
+
+    }
+    rotarySpeedEncoderArr[ROLLER_SPEED_ENCODER].lastInterruptTime = millis();
+}

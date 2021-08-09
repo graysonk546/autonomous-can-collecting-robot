@@ -89,7 +89,7 @@ robot_status_t taskDriving_init()
     }
 
     //Intialize the timer for sampling the line follower signal
-    timer = new HardwareTimer(TIM2);
+    timer = new HardwareTimer(TIM1);
     timer->setOverflow(2000, HERTZ_FORMAT);
     timer->refresh();
     timer->attachInterrupt(taskDriving_ISR);
@@ -109,7 +109,6 @@ void taskDriving_ISR()
     //     PT_SEM_SIGNAL(&taskDriving.taskThread, &taskDriving.taskMutex);
     //     taskDriving.taskTime = millis();
     // }
-
     PT_SEM_SIGNAL(&taskDriving.taskThread, &taskDriving.taskMutex);
 }
 

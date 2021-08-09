@@ -1,15 +1,18 @@
-
-#ifndef CLI_SONAR
-#define CLI_SONAR
-/*******************************************************************************
-*                               Standard Includes
-*******************************************************************************/
+#ifndef TASK_HOPPER_LOADING
+#define TASK_HOPPER_LOADING
 
 /*******************************************************************************
-*                               Header File Includes
+*                               Standard Libraries
 *******************************************************************************/
 
-#include "cli-command.h"
+#include <pt.h>
+#include <pt-sem.h>
+
+/*******************************************************************************
+*                               Header Files
+*******************************************************************************/
+
+#include "utilities/util-vars.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -31,11 +34,25 @@
 *                               Functions
 *******************************************************************************/
 
-cli_status_t cliSonar_init(uint8_t argNumber, char* args[]);
+/*******************************************************************************
+ * Requires: None
+ * Effects:  Returns robot_status_t indicating state of initialization
+ * Modifies: None
+ * ****************************************************************************/
+robot_status_t taskHopperLoading_init();
 
-cli_status_t cliSonar_run(uint8_t argNumber, char* args[]);
+/*******************************************************************************
+ * Requires: None
+ * Effects:  None
+ * Modifies: Takes and releases pt_sem mutex in robot_task_t for driving
+ * ****************************************************************************/
+void taskHopperLoading_ISR();
 
-#define SONAR_COMMANDS                                             \
-    {cliSonar_init, "sonar-init", "", "init the sonar module", 0, 0}, \
-    {cliSonar_run,  "soanr-run",  "", "run the sonar module",  0, 0},
-#endif // CLI_SONAR
+/*******************************************************************************
+ * Requires: None
+ * Effects:  Returns a robot_task_t pointer to the driving task
+ * Modifies: None
+ * ****************************************************************************/
+robot_task_t* taskHopperLoading_getTask();
+
+#endif // TASK_HOPPER_LOADING

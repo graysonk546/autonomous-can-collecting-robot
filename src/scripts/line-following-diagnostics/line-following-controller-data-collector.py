@@ -11,7 +11,7 @@ def collect_data():
     SERIAL_PORT = '/dev/ttyUSB0'
     TIMEOUT = 15
     BAUD_RATE = 115200
-    POLL_FREQUENCY = 2  # Hz
+    POLL_FREQUENCY = 4  # Hz
     POLL_PERIOD = 1 / POLL_FREQUENCY  # seconds
     CLI_EOL = b'\n'
     COMMAND = b'poll-line-following-controller'

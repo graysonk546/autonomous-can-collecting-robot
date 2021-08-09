@@ -1,15 +1,13 @@
-#ifndef ROBOT_CONFIG_H
-#define ROBOT_CONFIG_H
-
 /*******************************************************************************
 *                               Standard Includes
 *******************************************************************************/
 
-#include <Arduino.h>
-
 /*******************************************************************************
 *                               Header File Includes
 *******************************************************************************/
+
+#include "cli-can-collection-controller.h"
+#include "stdio.h"
 
 /*******************************************************************************
 *                               Static Functions
@@ -23,25 +21,6 @@
 *                               Structures
 *******************************************************************************/
 
-typedef enum {
-    PIN_LEFT_DRIVING_MOTOR_CW          = PB7,
-    PIN_LEFT_DRIVING_MOTOR_CCW         = PB6,
-    PIN_RIGHT_DRIVING_MOTOR_CW         = PB8,
-    PIN_RIGHT_DRIVING_MOTOR_CCW        = PB9,
-    PIR_ROLLER_MOTOR                   = PA7,
-    PIN_ROLLER_MOTOR_ENCODER           = PA15,
-    PIN_RIGHT_LINE_FOLLOWING_IR_SENSOR = PA5,
-    PIN_LEFT_LINE_FOLLOWING_IR_SENSOR  = PA4,
-    PIN_ROLLER_CW                      = PB1,
-    PIN_ROLLER_CCW                     = PB0,
-    PIN_CAN_DETECTOR                   = PB3,
-    PIN_HOPPER_ROTATION_SERVO          = PA2,
-    PIN_HOPPER_LOADING_SERVO           = PA7,
-    PIN_BUTTON                         = PB12,
-    PIN_RETURN_VEHICLE_DETECTOR        = PB4,
-    PIN_HOPPER_DOOR_SERVO              = PA0
-} robot_pin_t;
-
 /*******************************************************************************
 *                               Variables
 *******************************************************************************/
@@ -50,4 +29,22 @@ typedef enum {
 *                               Functions
 *******************************************************************************/
 
-#endif // ROBOT_CONFIG_H
+// cli_status_t cliCanCollectionController_getRollerSpeed(uint8_t argNumber,
+//                                                        char* args[])
+// {
+//     int8_t speed = canCollectionController_getConfig()->rollerSpeed;
+//     char str[100]; 
+//     sprintf(str, CMD_JSON "{\"status\": \"success\", \"data\": %i}" CMD_EOL_STR, 
+//             speed);
+//     Serial.print(str);
+//     return COMMAND_OK;
+// }
+
+// cli_status_t cliCanCollectionController_setRollerSpeed(uint8_t argNumber,
+//                                                        char* args[])
+// {
+//     canCollectionController_getConfig()->rollerSpeed = (uint8_t) strtol((const
+//                                                        char*) args[0], NULL, 0);
+//     Serial.print(CMD_JSON "{\"status\": \"success\"}" CMD_EOL_STR);
+//     return COMMAND_OK;
+// }
