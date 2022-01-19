@@ -4,11 +4,11 @@ Source code for an autonomous can collecting/stacking robot. This robot was fabr
 
 # Paths to Notable Directories
 
-### [/src/main.cpp][8]
+### Main Module: [/src/main.cpp][8]
 
 - Master control loop responsible for scheduling robot tasks. Achieves multi-threaded, interrupt-driven control.
 
-### [/src/robot-tasks/][1]
+### Tasks Modules: [/src/robot-tasks/][1]
 - Directory containing robot task modules. this project's firmware architecture was designed off of a task-paradigm, 
 where all of the robot's desired functionality was split up into self contained tasks. These tasks access driver-level 
 functions through different robot controller modules to achieve a specific behavior (for example, line following), and are scheduled for execution in a master
@@ -17,7 +17,7 @@ control loop.
 - A `robot_task_t` struct was created to hold all data specific to tasks, like their mutex that controls 
 when they should execute in the control loop, the time of last execution, and an unique identifier.
 
-### [/src/robot-core/][2], [/src/robot-controllers/][3]
+### Core Modules: [/src/robot-core/][2], [/src/robot-controllers/][3]
 
 - These two directories contain methods that both interpret the raw signals entering the microcontroller, and drive the actuators that make the robot move.
 Together they act as a hardware abstraction layer/controller library that can be used by task modules.
@@ -26,7 +26,7 @@ Together they act as a hardware abstraction layer/controller library that can be
 and during each competition run. For example, the `line_following_controller_config_t` and `line_following_controller_state_t` structs in the 
 [line-following-controller][4] module keep track of essential driving parameters like PID tuning values, max/min speed clamping values, and robot target velocity.
 
-### [/src/robot-cli/][5], [/src/robot-cli/command.cpp][6]
+### Custom CLI: [/src/robot-cli/][5], [/src/robot-cli/command.cpp][6]
 
 - The `robot-cli` directory contains all the modules relevant to the custom CLI (Command Line Interface) written specifically for this robot. Each CLI module
 contains functions that can be called by the `robot-core/command` module after it parses messages sent over the robot's serial port. This means that the CLI can
